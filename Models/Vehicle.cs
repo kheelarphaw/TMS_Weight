@@ -9,6 +9,8 @@ namespace TMS_Weight.Models
     public class Vehicle
     {
         public string VehicleRegNo { get; set; }
+
+        public string TransporterID { get; set; }
        
     }
 }

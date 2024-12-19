@@ -23,16 +23,7 @@ namespace TMS_Weight
 			InitializeComponent();
             LoadData();
 
-            var p = this.Parent as Panel;
-            if (p != null)
-            {
-                p.Controls.Remove(this);
-            }
-
-            BtnEnable();
-            sfQueueGrid.Refresh();
-
-
+           
             this.sfQueueGrid.Columns.Add(new GridTextColumn()
             {
                 MappingName = "InRegNo",
@@ -154,6 +145,8 @@ namespace TMS_Weight
                 WeightBridgeQueue queue = selectedRow as WeightBridgeQueue;
                 if (queue != null)
                 {
+                    this.sfQueueGrid.SelectedIndex = -1;
+
                     FrmQueue f = new FrmQueue(queue);
                     f.ShowDialog();
 

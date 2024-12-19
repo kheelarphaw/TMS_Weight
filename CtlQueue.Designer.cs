@@ -34,17 +34,16 @@ namespace TMS_Weight
             //string yard = Properties.Settings.Default.YardCode;
             //string gate = Properties.Settings.Default.GateCode;
             this.sfQueueGrid.DataSource = null;
+            btnAddHoc.Enabled = true;
+            btnClose.Enabled = true;
+            btnWeight.Enabled = true;
+            
+            this.sfQueueGrid.Refresh();
             queueList = await _apiService.GetWeightBridgeQueueList();
             if (queueList != null)
             {
                 this.sfQueueGrid.DataSource = queueList;
             }
-
-            btnAddHoc.Enabled = true;
-            btnClose.Enabled = true;
-            btnWeight.Enabled = true;
-
-
         }
 
         #region Component Designer generated code

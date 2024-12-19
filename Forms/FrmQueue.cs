@@ -55,11 +55,15 @@ namespace TMS_Weight.Forms
                 if (msg.Status)
                 {
                     ClearDialogContents();
-                    CtlQueue q = new CtlQueue();
+                 
+                   
 
-                    CtlQueue ctl = new CtlQueue();
-                    ctl.Dock = DockStyle.Fill;
-                    
+                    CtlQueue ctl = new CtlQueue() { Dock = DockStyle.Fill };
+
+                    ctl.Show();
+                  
+                    // Add main panel and show the form
+                    //p.Controls.Add(ctl);
 
                     //MessageBoxAdv.Show(this, "Successfuly Saved!", "Weight Service Bill", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     BtnEnable();
@@ -90,7 +94,6 @@ namespace TMS_Weight.Forms
             sfCbxCategory.SelectedIndex = -1;
             sfCbxGate.SelectedIndex = -1;
             sfCbxTrailer.SelectedIndex = -1;
-            sfCbxTransporter.SelectedIndex = -1;
             sfCbxTruck.SelectedIndex = -1;
             sfCbxWBId.SelectedIndex = -1;
             sfCbxWOption.SelectedIndex = -1;
@@ -105,6 +108,11 @@ namespace TMS_Weight.Forms
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void lblBlno_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

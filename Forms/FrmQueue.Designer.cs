@@ -55,10 +55,10 @@ namespace TMS_Weight.Forms
             this.txtBlNo.Text = queue.BLNo;
             this.txtCargoInfo.Text = queue.CargoInfo;
             this.txtCustomer.Text = queue.Customer;
-            this.sfCbxTransporter.DataSource = null;
-            transporterList = await _apiService.GetTransporterList();
-            if (transporterList.Count > 0)
-                this.sfCbxTransporter.DataSource = transporterList;
+            //this.sfCbxTransporter.DataSource = null;
+            //transporterList = await _apiService.GetTransporterList();
+            //if (transporterList.Count > 0)
+            //    this.sfCbxTransporter.DataSource = transporterList;
 
             this.sfCbxWBId.DataSource = null;
             weightBridgeList = await _apiService.GetWeightBridgeList();
@@ -131,8 +131,8 @@ namespace TMS_Weight.Forms
             serviceBill.CargoInfo = this.txtCargoInfo.Text;
             
 
-            if (this.sfCbxTransporter.SelectedItem is Transporter t)
-                serviceBill.TransporterID = t.TransporterID;
+            //if (this.sfCbxTransporter.SelectedItem is Transporter t)
+            //    serviceBill.TransporterID = t.TransporterID;
 
             //if (this.sfCbxTruck.SelectedItem is Vehicle truck)
             serviceBill.TruckNo = this.sfCbxTruck.SelectedItem.ToString();
@@ -206,7 +206,6 @@ namespace TMS_Weight.Forms
             this.btnGet = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblWeight = new System.Windows.Forms.Label();
-            this.sfCbxTransporter = new Syncfusion.WinForms.ListView.SfComboBox();
             this.sfCbxWType = new Syncfusion.WinForms.ListView.SfComboBox();
             this.sfCbxWOption = new Syncfusion.WinForms.ListView.SfComboBox();
             this.sfCbxCategory = new Syncfusion.WinForms.ListView.SfComboBox();
@@ -226,7 +225,6 @@ namespace TMS_Weight.Forms
             this.pnHeader = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.lblDoNo = new System.Windows.Forms.Label();
-            this.lblTransporter = new System.Windows.Forms.Label();
             this.lblBillOption = new System.Windows.Forms.Label();
             this.lblWType = new System.Windows.Forms.Label();
             this.txtTime = new System.Windows.Forms.TextBox();
@@ -252,7 +250,6 @@ namespace TMS_Weight.Forms
             ((System.ComponentModel.ISupportInitialize)(this.sfCbxTruck)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfCbxBillOption)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sfCbxTransporter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfCbxWType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfCbxWOption)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfCbxCategory)).BeginInit();
@@ -365,18 +362,6 @@ namespace TMS_Weight.Forms
             this.lblWeight.TabIndex = 32;
             this.lblWeight.Text = "Weighing In :";
             // 
-            // sfCbxTransporter
-            // 
-            this.sfCbxTransporter.DisplayMember = "Name";
-            this.sfCbxTransporter.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.sfCbxTransporter.Location = new System.Drawing.Point(460, 325);
-            this.sfCbxTransporter.Name = "sfCbxTransporter";
-            this.sfCbxTransporter.Size = new System.Drawing.Size(212, 22);
-            this.sfCbxTransporter.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.sfCbxTransporter.TabIndex = 21;
-            this.sfCbxTransporter.TabStop = false;
-            this.sfCbxTransporter.ValueMember = "TransporterID";
-            // 
             // sfCbxWType
             // 
             this.sfCbxWType.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
@@ -430,16 +415,17 @@ namespace TMS_Weight.Forms
             // lblBlno
             // 
             this.lblBlno.AutoSize = true;
-            this.lblBlno.Location = new System.Drawing.Point(35, 446);
+            this.lblBlno.Location = new System.Drawing.Point(719, 393);
             this.lblBlno.Name = "lblBlno";
             this.lblBlno.Size = new System.Drawing.Size(54, 16);
             this.lblBlno.TabIndex = 84;
             this.lblBlno.Text = "B/L No :";
+            this.lblBlno.Click += new System.EventHandler(this.lblBlno_Click);
             // 
             // lblRemark
             // 
             this.lblRemark.AutoSize = true;
-            this.lblRemark.Location = new System.Drawing.Point(715, 452);
+            this.lblRemark.Location = new System.Drawing.Point(371, 455);
             this.lblRemark.Name = "lblRemark";
             this.lblRemark.Size = new System.Drawing.Size(61, 16);
             this.lblRemark.TabIndex = 83;
@@ -448,7 +434,7 @@ namespace TMS_Weight.Forms
             // lblVesselInfo
             // 
             this.lblVesselInfo.AutoSize = true;
-            this.lblVesselInfo.Location = new System.Drawing.Point(368, 446);
+            this.lblVesselInfo.Location = new System.Drawing.Point(33, 446);
             this.lblVesselInfo.Name = "lblVesselInfo";
             this.lblVesselInfo.Size = new System.Drawing.Size(71, 16);
             this.lblVesselInfo.TabIndex = 82;
@@ -457,7 +443,7 @@ namespace TMS_Weight.Forms
             // lblContainer
             // 
             this.lblContainer.AutoSize = true;
-            this.lblContainer.Location = new System.Drawing.Point(719, 390);
+            this.lblContainer.Location = new System.Drawing.Point(371, 390);
             this.lblContainer.Name = "lblContainer";
             this.lblContainer.Size = new System.Drawing.Size(70, 16);
             this.lblContainer.TabIndex = 81;
@@ -466,7 +452,7 @@ namespace TMS_Weight.Forms
             // lblLicense
             // 
             this.lblLicense.AutoSize = true;
-            this.lblLicense.Location = new System.Drawing.Point(35, 390);
+            this.lblLicense.Location = new System.Drawing.Point(719, 331);
             this.lblLicense.Name = "lblLicense";
             this.lblLicense.Size = new System.Drawing.Size(70, 16);
             this.lblLicense.TabIndex = 78;
@@ -554,20 +540,11 @@ namespace TMS_Weight.Forms
             // lblDoNo
             // 
             this.lblDoNo.AutoSize = true;
-            this.lblDoNo.Location = new System.Drawing.Point(371, 390);
+            this.lblDoNo.Location = new System.Drawing.Point(33, 393);
             this.lblDoNo.Name = "lblDoNo";
             this.lblDoNo.Size = new System.Drawing.Size(51, 16);
             this.lblDoNo.TabIndex = 79;
             this.lblDoNo.Text = "DO No:";
-            // 
-            // lblTransporter
-            // 
-            this.lblTransporter.AutoSize = true;
-            this.lblTransporter.Location = new System.Drawing.Point(371, 331);
-            this.lblTransporter.Name = "lblTransporter";
-            this.lblTransporter.Size = new System.Drawing.Size(83, 16);
-            this.lblTransporter.TabIndex = 77;
-            this.lblTransporter.Text = "Transporter :";
             // 
             // lblBillOption
             // 
@@ -596,28 +573,28 @@ namespace TMS_Weight.Forms
             // 
             // txtDoNo
             // 
-            this.txtDoNo.Location = new System.Drawing.Point(458, 384);
+            this.txtDoNo.Location = new System.Drawing.Point(122, 386);
             this.txtDoNo.Name = "txtDoNo";
             this.txtDoNo.Size = new System.Drawing.Size(212, 22);
             this.txtDoNo.TabIndex = 20;
             // 
             // txtBlNo
             // 
-            this.txtBlNo.Location = new System.Drawing.Point(123, 443);
+            this.txtBlNo.Location = new System.Drawing.Point(804, 386);
             this.txtBlNo.Name = "txtBlNo";
             this.txtBlNo.Size = new System.Drawing.Size(212, 22);
             this.txtBlNo.TabIndex = 23;
             // 
             // txtDLicense
             // 
-            this.txtDLicense.Location = new System.Drawing.Point(123, 384);
+            this.txtDLicense.Location = new System.Drawing.Point(804, 325);
             this.txtDLicense.Name = "txtDLicense";
             this.txtDLicense.Size = new System.Drawing.Size(212, 22);
             this.txtDLicense.TabIndex = 19;
             // 
             // txtRemark
             // 
-            this.txtRemark.Location = new System.Drawing.Point(804, 446);
+            this.txtRemark.Location = new System.Drawing.Point(456, 449);
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(212, 22);
@@ -625,7 +602,7 @@ namespace TMS_Weight.Forms
             // 
             // txtCargoInfo
             // 
-            this.txtCargoInfo.Location = new System.Drawing.Point(458, 446);
+            this.txtCargoInfo.Location = new System.Drawing.Point(123, 449);
             this.txtCargoInfo.Multiline = true;
             this.txtCargoInfo.Name = "txtCargoInfo";
             this.txtCargoInfo.Size = new System.Drawing.Size(212, 22);
@@ -633,14 +610,14 @@ namespace TMS_Weight.Forms
             // 
             // txtContainer
             // 
-            this.txtContainer.Location = new System.Drawing.Point(804, 390);
+            this.txtContainer.Location = new System.Drawing.Point(458, 386);
             this.txtContainer.Name = "txtContainer";
             this.txtContainer.Size = new System.Drawing.Size(212, 22);
             this.txtContainer.TabIndex = 22;
             // 
             // txtDriver
             // 
-            this.txtDriver.Location = new System.Drawing.Point(804, 325);
+            this.txtDriver.Location = new System.Drawing.Point(457, 325);
             this.txtDriver.Name = "txtDriver";
             this.txtDriver.Size = new System.Drawing.Size(212, 22);
             this.txtDriver.TabIndex = 18;
@@ -682,7 +659,7 @@ namespace TMS_Weight.Forms
             // lblDriver
             // 
             this.lblDriver.AutoSize = true;
-            this.lblDriver.Location = new System.Drawing.Point(715, 331);
+            this.lblDriver.Location = new System.Drawing.Point(371, 331);
             this.lblDriver.Name = "lblDriver";
             this.lblDriver.Size = new System.Drawing.Size(86, 16);
             this.lblDriver.TabIndex = 65;
@@ -735,7 +712,6 @@ namespace TMS_Weight.Forms
             this.Controls.Add(this.sfCbxTruck);
             this.Controls.Add(this.sfCbxBillOption);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.sfCbxTransporter);
             this.Controls.Add(this.sfCbxWType);
             this.Controls.Add(this.sfCbxWOption);
             this.Controls.Add(this.sfCbxCategory);
@@ -755,7 +731,6 @@ namespace TMS_Weight.Forms
             this.Controls.Add(this.pnHeader);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblDoNo);
-            this.Controls.Add(this.lblTransporter);
             this.Controls.Add(this.lblBillOption);
             this.Controls.Add(this.lblWType);
             this.Controls.Add(this.txtInRegNo);
@@ -784,7 +759,6 @@ namespace TMS_Weight.Forms
             ((System.ComponentModel.ISupportInitialize)(this.sfCbxBillOption)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sfCbxTransporter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfCbxWType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfCbxWOption)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfCbxCategory)).EndInit();
@@ -807,7 +781,6 @@ namespace TMS_Weight.Forms
         private System.Windows.Forms.Button btnGet;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblWeight;
-        public Syncfusion.WinForms.ListView.SfComboBox sfCbxTransporter;
         public Syncfusion.WinForms.ListView.SfComboBox sfCbxWType;
         public Syncfusion.WinForms.ListView.SfComboBox sfCbxWOption;
         public Syncfusion.WinForms.ListView.SfComboBox sfCbxCategory;
@@ -827,7 +800,6 @@ namespace TMS_Weight.Forms
         private System.Windows.Forms.Panel pnHeader;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblDoNo;
-        private System.Windows.Forms.Label lblTransporter;
         private System.Windows.Forms.Label lblBillOption;
         private System.Windows.Forms.Label lblWType;
         public System.Windows.Forms.TextBox txtTime;

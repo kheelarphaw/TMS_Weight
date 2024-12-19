@@ -55,7 +55,7 @@
             this.Controls.Add(this.reportViewer1);
             this.Name = "FrmServiceBillPrint";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmAdHocPrint";
+            this.Text = "Frm Service Bill Print";
             this.Load += new System.EventHandler(this.FrmServiceBillPrint_Load);
             this.ResumeLayout(false);
 
