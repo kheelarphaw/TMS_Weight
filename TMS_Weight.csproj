@@ -161,12 +161,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CtlQueue.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="CtlQueue.Designer.cs">
-      <DependentUpon>CtlQueue.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\CtlInQueue.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -179,11 +173,11 @@
     <Compile Include="Forms\CtlOutQueue.Designer.cs">
       <DependentUpon>CtlOutQueue.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CtlServiceBill.cs">
+    <Compile Include="Forms\CtlWeightServiceBill.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\CtlServiceBill.Designer.cs">
-      <DependentUpon>CtlServiceBill.cs</DependentUpon>
+    <Compile Include="Forms\CtlWeightServiceBill.Designer.cs">
+      <DependentUpon>CtlWeightServiceBill.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmAdHoc.cs">
       <SubType>Form</SubType>
@@ -226,17 +220,14 @@
     <Compile Include="Services\BaseUrl.cs" />
     <Compile Include="Services\WeightApiService.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <EmbeddedResource Include="CtlQueue.resx">
-      <DependentUpon>CtlQueue.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CtlInQueue.resx">
       <DependentUpon>CtlInQueue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CtlOutQueue.resx">
       <DependentUpon>CtlOutQueue.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CtlServiceBill.resx">
-      <DependentUpon>CtlServiceBill.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\CtlWeightServiceBill.resx">
+      <DependentUpon>CtlWeightServiceBill.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmAdHoc.resx">
       <DependentUpon>FrmAdHoc.cs</DependentUpon>

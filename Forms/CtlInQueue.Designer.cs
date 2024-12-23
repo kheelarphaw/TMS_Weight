@@ -72,21 +72,22 @@ namespace TMS_Weight.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.Controls.Add(this.sfInQueueGrid);
-            this.panel1.Location = new System.Drawing.Point(2, 121);
+            this.panel1.Location = new System.Drawing.Point(2, 123);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1318, 635);
+            this.panel1.Size = new System.Drawing.Size(1318, 633);
             this.panel1.TabIndex = 19;
             // 
             // sfInQueueGrid
             // 
             this.sfInQueueGrid.AccessibleName = "Table";
+            this.sfInQueueGrid.AllowResizingColumns = true;
             this.sfInQueueGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.sfInQueueGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sfInQueueGrid.Location = new System.Drawing.Point(10, 12);
             this.sfInQueueGrid.Name = "sfInQueueGrid";
             this.sfInQueueGrid.PreviewRowHeight = 35;
-            this.sfInQueueGrid.Size = new System.Drawing.Size(1295, 112);
+            this.sfInQueueGrid.Size = new System.Drawing.Size(1295, 596);
             this.sfInQueueGrid.TabIndex = 2;
             this.sfInQueueGrid.Text = "sfDataGrid1";
             // 
@@ -148,9 +149,9 @@ namespace TMS_Weight.Forms
             // sfBtnWeight
             // 
             this.sfBtnWeight.BackColor = System.Drawing.Color.SeaGreen;
-            this.sfBtnWeight.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sfBtnWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sfBtnWeight.ForeColor = System.Drawing.Color.White;
-            this.sfBtnWeight.Location = new System.Drawing.Point(910, 60);
+            this.sfBtnWeight.Location = new System.Drawing.Point(910, 62);
             this.sfBtnWeight.Name = "sfBtnWeight";
             this.sfBtnWeight.Size = new System.Drawing.Size(107, 34);
             this.sfBtnWeight.Style.BackColor = System.Drawing.Color.SeaGreen;
@@ -164,7 +165,7 @@ namespace TMS_Weight.Forms
             // sfBtnInView
             // 
             this.sfBtnInView.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.sfBtnInView.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sfBtnInView.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sfBtnInView.ForeColor = System.Drawing.Color.White;
             this.sfBtnInView.Location = new System.Drawing.Point(782, 62);
             this.sfBtnInView.Name = "sfBtnInView";

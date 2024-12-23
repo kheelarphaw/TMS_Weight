@@ -17,6 +17,7 @@ namespace TMS_Weight.Forms
     {
         public FrmQueue(WeightBridgeQueue queue)
         {
+            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Metro;
             InitializeComponent();
             LoadData(queue);
 
@@ -53,23 +54,25 @@ namespace TMS_Weight.Forms
                 ResponseMessage msg = await SaveServiceBillForQueue();
                 if (msg.Status)
                 {
-                    ClearDialogContents();
-                 
-                   
 
-                    CtlQueue ctl = new CtlQueue() { Dock = DockStyle.Fill };
+                    if(msg.ServiceBillNo == null)
+                    {
+                        string message = "Successfuly Saved!";
+                        string title = "Service Bill";
+                        MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                        DialogResult res = MessageBox.Show(message, title, buttons, MessageBoxIcon.Information);
+                        if (res == DialogResult.Yes)
+                        {
+                            var ctl = new CtlInQueue() { Dock = DockStyle.Fill };
+                            ctl.Show();
+                        }
 
-                    ctl.Show();
-                  
-                    // Add main panel and show the form
-                    //p.Controls.Add(ctl);
+                    }
 
-                    //MessageBoxAdv.Show(this, "Successfuly Saved!", "Weight Service Bill", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    BtnEnable();
                 }
                 else
                 {
-                    MessageBoxAdv.Show(this, msg.MessageContent, "Weight Service Bill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, msg.MessageContent, "Weight Service Bill", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     BtnDisable();
                 }
             }

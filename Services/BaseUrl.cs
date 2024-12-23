@@ -8,7 +8,7 @@ namespace TMS_Weight.Services
 {
     public class BaseUrl
     {
-        public static string ApiUrl = "https://localhost:7100";
+        public static string ApiUrl = Properties.Settings.Default.BaseuRL;
         public static int count = 0;
     }
 }

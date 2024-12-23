@@ -17,10 +17,11 @@ namespace TMS_Weight.Forms
     {
         public CtlOutQueue()
         {
+            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Metro;
             InitializeComponent();
             LoadData();
 
-
+            this.sfOutQueueGrid.Style.HeaderStyle.BackColor = Color.SteelBlue;
             this.sfOutQueueGrid.Columns.Add(new GridTextColumn()
             {
                 MappingName = "InRegNo",
