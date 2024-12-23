@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Syncfusion.WinForms.DataGrid;
+using System.Collections.Generic;
 using TMS_Weight.Models;
 using TMS_Weight.Services;
 
@@ -37,12 +38,13 @@ namespace TMS_Weight
             btnAddHoc.Enabled = true;
             btnClose.Enabled = true;
             btnWeight.Enabled = true;
-            
-            this.sfQueueGrid.Refresh();
+            this.sfQueueGrid.Hide();
+
             queueList = await _apiService.GetWeightBridgeQueueList();
             if (queueList != null)
             {
                 this.sfQueueGrid.DataSource = queueList;
+                this.sfQueueGrid.Show();
             }
         }
 
@@ -61,6 +63,7 @@ namespace TMS_Weight
             this.btnClose = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.sfQueueGrid = new Syncfusion.WinForms.DataGrid.SfDataGrid();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.pnlHeader.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sfQueueGrid)).BeginInit();
@@ -98,7 +101,7 @@ namespace TMS_Weight
             this.btnWeight.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnWeight.Location = new System.Drawing.Point(615, 60);
             this.btnWeight.Name = "btnWeight";
-            this.btnWeight.Size = new System.Drawing.Size(99, 35);
+            this.btnWeight.Size = new System.Drawing.Size(89, 35);
             this.btnWeight.TabIndex = 1;
             this.btnWeight.Text = "Weight";
             this.btnWeight.UseVisualStyleBackColor = true;
@@ -109,9 +112,9 @@ namespace TMS_Weight
             this.btnAddHoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddHoc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddHoc.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAddHoc.Location = new System.Drawing.Point(735, 60);
+            this.btnAddHoc.Location = new System.Drawing.Point(710, 60);
             this.btnAddHoc.Name = "btnAddHoc";
-            this.btnAddHoc.Size = new System.Drawing.Size(99, 35);
+            this.btnAddHoc.Size = new System.Drawing.Size(84, 35);
             this.btnAddHoc.TabIndex = 1;
             this.btnAddHoc.Text = "AdHoc";
             this.btnAddHoc.UseVisualStyleBackColor = true;
@@ -122,9 +125,9 @@ namespace TMS_Weight
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnClose.Location = new System.Drawing.Point(857, 60);
+            this.btnClose.Location = new System.Drawing.Point(800, 60);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(99, 35);
+            this.btnClose.Size = new System.Drawing.Size(84, 35);
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -150,16 +153,30 @@ namespace TMS_Weight
             this.sfQueueGrid.Location = new System.Drawing.Point(3, 3);
             this.sfQueueGrid.Name = "sfQueueGrid";
             this.sfQueueGrid.PreviewRowHeight = 35;
-            this.sfQueueGrid.Size = new System.Drawing.Size(984, 122);
+            this.sfQueueGrid.Size = new System.Drawing.Size(984, 238);
             this.sfQueueGrid.TabIndex = 0;
             this.sfQueueGrid.Text = "sfDataGrid1";
             this.sfQueueGrid.Click += new System.EventHandler(this.sfQueueGrid_Click);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnRefresh.Location = new System.Drawing.Point(890, 60);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(84, 35);
+            this.btnRefresh.TabIndex = 1;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // CtlQueue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnAddHoc);
             this.Controls.Add(this.btnWeight);
@@ -182,5 +199,6 @@ namespace TMS_Weight
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Panel panel1;
         private Syncfusion.WinForms.DataGrid.SfDataGrid sfQueueGrid;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }

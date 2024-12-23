@@ -40,15 +40,15 @@ namespace TMS_Weight.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtlServiceBill));
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.pnService = new System.Windows.Forms.Panel();
             this.sfServiceGrid = new Syncfusion.WinForms.DataGrid.SfDataGrid();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.btnView = new System.Windows.Forms.Button();
             this.sfFromDate = new Syncfusion.WinForms.Input.SfDateTimeEdit();
             this.lblfrom = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
+            this.sfBtnView = new Syncfusion.WinForms.Controls.SfButton();
+            this.sfBtnPrint = new Syncfusion.WinForms.Controls.SfButton();
             this.pnlHeader.SuspendLayout();
             this.pnService.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sfServiceGrid)).BeginInit();
@@ -93,78 +93,73 @@ namespace TMS_Weight.Forms
             this.sfServiceGrid.AccessibleName = "Table";
             this.sfServiceGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.sfServiceGrid.Location = new System.Drawing.Point(3, 3);
+            this.sfServiceGrid.Location = new System.Drawing.Point(-1, 0);
             this.sfServiceGrid.Name = "sfServiceGrid";
             this.sfServiceGrid.PreviewRowHeight = 35;
             this.sfServiceGrid.Size = new System.Drawing.Size(984, 122);
             this.sfServiceGrid.TabIndex = 0;
             this.sfServiceGrid.Text = "sfServiceGrid";
             // 
-            // btnPrint
-            // 
-            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnPrint.Location = new System.Drawing.Point(455, 58);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(75, 28);
-            this.btnPrint.TabIndex = 4;
-            this.btnPrint.Text = "Print";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // btnView
-            // 
-            this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnView.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnView.Location = new System.Drawing.Point(361, 58);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(72, 28);
-            this.btnView.TabIndex = 5;
-            this.btnView.Text = "View";
-            this.btnView.UseVisualStyleBackColor = true;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
-            // 
             // sfFromDate
             // 
             this.sfFromDate.DateTimeIcon = null;
-            this.sfFromDate.Location = new System.Drawing.Point(82, 60);
+            this.sfFromDate.Location = new System.Drawing.Point(82, 64);
             this.sfFromDate.Name = "sfFromDate";
-            this.sfFromDate.Size = new System.Drawing.Size(220, 24);
+            this.sfFromDate.Size = new System.Drawing.Size(220, 26);
             this.sfFromDate.TabIndex = 8;
             this.sfFromDate.ToolTipText = "";
             // 
             // lblfrom
             // 
             this.lblfrom.AutoSize = true;
-            this.lblfrom.Location = new System.Drawing.Point(17, 60);
+            this.lblfrom.Location = new System.Drawing.Point(17, 68);
             this.lblfrom.Name = "lblfrom";
             this.lblfrom.Size = new System.Drawing.Size(44, 16);
             this.lblfrom.TabIndex = 9;
             this.lblfrom.Text = "From :";
             // 
-            // btnClose
+            // sfBtnView
             // 
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnClose.Location = new System.Drawing.Point(550, 58);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 28);
-            this.btnClose.TabIndex = 4;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.sfBtnView.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.sfBtnView.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sfBtnView.ForeColor = System.Drawing.Color.White;
+            this.sfBtnView.Location = new System.Drawing.Point(370, 56);
+            this.sfBtnView.Name = "sfBtnView";
+            this.sfBtnView.Size = new System.Drawing.Size(107, 34);
+            this.sfBtnView.Style.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.sfBtnView.Style.ForeColor = System.Drawing.Color.White;
+            this.sfBtnView.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            this.sfBtnView.TabIndex = 26;
+            this.sfBtnView.Text = "&View";
+            this.sfBtnView.UseVisualStyleBackColor = false;
+            this.sfBtnView.Click += new System.EventHandler(this.btnView_Click);
+            // 
+            // sfBtnPrint
+            // 
+            this.sfBtnPrint.BackColor = System.Drawing.Color.SeaGreen;
+            this.sfBtnPrint.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sfBtnPrint.ForeColor = System.Drawing.Color.White;
+            this.sfBtnPrint.Location = new System.Drawing.Point(500, 56);
+            this.sfBtnPrint.Name = "sfBtnPrint";
+            this.sfBtnPrint.Size = new System.Drawing.Size(107, 34);
+            this.sfBtnPrint.Style.BackColor = System.Drawing.Color.SeaGreen;
+            this.sfBtnPrint.Style.ForeColor = System.Drawing.Color.White;
+            this.sfBtnPrint.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.sfBtnPrint.TabIndex = 26;
+            this.sfBtnPrint.Text = "P&rint";
+            this.sfBtnPrint.UseVisualStyleBackColor = false;
+            this.sfBtnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // CtlServiceBill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.sfBtnPrint);
+            this.Controls.Add(this.sfBtnView);
             this.Controls.Add(this.lblfrom);
             this.Controls.Add(this.sfFromDate);
             this.Controls.Add(this.pnlHeader);
             this.Controls.Add(this.pnService);
-            this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.btnPrint);
-            this.Controls.Add(this.btnView);
             this.Name = "CtlServiceBill";
             this.Size = new System.Drawing.Size(996, 552);
             this.pnlHeader.ResumeLayout(false);
@@ -238,10 +233,9 @@ namespace TMS_Weight.Forms
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnService;
         public Syncfusion.WinForms.DataGrid.SfDataGrid sfServiceGrid;
-        private System.Windows.Forms.Button btnPrint;
-        private System.Windows.Forms.Button btnView;
         public Syncfusion.WinForms.Input.SfDateTimeEdit sfFromDate;
         private System.Windows.Forms.Label lblfrom;
-        private Button btnClose;
+        private Syncfusion.WinForms.Controls.SfButton sfBtnView;
+        private Syncfusion.WinForms.Controls.SfButton sfBtnPrint;
     }
 }

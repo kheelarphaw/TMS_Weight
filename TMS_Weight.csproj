@@ -183,6 +183,18 @@
     <Compile Include="CtlQueue.Designer.cs">
       <DependentUpon>CtlQueue.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CtlInQueue.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CtlInQueue.Designer.cs">
+      <DependentUpon>CtlInQueue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CtlOutQueue.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CtlOutQueue.Designer.cs">
+      <DependentUpon>CtlOutQueue.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CtlServiceBill.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -232,6 +244,12 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="CtlQueue.resx">
       <DependentUpon>CtlQueue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CtlInQueue.resx">
+      <DependentUpon>CtlInQueue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CtlOutQueue.resx">
+      <DependentUpon>CtlOutQueue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CtlServiceBill.resx">
       <DependentUpon>CtlServiceBill.cs</DependentUpon>

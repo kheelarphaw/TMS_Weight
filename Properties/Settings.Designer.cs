@@ -25,7 +25,7 @@ namespace TMS_Weight.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("YTG")]
+        [global::System.Configuration.DefaultSettingValueAttribute("YTG,MN")]
         public string YardCode {
             get {
                 return ((string)(this["YardCode"]));
@@ -34,7 +34,7 @@ namespace TMS_Weight.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("YTG_WB01")]
+        [global::System.Configuration.DefaultSettingValueAttribute("YTG-WB-1")]
         public string WBCode {
             get {
                 return ((string)(this["WBCode"]));
@@ -58,6 +58,18 @@ namespace TMS_Weight.Properties {
         public string tmsdbConnectionString {
             get {
                 return ((string)(this["tmsdbConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://localhost:7100")]
+        public string BaseuRL {
+            get {
+                return ((string)(this["BaseuRL"]));
+            }
+            set {
+                this["BaseuRL"] = value;
             }
         }
     }

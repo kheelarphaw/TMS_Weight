@@ -19,8 +19,6 @@ namespace TMS_Weight.Forms
         {
             InitializeComponent();
 
-            //LoadData();
-
             this.sfServiceGrid.Columns.Add(new GridDateTimeColumn()
             {
                 MappingName = "ServiceBillDate",
@@ -115,14 +113,14 @@ namespace TMS_Weight.Forms
 
         private void BtnDisable()
         {
-            btnPrint.Enabled = false;
-            btnView.Enabled = false;
+            sfBtnPrint.Enabled = false;
+            sfBtnView.Enabled = false;
         }
 
         private void BtnEnable()
         {
-            btnView.Enabled = true;
-            btnPrint.Enabled = true;
+            sfBtnPrint.Enabled = true;
+            sfBtnView.Enabled = true;
         }
 
         private async void btnView_Click(object sender, EventArgs e)
@@ -170,8 +168,6 @@ namespace TMS_Weight.Forms
                         // Do something
                     }
                 }
-
-               
 
             }
             else

@@ -22,6 +22,8 @@ namespace TMS_Weight.Forms
             InitializeComponent();
             this.yard = yard;
             this.serviceNo = billNo;
+
+           // this.reportViewer1.Dock = DockStyle.Fill;
         }
 
         private void FrmServiceBillPrint_Load(object sender, EventArgs e)

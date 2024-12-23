@@ -23,6 +23,7 @@ namespace TMS_Weight.Forms
         public List<WeightBridge> weightBridgeList;
         public List<Gate> gateList;
         public int QRegNo;
+        public string gateId;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -40,88 +41,38 @@ namespace TMS_Weight.Forms
         private async void LoadData(WeightBridgeQueue queue)
         {
             this.QRegNo = (int)queue.RegNo;
+            this.gateId = queue.GateID;
             this.txtInRegNo.Text = queue.InRegNo.ToString();
-            this.sfCbxWType.DataSource = new List<string> { "In", "Out" };
-            this.sfCbxWType.SelectedItem = queue.Type;
-            this.sfCbxWOption.DataSource = new List<string> { "Both" };
-            this.sfCbxWOption.SelectedItem = queue.WBOption;
-            this.sfCbxBillOption.DataSource = new List<string> { "None", "Credit", "Cash" };
-            this.sfCbxBillOption.SelectedItem = queue.BillOption;
-            this.sfCbxCategory.DataSource = new List<string> { "ICD", "Other", "Rail", "WH", "CCA" };
-
+            this.txtYard.Text = queue.YardID;
             this.txtDriver.Text = queue.DriverName;
             this.txtDLicense.Text = queue.DriverLicenseNo;
             this.txtContainer.Text = queue.ContainerNo;
             this.txtBlNo.Text = queue.BLNo;
             this.txtCargoInfo.Text = queue.CargoInfo;
             this.txtCustomer.Text = queue.Customer;
-            //this.sfCbxTransporter.DataSource = null;
-            //transporterList = await _apiService.GetTransporterList();
-            //if (transporterList.Count > 0)
-            //    this.sfCbxTransporter.DataSource = transporterList;
-
-            this.sfCbxWBId.DataSource = null;
-            weightBridgeList = await _apiService.GetWeightBridgeList();
-            if (weightBridgeList.Count > 0)
-            {
-                this.sfCbxWBId.DataSource = weightBridgeList;
-                this.sfCbxWBId.SelectedItem = queue.WeightBridgeID;
-            }
-                
-
-            this.sfCbxTruck.DataSource = null;
-            truckList = await _apiService.GetTruckList();
-            if (truckList.Count > 0)
-            {
-                this.sfCbxTruck.DataSource = truckList;
-                this.sfCbxTruck.SelectedItem = queue.TruckVehicleRegNo;
-            }
-                
-
-            this.sfCbxTrailer.DataSource = null;
-            trailerList = await _apiService.GetTrailerList();
-            if (trailerList.Count > 0)
-            {
-                this.sfCbxTrailer.DataSource = trailerList;
-                this.sfCbxTrailer.SelectedItem = queue.TrailerVehicleRegNo;
-
-            }
-
-            this.sfCbxGate.DataSource = null;
-            gateList = await _apiService.GetGateList();
-            if (gateList.Count > 0)
-            {
-                this.sfCbxGate.DataSource = gateList;
-                this.sfCbxGate.SelectedItem = queue.GateID;
-            }
-
-
+            this.txtTruck.Text = queue.TruckVehicleRegNo;
+            this.txtTrailer.Text = queue.TrailerVehicleRegNo;
+            this.txtWbId.Text = queue.WeightBridgeID;
+            this.txtCategory.Text = queue.PCCode;
+            this.txtbilloption.Text = queue.BillOption;
+            this.txtWType.Text = queue.Type;
+            this.txtwbOption.Text = queue.WBOption;
+         
         }
         private async Task<ResponseMessage> SaveServiceBillForQueue()
         {
             ResponseMessage msg = new ResponseMessage();
 
-            //if (string.IsNullOrWhiteSpace(txtQueueNo.Text) || ddlOperator.SelectedItem == null || ddlTechnician.SelectedItem == null
-            //    || string.IsNullOrWhiteSpace(ddlCSize.SelectedItem.ToString()) || string.IsNullOrWhiteSpace(ddlCType.SelectedItem.ToString())
-            //    || string.IsNullOrWhiteSpace(ddlGrade.SelectedItem.ToString()) || ddlCStatus.SelectedItem == null
-            //    || string.IsNullOrWhiteSpace(manufactureDate.Text) || string.IsNullOrWhiteSpace(gross.Text) || string.IsNullOrWhiteSpace(tare.Text)
-            //    || string.IsNullOrWhiteSpace(payload.Text) || ddlUOM.SelectedItem == null || string.IsNullOrWhiteSpace(vehicleNo.Text))
-            //{
-            //    await MessageBox.Show("Warning", "Data are required!", "OK");
-            //    return msg;
-            //}
-
             WeightServiceBill serviceBill = new WeightServiceBill();
 
             serviceBill.ServiceBillNo = "";
             serviceBill.QRegNo = this.QRegNo;
+            serviceBill.GateID = this.gateId;
             serviceBill.CheckInRegNo = Convert.ToInt32(this.txtInRegNo.Text);
             serviceBill.CustomerId = this.txtCustomer.Text;
-            serviceBill.WeightCategory = this.sfCbxCategory.SelectedItem.ToString();
-            serviceBill.WeightOption = this.sfCbxWOption.SelectedItem.ToString();
-            serviceBill.WeightType = this.sfCbxWType.SelectedItem.ToString();
-            serviceBill.BillOption = this.sfCbxBillOption.SelectedItem.ToString();
             serviceBill.DONo = this.txtDoNo.Text;
+            serviceBill.TrailerNo = this.txtTrailer.Text;
+            serviceBill.TruckNo = this.txtTruck.Text;
             serviceBill.DriverName = this.txtDriver.Text;
             serviceBill.DriverLicense = this.txtDLicense.Text;
             serviceBill.CashAmt = Convert.ToDecimal(this.sfNtxtCash.Text);
@@ -129,29 +80,12 @@ namespace TMS_Weight.Forms
             serviceBill.BLNo = this.txtBlNo.Text;
             serviceBill.Remark = this.txtRemark.Text;
             serviceBill.CargoInfo = this.txtCargoInfo.Text;
-            
-
-            //if (this.sfCbxTransporter.SelectedItem is Transporter t)
-            //    serviceBill.TransporterID = t.TransporterID;
-
-            //if (this.sfCbxTruck.SelectedItem is Vehicle truck)
-            serviceBill.TruckNo = this.sfCbxTruck.SelectedItem.ToString();
-
-            //if (this.sfCbxTrailer.SelectedItem is Vehicle trailer)
-            serviceBill.TrailerNo = this.sfCbxTrailer.SelectedItem.ToString();
-
-            //if (this.sfCbxWBId.SelectedItem is WeightBridge wb)
-            serviceBill.WeightBridgeID = this.sfCbxWBId.SelectedItem.ToString();
-
-            //if (this.sfCbxGate.SelectedItem is Gate gate)
-            //{
-            //    serviceBill.GateID = gate.GateID; i => i.GateID == this.sfCbxGate.SelectedItem
-            //    serviceBill.YardID = gate.YardID;
-            //}
-
-            serviceBill.GateID = this.sfCbxGate.SelectedItem.ToString();
-            serviceBill.YardID = "YTG";
-
+            serviceBill.WeightType = this.txtWType.Text;
+            serviceBill.WeightBridgeID = this.txtWbId.Text;
+            serviceBill.WeightOption = this.txtwbOption.Text;
+            serviceBill.BillOption = this.txtbilloption.Text;
+    
+            serviceBill.YardID = this.txtYard.Text;
 
             if (serviceBill.WeightType == "In")
             {
@@ -159,7 +93,6 @@ namespace TMS_Weight.Forms
                 string timeString = this.txtTime.Text.ToString();
                 TimeSpan time = TimeSpan.Parse(timeString);// Time part 
                 serviceBill.InWeightTime = (date + time);
-               //serviceBill.OutWeightTime = null;
                 serviceBill.ServiceBillDate = serviceBill.InWeightTime;
                 serviceBill.InWeight = Convert.ToDecimal(this.sfNtxtWeight.Text);
             }
@@ -169,7 +102,6 @@ namespace TMS_Weight.Forms
                 string timeString = this.txtTime.Text.ToString();
                 TimeSpan time = TimeSpan.Parse(timeString);// Time part 
                 serviceBill.OutWeightTime = (date + time);
-                //serviceBill.InWeightTime = null;
                 serviceBill.ServiceBillDate = serviceBill.OutWeightTime;
                 serviceBill.OutWeight = Convert.ToDecimal(this.sfNtxtWeight.Text);
             }
@@ -181,6 +113,8 @@ namespace TMS_Weight.Forms
             else
             {
                 msg = await _apiService.UpdateServiceBillForQueue(serviceBill);
+                FrmServiceBillPrint f = new FrmServiceBillPrint(msg.ServiceBillNo.ToString(), msg.Yard.ToString());
+                f.Show();
             }
 
             return msg;
@@ -197,18 +131,10 @@ namespace TMS_Weight.Forms
         private void InitializeComponent()
         {
             this.sfNtxtCash = new Syncfusion.WinForms.Input.SfNumericTextBox();
-            this.sfCbxGate = new Syncfusion.WinForms.ListView.SfComboBox();
-            this.sfCbxWBId = new Syncfusion.WinForms.ListView.SfComboBox();
-            this.sfCbxTrailer = new Syncfusion.WinForms.ListView.SfComboBox();
-            this.sfCbxTruck = new Syncfusion.WinForms.ListView.SfComboBox();
-            this.sfCbxBillOption = new Syncfusion.WinForms.ListView.SfComboBox();
             this.sfNtxtWeight = new Syncfusion.WinForms.Input.SfNumericTextBox();
             this.btnGet = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblWeight = new System.Windows.Forms.Label();
-            this.sfCbxWType = new Syncfusion.WinForms.ListView.SfComboBox();
-            this.sfCbxWOption = new Syncfusion.WinForms.ListView.SfComboBox();
-            this.sfCbxCategory = new Syncfusion.WinForms.ListView.SfComboBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.lblwbId = new System.Windows.Forms.Label();
             this.lblBlno = new System.Windows.Forms.Label();
@@ -244,100 +170,48 @@ namespace TMS_Weight.Forms
             this.lblCustomer = new System.Windows.Forms.Label();
             this.lblQRegNo = new System.Windows.Forms.Label();
             this.txtInRegNo = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.sfCbxGate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sfCbxWBId)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sfCbxTrailer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sfCbxTruck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sfCbxBillOption)).BeginInit();
+            this.txtYard = new System.Windows.Forms.TextBox();
+            this.txtTruck = new System.Windows.Forms.TextBox();
+            this.txtTrailer = new System.Windows.Forms.TextBox();
+            this.txtWbId = new System.Windows.Forms.TextBox();
+            this.txtCategory = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtwbOption = new System.Windows.Forms.TextBox();
+            this.txtWType = new System.Windows.Forms.TextBox();
+            this.txtbilloption = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sfCbxWType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sfCbxWOption)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sfCbxCategory)).BeginInit();
             this.pnHeader.SuspendLayout();
             this.SuspendLayout();
             // 
             // sfNtxtCash
             // 
             this.sfNtxtCash.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sfNtxtCash.Location = new System.Drawing.Point(122, 325);
+            this.sfNtxtCash.Location = new System.Drawing.Point(152, 406);
+            this.sfNtxtCash.Margin = new System.Windows.Forms.Padding(4);
             this.sfNtxtCash.Name = "sfNtxtCash";
-            this.sfNtxtCash.Size = new System.Drawing.Size(212, 22);
+            this.sfNtxtCash.Size = new System.Drawing.Size(264, 27);
             this.sfNtxtCash.Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.sfNtxtCash.TabIndex = 13;
-            // 
-            // sfCbxGate
-            // 
-            this.sfCbxGate.DisplayMember = "GateInfo";
-            this.sfCbxGate.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.sfCbxGate.Location = new System.Drawing.Point(122, 150);
-            this.sfCbxGate.Name = "sfCbxGate";
-            this.sfCbxGate.Size = new System.Drawing.Size(212, 22);
-            this.sfCbxGate.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.sfCbxGate.TabIndex = 4;
-            this.sfCbxGate.TabStop = false;
-            this.sfCbxGate.ValueMember = "GateID";
-            // 
-            // sfCbxWBId
-            // 
-            this.sfCbxWBId.DisplayMember = "Name";
-            this.sfCbxWBId.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.sfCbxWBId.Location = new System.Drawing.Point(456, 208);
-            this.sfCbxWBId.Name = "sfCbxWBId";
-            this.sfCbxWBId.Size = new System.Drawing.Size(212, 22);
-            this.sfCbxWBId.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.sfCbxWBId.TabIndex = 17;
-            this.sfCbxWBId.TabStop = false;
-            this.sfCbxWBId.ValueMember = "WeghtBridgeID";
-            // 
-            // sfCbxTrailer
-            // 
-            this.sfCbxTrailer.DisplayMember = "VehicleRegNo";
-            this.sfCbxTrailer.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.sfCbxTrailer.Location = new System.Drawing.Point(804, 150);
-            this.sfCbxTrailer.Name = "sfCbxTrailer";
-            this.sfCbxTrailer.Size = new System.Drawing.Size(212, 22);
-            this.sfCbxTrailer.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.sfCbxTrailer.TabIndex = 6;
-            this.sfCbxTrailer.TabStop = false;
-            this.sfCbxTrailer.ValueMember = "VehicleRegNo";
-            // 
-            // sfCbxTruck
-            // 
-            this.sfCbxTruck.DisplayMember = "VehicleRegNo";
-            this.sfCbxTruck.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.sfCbxTruck.Location = new System.Drawing.Point(458, 150);
-            this.sfCbxTruck.Name = "sfCbxTruck";
-            this.sfCbxTruck.Size = new System.Drawing.Size(212, 22);
-            this.sfCbxTruck.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.sfCbxTruck.TabIndex = 5;
-            this.sfCbxTruck.TabStop = false;
-            this.sfCbxTruck.ValueMember = "VehicleRegNo";
-            // 
-            // sfCbxBillOption
-            // 
-            this.sfCbxBillOption.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.sfCbxBillOption.Location = new System.Drawing.Point(804, 267);
-            this.sfCbxBillOption.Name = "sfCbxBillOption";
-            this.sfCbxBillOption.Size = new System.Drawing.Size(212, 22);
-            this.sfCbxBillOption.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.sfCbxBillOption.TabIndex = 12;
-            this.sfCbxBillOption.TabStop = false;
             // 
             // sfNtxtWeight
             // 
             this.sfNtxtWeight.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sfNtxtWeight.Location = new System.Drawing.Point(332, 17);
+            this.sfNtxtWeight.Location = new System.Drawing.Point(415, 21);
+            this.sfNtxtWeight.Margin = new System.Windows.Forms.Padding(4);
             this.sfNtxtWeight.Name = "sfNtxtWeight";
-            this.sfNtxtWeight.Size = new System.Drawing.Size(301, 22);
+            this.sfNtxtWeight.Size = new System.Drawing.Size(375, 27);
             this.sfNtxtWeight.Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.sfNtxtWeight.TabIndex = 27;
             // 
             // btnGet
             // 
             this.btnGet.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGet.Location = new System.Drawing.Point(671, 13);
+            this.btnGet.Location = new System.Drawing.Point(839, 16);
+            this.btnGet.Margin = new System.Windows.Forms.Padding(4);
             this.btnGet.Name = "btnGet";
-            this.btnGet.Size = new System.Drawing.Size(75, 29);
+            this.btnGet.Size = new System.Drawing.Size(94, 36);
             this.btnGet.TabIndex = 28;
             this.btnGet.Text = "Get";
             this.btnGet.UseVisualStyleBackColor = true;
@@ -348,55 +222,28 @@ namespace TMS_Weight.Forms
             this.panel1.Controls.Add(this.sfNtxtWeight);
             this.panel1.Controls.Add(this.lblWeight);
             this.panel1.Controls.Add(this.btnGet);
-            this.panel1.Location = new System.Drawing.Point(38, 500);
+            this.panel1.Location = new System.Drawing.Point(48, 625);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(978, 66);
+            this.panel1.Size = new System.Drawing.Size(1222, 82);
             this.panel1.TabIndex = 91;
             // 
             // lblWeight
             // 
             this.lblWeight.AutoSize = true;
-            this.lblWeight.Location = new System.Drawing.Point(210, 24);
+            this.lblWeight.Location = new System.Drawing.Point(262, 30);
+            this.lblWeight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWeight.Name = "lblWeight";
-            this.lblWeight.Size = new System.Drawing.Size(83, 16);
+            this.lblWeight.Size = new System.Drawing.Size(106, 20);
             this.lblWeight.TabIndex = 32;
             this.lblWeight.Text = "Weighing In :";
             // 
-            // sfCbxWType
-            // 
-            this.sfCbxWType.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.sfCbxWType.Location = new System.Drawing.Point(458, 267);
-            this.sfCbxWType.Name = "sfCbxWType";
-            this.sfCbxWType.Size = new System.Drawing.Size(212, 22);
-            this.sfCbxWType.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.sfCbxWType.TabIndex = 11;
-            this.sfCbxWType.TabStop = false;
-            // 
-            // sfCbxWOption
-            // 
-            this.sfCbxWOption.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.sfCbxWOption.Location = new System.Drawing.Point(123, 267);
-            this.sfCbxWOption.Name = "sfCbxWOption";
-            this.sfCbxWOption.Size = new System.Drawing.Size(212, 22);
-            this.sfCbxWOption.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.sfCbxWOption.TabIndex = 10;
-            this.sfCbxWOption.TabStop = false;
-            // 
-            // sfCbxCategory
-            // 
-            this.sfCbxCategory.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.sfCbxCategory.Location = new System.Drawing.Point(804, 208);
-            this.sfCbxCategory.Name = "sfCbxCategory";
-            this.sfCbxCategory.Size = new System.Drawing.Size(212, 22);
-            this.sfCbxCategory.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.sfCbxCategory.TabIndex = 9;
-            this.sfCbxCategory.TabStop = false;
-            // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(538, 593);
+            this.btnCancel.Location = new System.Drawing.Point(672, 741);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 39);
+            this.btnCancel.Size = new System.Drawing.Size(94, 49);
             this.btnCancel.TabIndex = 30;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -405,83 +252,90 @@ namespace TMS_Weight.Forms
             // lblwbId
             // 
             this.lblwbId.AutoSize = true;
-            this.lblwbId.Location = new System.Drawing.Point(371, 214);
+            this.lblwbId.Location = new System.Drawing.Point(464, 268);
+            this.lblwbId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblwbId.Name = "lblwbId";
-            this.lblwbId.Size = new System.Drawing.Size(49, 16);
+            this.lblwbId.Size = new System.Drawing.Size(65, 20);
             this.lblwbId.TabIndex = 87;
             this.lblwbId.Text = "WB Id :";
-            this.lblwbId.Click += new System.EventHandler(this.lblwbId_Click);
             // 
             // lblBlno
             // 
             this.lblBlno.AutoSize = true;
-            this.lblBlno.Location = new System.Drawing.Point(719, 393);
+            this.lblBlno.Location = new System.Drawing.Point(899, 491);
+            this.lblBlno.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBlno.Name = "lblBlno";
-            this.lblBlno.Size = new System.Drawing.Size(54, 16);
+            this.lblBlno.Size = new System.Drawing.Size(72, 20);
             this.lblBlno.TabIndex = 84;
             this.lblBlno.Text = "B/L No :";
-            this.lblBlno.Click += new System.EventHandler(this.lblBlno_Click);
             // 
             // lblRemark
             // 
             this.lblRemark.AutoSize = true;
-            this.lblRemark.Location = new System.Drawing.Point(371, 455);
+            this.lblRemark.Location = new System.Drawing.Point(464, 569);
+            this.lblRemark.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRemark.Name = "lblRemark";
-            this.lblRemark.Size = new System.Drawing.Size(61, 16);
+            this.lblRemark.Size = new System.Drawing.Size(77, 20);
             this.lblRemark.TabIndex = 83;
             this.lblRemark.Text = "Remark :";
             // 
             // lblVesselInfo
             // 
             this.lblVesselInfo.AutoSize = true;
-            this.lblVesselInfo.Location = new System.Drawing.Point(33, 446);
+            this.lblVesselInfo.Location = new System.Drawing.Point(41, 558);
+            this.lblVesselInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblVesselInfo.Name = "lblVesselInfo";
-            this.lblVesselInfo.Size = new System.Drawing.Size(71, 16);
+            this.lblVesselInfo.Size = new System.Drawing.Size(91, 20);
             this.lblVesselInfo.TabIndex = 82;
             this.lblVesselInfo.Text = "Cargo Info:";
             // 
             // lblContainer
             // 
             this.lblContainer.AutoSize = true;
-            this.lblContainer.Location = new System.Drawing.Point(371, 390);
+            this.lblContainer.Location = new System.Drawing.Point(464, 488);
+            this.lblContainer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblContainer.Name = "lblContainer";
-            this.lblContainer.Size = new System.Drawing.Size(70, 16);
+            this.lblContainer.Size = new System.Drawing.Size(91, 20);
             this.lblContainer.TabIndex = 81;
             this.lblContainer.Text = "Container :";
             // 
             // lblLicense
             // 
             this.lblLicense.AutoSize = true;
-            this.lblLicense.Location = new System.Drawing.Point(719, 331);
+            this.lblLicense.Location = new System.Drawing.Point(899, 414);
+            this.lblLicense.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLicense.Name = "lblLicense";
-            this.lblLicense.Size = new System.Drawing.Size(70, 16);
+            this.lblLicense.Size = new System.Drawing.Size(91, 20);
             this.lblLicense.TabIndex = 78;
             this.lblLicense.Text = "DLicense :";
             // 
             // lblCategory
             // 
             this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(715, 214);
+            this.lblCategory.Location = new System.Drawing.Point(894, 268);
+            this.lblCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(68, 16);
+            this.lblCategory.Size = new System.Drawing.Size(86, 20);
             this.lblCategory.TabIndex = 51;
             this.lblCategory.Text = "Category :";
             // 
             // lblTrailer
             // 
             this.lblTrailer.AutoSize = true;
-            this.lblTrailer.Location = new System.Drawing.Point(715, 156);
+            this.lblTrailer.Location = new System.Drawing.Point(894, 195);
+            this.lblTrailer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTrailer.Name = "lblTrailer";
-            this.lblTrailer.Size = new System.Drawing.Size(73, 16);
+            this.lblTrailer.Size = new System.Drawing.Size(93, 20);
             this.lblTrailer.TabIndex = 88;
             this.lblTrailer.Text = "Trailer No :";
             // 
             // lblTruck
             // 
             this.lblTruck.AutoSize = true;
-            this.lblTruck.Location = new System.Drawing.Point(371, 156);
+            this.lblTruck.Location = new System.Drawing.Point(464, 195);
+            this.lblTruck.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTruck.Name = "lblTruck";
-            this.lblTruck.Size = new System.Drawing.Size(68, 16);
+            this.lblTruck.Size = new System.Drawing.Size(87, 20);
             this.lblTruck.TabIndex = 89;
             this.lblTruck.Text = "Truck No :";
             // 
@@ -489,11 +343,12 @@ namespace TMS_Weight.Forms
             // 
             this.lblheader.AutoSize = true;
             this.lblheader.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblheader.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblheader.Location = new System.Drawing.Point(440, 13);
+            this.lblheader.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblheader.Location = new System.Drawing.Point(550, 18);
+            this.lblheader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblheader.Name = "lblheader";
             this.lblheader.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblheader.Size = new System.Drawing.Size(120, 25);
+            this.lblheader.Size = new System.Drawing.Size(143, 29);
             this.lblheader.TabIndex = 1;
             this.lblheader.Text = "Weight Data";
             this.lblheader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -501,9 +356,10 @@ namespace TMS_Weight.Forms
             // btnSave
             // 
             this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSave.Location = new System.Drawing.Point(433, 593);
+            this.btnSave.Location = new System.Drawing.Point(541, 741);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 39);
+            this.btnSave.Size = new System.Drawing.Size(94, 49);
             this.btnSave.TabIndex = 29;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -512,9 +368,10 @@ namespace TMS_Weight.Forms
             // sfDate
             // 
             this.sfDate.DateTimeIcon = null;
-            this.sfDate.Location = new System.Drawing.Point(457, 92);
+            this.sfDate.Location = new System.Drawing.Point(571, 115);
+            this.sfDate.Margin = new System.Windows.Forms.Padding(4);
             this.sfDate.Name = "sfDate";
-            this.sfDate.Size = new System.Drawing.Size(211, 24);
+            this.sfDate.Size = new System.Drawing.Size(264, 28);
             this.sfDate.TabIndex = 2;
             this.sfDate.ToolTipText = "";
             this.sfDate.Value = new System.DateTime(2024, 12, 17, 0, 0, 0, 0);
@@ -523,198 +380,338 @@ namespace TMS_Weight.Forms
             // 
             this.pnHeader.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.pnHeader.Controls.Add(this.lblheader);
+            this.pnHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnHeader.Location = new System.Drawing.Point(-1, 1);
+            this.pnHeader.Margin = new System.Windows.Forms.Padding(4);
             this.pnHeader.Name = "pnHeader";
-            this.pnHeader.Size = new System.Drawing.Size(1059, 55);
+            this.pnHeader.Size = new System.Drawing.Size(1324, 69);
             this.pnHeader.TabIndex = 90;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 156);
+            this.label1.Location = new System.Drawing.Point(41, 195);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 16);
+            this.label1.Size = new System.Drawing.Size(48, 20);
             this.label1.TabIndex = 85;
             this.label1.Text = "Yard:";
             // 
             // lblDoNo
             // 
             this.lblDoNo.AutoSize = true;
-            this.lblDoNo.Location = new System.Drawing.Point(33, 393);
+            this.lblDoNo.Location = new System.Drawing.Point(41, 491);
+            this.lblDoNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDoNo.Name = "lblDoNo";
-            this.lblDoNo.Size = new System.Drawing.Size(51, 16);
+            this.lblDoNo.Size = new System.Drawing.Size(66, 20);
             this.lblDoNo.TabIndex = 79;
             this.lblDoNo.Text = "DO No:";
             // 
             // lblBillOption
             // 
             this.lblBillOption.AutoSize = true;
-            this.lblBillOption.Location = new System.Drawing.Point(719, 273);
+            this.lblBillOption.Location = new System.Drawing.Point(899, 341);
+            this.lblBillOption.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBillOption.Name = "lblBillOption";
-            this.lblBillOption.Size = new System.Drawing.Size(73, 16);
+            this.lblBillOption.Size = new System.Drawing.Size(97, 20);
             this.lblBillOption.TabIndex = 80;
             this.lblBillOption.Text = "Bill Option :";
             // 
             // lblWType
             // 
             this.lblWType.AutoSize = true;
-            this.lblWType.Location = new System.Drawing.Point(371, 273);
+            this.lblWType.Location = new System.Drawing.Point(464, 341);
+            this.lblWType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWType.Name = "lblWType";
-            this.lblWType.Size = new System.Drawing.Size(58, 16);
+            this.lblWType.Size = new System.Drawing.Size(71, 20);
             this.lblWType.TabIndex = 76;
             this.lblWType.Text = "WType :";
             // 
             // txtTime
             // 
-            this.txtTime.Location = new System.Drawing.Point(801, 94);
+            this.txtTime.Location = new System.Drawing.Point(1001, 118);
+            this.txtTime.Margin = new System.Windows.Forms.Padding(4);
             this.txtTime.Name = "txtTime";
-            this.txtTime.Size = new System.Drawing.Size(212, 22);
+            this.txtTime.Size = new System.Drawing.Size(264, 27);
             this.txtTime.TabIndex = 3;
             // 
             // txtDoNo
             // 
-            this.txtDoNo.Location = new System.Drawing.Point(122, 386);
+            this.txtDoNo.Location = new System.Drawing.Point(152, 482);
+            this.txtDoNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtDoNo.Name = "txtDoNo";
-            this.txtDoNo.Size = new System.Drawing.Size(212, 22);
+            this.txtDoNo.Size = new System.Drawing.Size(264, 27);
             this.txtDoNo.TabIndex = 20;
             // 
             // txtBlNo
             // 
-            this.txtBlNo.Location = new System.Drawing.Point(804, 386);
+            this.txtBlNo.Location = new System.Drawing.Point(1005, 482);
+            this.txtBlNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtBlNo.Name = "txtBlNo";
-            this.txtBlNo.Size = new System.Drawing.Size(212, 22);
+            this.txtBlNo.ReadOnly = true;
+            this.txtBlNo.Size = new System.Drawing.Size(264, 27);
             this.txtBlNo.TabIndex = 23;
             // 
             // txtDLicense
             // 
-            this.txtDLicense.Location = new System.Drawing.Point(804, 325);
+            this.txtDLicense.Location = new System.Drawing.Point(1005, 406);
+            this.txtDLicense.Margin = new System.Windows.Forms.Padding(4);
             this.txtDLicense.Name = "txtDLicense";
-            this.txtDLicense.Size = new System.Drawing.Size(212, 22);
+            this.txtDLicense.ReadOnly = true;
+            this.txtDLicense.Size = new System.Drawing.Size(264, 27);
             this.txtDLicense.TabIndex = 19;
             // 
             // txtRemark
             // 
-            this.txtRemark.Location = new System.Drawing.Point(456, 449);
+            this.txtRemark.Location = new System.Drawing.Point(570, 561);
+            this.txtRemark.Margin = new System.Windows.Forms.Padding(4);
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Size = new System.Drawing.Size(212, 22);
+            this.txtRemark.Size = new System.Drawing.Size(264, 26);
             this.txtRemark.TabIndex = 26;
             // 
             // txtCargoInfo
             // 
-            this.txtCargoInfo.Location = new System.Drawing.Point(123, 449);
+            this.txtCargoInfo.Location = new System.Drawing.Point(154, 561);
+            this.txtCargoInfo.Margin = new System.Windows.Forms.Padding(4);
             this.txtCargoInfo.Multiline = true;
             this.txtCargoInfo.Name = "txtCargoInfo";
-            this.txtCargoInfo.Size = new System.Drawing.Size(212, 22);
+            this.txtCargoInfo.ReadOnly = true;
+            this.txtCargoInfo.Size = new System.Drawing.Size(264, 26);
             this.txtCargoInfo.TabIndex = 25;
             // 
             // txtContainer
             // 
-            this.txtContainer.Location = new System.Drawing.Point(458, 386);
+            this.txtContainer.Location = new System.Drawing.Point(572, 482);
+            this.txtContainer.Margin = new System.Windows.Forms.Padding(4);
             this.txtContainer.Name = "txtContainer";
-            this.txtContainer.Size = new System.Drawing.Size(212, 22);
+            this.txtContainer.Size = new System.Drawing.Size(264, 27);
             this.txtContainer.TabIndex = 22;
             // 
             // txtDriver
             // 
-            this.txtDriver.Location = new System.Drawing.Point(457, 325);
+            this.txtDriver.Location = new System.Drawing.Point(571, 406);
+            this.txtDriver.Margin = new System.Windows.Forms.Padding(4);
             this.txtDriver.Name = "txtDriver";
-            this.txtDriver.Size = new System.Drawing.Size(212, 22);
+            this.txtDriver.ReadOnly = true;
+            this.txtDriver.Size = new System.Drawing.Size(264, 27);
             this.txtDriver.TabIndex = 18;
             // 
             // txtCustomer
             // 
-            this.txtCustomer.Location = new System.Drawing.Point(123, 208);
+            this.txtCustomer.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.txtCustomer.Enabled = false;
+            this.txtCustomer.Location = new System.Drawing.Point(154, 260);
+            this.txtCustomer.Margin = new System.Windows.Forms.Padding(4);
             this.txtCustomer.Name = "txtCustomer";
-            this.txtCustomer.Size = new System.Drawing.Size(212, 22);
+            this.txtCustomer.ReadOnly = true;
+            this.txtCustomer.Size = new System.Drawing.Size(264, 27);
             this.txtCustomer.TabIndex = 7;
             // 
             // lblTime
             // 
             this.lblTime.AutoSize = true;
-            this.lblTime.Location = new System.Drawing.Point(719, 100);
+            this.lblTime.Location = new System.Drawing.Point(899, 125);
+            this.lblTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(44, 16);
+            this.lblTime.Size = new System.Drawing.Size(56, 20);
             this.lblTime.TabIndex = 62;
             this.lblTime.Text = "Time :";
             // 
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(371, 100);
+            this.lblDate.Location = new System.Drawing.Point(464, 125);
+            this.lblDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(42, 16);
+            this.lblDate.Size = new System.Drawing.Size(55, 20);
             this.lblDate.TabIndex = 61;
             this.lblDate.Text = "Date :";
             // 
             // lblCash
             // 
             this.lblCash.AutoSize = true;
-            this.lblCash.Location = new System.Drawing.Point(33, 331);
+            this.lblCash.Location = new System.Drawing.Point(41, 414);
+            this.lblCash.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCash.Name = "lblCash";
-            this.lblCash.Size = new System.Drawing.Size(67, 16);
+            this.lblCash.Size = new System.Drawing.Size(88, 20);
             this.lblCash.TabIndex = 64;
             this.lblCash.Text = "Cash Amt:";
             // 
             // lblDriver
             // 
             this.lblDriver.AutoSize = true;
-            this.lblDriver.Location = new System.Drawing.Point(371, 331);
+            this.lblDriver.Location = new System.Drawing.Point(464, 414);
+            this.lblDriver.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDriver.Name = "lblDriver";
-            this.lblDriver.Size = new System.Drawing.Size(86, 16);
+            this.lblDriver.Size = new System.Drawing.Size(109, 20);
             this.lblDriver.TabIndex = 65;
             this.lblDriver.Text = "Driver Name:";
             // 
             // lblWOption
             // 
             this.lblWOption.AutoSize = true;
-            this.lblWOption.Location = new System.Drawing.Point(35, 273);
+            this.lblWOption.Location = new System.Drawing.Point(44, 341);
+            this.lblWOption.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWOption.Name = "lblWOption";
-            this.lblWOption.Size = new System.Drawing.Size(62, 16);
+            this.lblWOption.Size = new System.Drawing.Size(79, 20);
             this.lblWOption.TabIndex = 66;
             this.lblWOption.Text = "WOption:";
             // 
             // lblCustomer
             // 
             this.lblCustomer.AutoSize = true;
-            this.lblCustomer.Location = new System.Drawing.Point(35, 214);
+            this.lblCustomer.Location = new System.Drawing.Point(44, 268);
+            this.lblCustomer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCustomer.Name = "lblCustomer";
-            this.lblCustomer.Size = new System.Drawing.Size(70, 16);
+            this.lblCustomer.Size = new System.Drawing.Size(92, 20);
             this.lblCustomer.TabIndex = 67;
             this.lblCustomer.Text = "Customer :";
             // 
             // lblQRegNo
             // 
             this.lblQRegNo.AutoSize = true;
-            this.lblQRegNo.Location = new System.Drawing.Point(33, 97);
+            this.lblQRegNo.Location = new System.Drawing.Point(41, 121);
+            this.lblQRegNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblQRegNo.Name = "lblQRegNo";
-            this.lblQRegNo.Size = new System.Drawing.Size(70, 16);
+            this.lblQRegNo.Size = new System.Drawing.Size(88, 20);
             this.lblQRegNo.TabIndex = 89;
             this.lblQRegNo.Text = "InReg No :";
             // 
             // txtInRegNo
             // 
-            this.txtInRegNo.Location = new System.Drawing.Point(123, 94);
+            this.txtInRegNo.BackColor = System.Drawing.SystemColors.Control;
+            this.txtInRegNo.Enabled = false;
+            this.txtInRegNo.Location = new System.Drawing.Point(154, 118);
+            this.txtInRegNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtInRegNo.Name = "txtInRegNo";
-            this.txtInRegNo.Size = new System.Drawing.Size(212, 22);
+            this.txtInRegNo.Size = new System.Drawing.Size(264, 27);
             this.txtInRegNo.TabIndex = 1;
+            // 
+            // txtYard
+            // 
+            this.txtYard.BackColor = System.Drawing.SystemColors.Control;
+            this.txtYard.Enabled = false;
+            this.txtYard.Location = new System.Drawing.Point(152, 188);
+            this.txtYard.Margin = new System.Windows.Forms.Padding(4);
+            this.txtYard.Name = "txtYard";
+            this.txtYard.Size = new System.Drawing.Size(264, 27);
+            this.txtYard.TabIndex = 1;
+            // 
+            // txtTruck
+            // 
+            this.txtTruck.BackColor = System.Drawing.SystemColors.Control;
+            this.txtTruck.Enabled = false;
+            this.txtTruck.Location = new System.Drawing.Point(570, 188);
+            this.txtTruck.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTruck.Name = "txtTruck";
+            this.txtTruck.Size = new System.Drawing.Size(264, 27);
+            this.txtTruck.TabIndex = 1;
+            // 
+            // txtTrailer
+            // 
+            this.txtTrailer.BackColor = System.Drawing.SystemColors.Control;
+            this.txtTrailer.Cursor = System.Windows.Forms.Cursors.VSplit;
+            this.txtTrailer.Enabled = false;
+            this.txtTrailer.Location = new System.Drawing.Point(1005, 188);
+            this.txtTrailer.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTrailer.Name = "txtTrailer";
+            this.txtTrailer.Size = new System.Drawing.Size(264, 27);
+            this.txtTrailer.TabIndex = 1;
+            // 
+            // txtWbId
+            // 
+            this.txtWbId.BackColor = System.Drawing.SystemColors.Control;
+            this.txtWbId.Enabled = false;
+            this.txtWbId.Location = new System.Drawing.Point(570, 260);
+            this.txtWbId.Margin = new System.Windows.Forms.Padding(4);
+            this.txtWbId.Name = "txtWbId";
+            this.txtWbId.Size = new System.Drawing.Size(264, 27);
+            this.txtWbId.TabIndex = 1;
+            // 
+            // txtCategory
+            // 
+            this.txtCategory.BackColor = System.Drawing.SystemColors.Control;
+            this.txtCategory.Cursor = System.Windows.Forms.Cursors.VSplit;
+            this.txtCategory.Enabled = false;
+            this.txtCategory.Location = new System.Drawing.Point(1005, 260);
+            this.txtCategory.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCategory.Name = "txtCategory";
+            this.txtCategory.Size = new System.Drawing.Size(264, 27);
+            this.txtCategory.TabIndex = 1;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(154, 334);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(264, 27);
+            this.textBox1.TabIndex = 7;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.textBox2.Enabled = false;
+            this.textBox2.Location = new System.Drawing.Point(153, 334);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(264, 27);
+            this.textBox2.TabIndex = 7;
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox4.Enabled = false;
+            this.textBox4.Location = new System.Drawing.Point(572, 334);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(264, 27);
+            this.textBox4.TabIndex = 1;
+            // 
+            // txtwbOption
+            // 
+            this.txtwbOption.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.txtwbOption.Enabled = false;
+            this.txtwbOption.Location = new System.Drawing.Point(154, 335);
+            this.txtwbOption.Margin = new System.Windows.Forms.Padding(4);
+            this.txtwbOption.Name = "txtwbOption";
+            this.txtwbOption.ReadOnly = true;
+            this.txtwbOption.Size = new System.Drawing.Size(264, 27);
+            this.txtwbOption.TabIndex = 7;
+            // 
+            // txtWType
+            // 
+            this.txtWType.BackColor = System.Drawing.SystemColors.Control;
+            this.txtWType.Enabled = false;
+            this.txtWType.Location = new System.Drawing.Point(575, 334);
+            this.txtWType.Margin = new System.Windows.Forms.Padding(4);
+            this.txtWType.Name = "txtWType";
+            this.txtWType.Size = new System.Drawing.Size(264, 27);
+            this.txtWType.TabIndex = 1;
+            // 
+            // txtbilloption
+            // 
+            this.txtbilloption.BackColor = System.Drawing.SystemColors.Control;
+            this.txtbilloption.Cursor = System.Windows.Forms.Cursors.VSplit;
+            this.txtbilloption.Enabled = false;
+            this.txtbilloption.Location = new System.Drawing.Point(1017, 334);
+            this.txtbilloption.Margin = new System.Windows.Forms.Padding(4);
+            this.txtbilloption.Name = "txtbilloption";
+            this.txtbilloption.Size = new System.Drawing.Size(264, 27);
+            this.txtbilloption.TabIndex = 1;
             // 
             // FrmQueue
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1057, 650);
+            this.ClientSize = new System.Drawing.Size(1315, 804);
             this.Controls.Add(this.sfNtxtCash);
-            this.Controls.Add(this.sfCbxGate);
-            this.Controls.Add(this.sfCbxWBId);
-            this.Controls.Add(this.sfCbxTrailer);
-            this.Controls.Add(this.sfCbxTruck);
-            this.Controls.Add(this.sfCbxBillOption);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.sfCbxWType);
-            this.Controls.Add(this.sfCbxWOption);
-            this.Controls.Add(this.sfCbxCategory);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblwbId);
             this.Controls.Add(this.lblBlno);
@@ -733,6 +730,14 @@ namespace TMS_Weight.Forms
             this.Controls.Add(this.lblDoNo);
             this.Controls.Add(this.lblBillOption);
             this.Controls.Add(this.lblWType);
+            this.Controls.Add(this.txtbilloption);
+            this.Controls.Add(this.txtCategory);
+            this.Controls.Add(this.txtTrailer);
+            this.Controls.Add(this.txtWType);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txtWbId);
+            this.Controls.Add(this.txtTruck);
+            this.Controls.Add(this.txtYard);
             this.Controls.Add(this.txtInRegNo);
             this.Controls.Add(this.txtTime);
             this.Controls.Add(this.txtDoNo);
@@ -742,6 +747,9 @@ namespace TMS_Weight.Forms
             this.Controls.Add(this.txtCargoInfo);
             this.Controls.Add(this.txtContainer);
             this.Controls.Add(this.txtDriver);
+            this.Controls.Add(this.txtwbOption);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.txtCustomer);
             this.Controls.Add(this.lblTime);
             this.Controls.Add(this.lblDate);
@@ -749,19 +757,13 @@ namespace TMS_Weight.Forms
             this.Controls.Add(this.lblDriver);
             this.Controls.Add(this.lblWOption);
             this.Controls.Add(this.lblCustomer);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmQueue";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Frm Queue";
-            ((System.ComponentModel.ISupportInitialize)(this.sfCbxGate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sfCbxWBId)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sfCbxTrailer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sfCbxTruck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sfCbxBillOption)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sfCbxWType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sfCbxWOption)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sfCbxCategory)).EndInit();
             this.pnHeader.ResumeLayout(false);
             this.pnHeader.PerformLayout();
             this.ResumeLayout(false);
@@ -772,18 +774,10 @@ namespace TMS_Weight.Forms
         #endregion
 
         public Syncfusion.WinForms.Input.SfNumericTextBox sfNtxtCash;
-        public Syncfusion.WinForms.ListView.SfComboBox sfCbxGate;
-        public Syncfusion.WinForms.ListView.SfComboBox sfCbxWBId;
-        public Syncfusion.WinForms.ListView.SfComboBox sfCbxTrailer;
-        public Syncfusion.WinForms.ListView.SfComboBox sfCbxTruck;
-        public Syncfusion.WinForms.ListView.SfComboBox sfCbxBillOption;
         public Syncfusion.WinForms.Input.SfNumericTextBox sfNtxtWeight;
         private System.Windows.Forms.Button btnGet;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblWeight;
-        public Syncfusion.WinForms.ListView.SfComboBox sfCbxWType;
-        public Syncfusion.WinForms.ListView.SfComboBox sfCbxWOption;
-        public Syncfusion.WinForms.ListView.SfComboBox sfCbxCategory;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lblwbId;
         private System.Windows.Forms.Label lblBlno;
@@ -819,5 +813,16 @@ namespace TMS_Weight.Forms
         private System.Windows.Forms.Label lblCustomer;
         private System.Windows.Forms.Label lblQRegNo;
         public System.Windows.Forms.TextBox txtInRegNo;
+        public System.Windows.Forms.TextBox txtYard;
+        public System.Windows.Forms.TextBox txtTruck;
+        public System.Windows.Forms.TextBox txtTrailer;
+        public System.Windows.Forms.TextBox txtWbId;
+        public System.Windows.Forms.TextBox txtCategory;
+        public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.TextBox textBox2;
+        public System.Windows.Forms.TextBox textBox4;
+        public System.Windows.Forms.TextBox txtwbOption;
+        public System.Windows.Forms.TextBox txtWType;
+        public System.Windows.Forms.TextBox txtbilloption;
     }
 }

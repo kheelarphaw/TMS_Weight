@@ -33,6 +33,36 @@ namespace TMS_Weight.Services
         }
 
 
+        public async Task<List<WeightBridgeQueue>> GetWeighingInQueueList(string yard, string wbId)
+        {
+            List<WeightBridgeQueue> wbqList = new List<WeightBridgeQueue>();
+            HttpClient client = new HttpClient();
+            var response = await client.GetAsync($"{_baseAddress}/api/WeightSupport/GetWeighingInQueueList/?yard={yard}&wbId={wbId}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                wbqList = JsonConvert.DeserializeObject<List<WeightBridgeQueue>>(content);
+            }
+            return wbqList;
+        }
+
+
+        public async Task<List<WeightBridgeQueue>> GetWeighingOutQueueList(string yard, string wbId)
+        {
+            List<WeightBridgeQueue> wbqList = new List<WeightBridgeQueue>();
+            HttpClient client = new HttpClient();
+            var response = await client.GetAsync($"{_baseAddress}/api/WeightSupport/GetWeighingOutQueueList/?yard={yard}&wbId={wbId}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                wbqList = JsonConvert.DeserializeObject<List<WeightBridgeQueue>>(content);
+            }
+            return wbqList;
+        }
+
+
         public async Task<List<Transporter>> GetTransporterList()
         {
             List<Transporter> transporterList = new List<Transporter>();

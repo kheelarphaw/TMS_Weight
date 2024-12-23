@@ -37,5 +37,7 @@ namespace TMS_Weight.Models
 
         public string BLNo { get; set; }
         public string ContainerNo { get; set; }
+
+        public string PCCode { get; set; }
     }
 }

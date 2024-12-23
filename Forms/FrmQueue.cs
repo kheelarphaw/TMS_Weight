@@ -22,10 +22,9 @@ namespace TMS_Weight.Forms
 
             DateTime d = DateTime.Now;
             this.txtTime.Text = new TimeSpan(d.Hour, d.Minute, d.Second).ToString();
-        }
 
-        private void lblwbId_Click(object sender, EventArgs e)
-        {
+            // Assuming you have a DateTimePicker control named dateTimePicker1
+            sfDate.Value = DateTime.Now;
 
         }
 
@@ -90,14 +89,14 @@ namespace TMS_Weight.Forms
             txtDoNo.Clear();
             txtDriver.Clear();
             txtRemark.Clear();
-            sfCbxBillOption.SelectedIndex = -1; // Clears selection in ComboBox
-            sfCbxCategory.SelectedIndex = -1;
-            sfCbxGate.SelectedIndex = -1;
-            sfCbxTrailer.SelectedIndex = -1;
-            sfCbxTruck.SelectedIndex = -1;
-            sfCbxWBId.SelectedIndex = -1;
-            sfCbxWOption.SelectedIndex = -1;
-            sfCbxWType.SelectedIndex = -1;
+            //sfCbxBillOption.SelectedIndex = -1; // Clears selection in ComboBox
+            //sfCbxCategory.SelectedIndex = -1;
+            //sfCbxGate.SelectedIndex = -1;
+            //sfCbxTrailer.SelectedIndex = -1;
+            //sfCbxTruck.SelectedIndex = -1;
+            //sfCbxWBId.SelectedIndex = -1;
+            //sfCbxWOption.SelectedIndex = -1;
+            //sfCbxWType.SelectedIndex = -1;
             sfNtxtCash.Clear();
             sfNtxtWeight.Clear();
             
@@ -108,11 +107,6 @@ namespace TMS_Weight.Forms
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Hide();
-        }
-
-        private void lblBlno_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
