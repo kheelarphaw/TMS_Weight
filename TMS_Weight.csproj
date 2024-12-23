@@ -129,7 +129,9 @@
     <Reference Include="Syncfusion.Tools.Windows, Version=27.1462.58.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>packages\Syncfusion.Tools.Windows.27.1.58\lib\net462\Syncfusion.Tools.Windows.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
     </Reference>
@@ -220,7 +222,6 @@
     </Compile>
     <Compile Include="Services\BaseUrl.cs" />
     <Compile Include="Services\WeightApiService.cs" />
-    <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="Forms\CtlInQueue.resx">
       <DependentUpon>CtlInQueue.cs</DependentUpon>
     </EmbeddedResource>
