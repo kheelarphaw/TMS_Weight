@@ -12,7 +12,6 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using TMS_Weight.Forms;
 using TMS_Weight.Models;
-using Xamarin.Forms;
 
 namespace TMS_Weight
 {
