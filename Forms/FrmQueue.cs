@@ -54,8 +54,8 @@ namespace TMS_Weight.Forms
                 ResponseMessage msg = await SaveServiceBillForQueue();
                 if (msg.Status)
                 {
-
-                    if(msg.ServiceBillNo == null)
+                    
+                    if (msg.ServiceBillNo == null)
                     {
                         string message = "Successfuly Saved!";
                         string title = "Service Bill";
@@ -110,6 +110,43 @@ namespace TMS_Weight.Forms
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private async void sfBtnSave_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBoxAdv.Show(this,
+                  "Save changes?",
+                  "Weight Service Bill",
+                  MessageBoxButtons.YesNo,
+                  MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                BtnDisable();
+                ResponseMessage msg = await SaveServiceBillForQueue();
+                if (msg.Status)
+                {
+
+                    if (msg.ServiceBillNo == null)
+                    {
+                        string message = "Successfuly Saved!";
+                        string title = "Service Bill";
+                        MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                        DialogResult res = MessageBox.Show(message, title, buttons, MessageBoxIcon.Information);
+                        if (res == DialogResult.Yes)
+                        {
+                            var ctl = new CtlInQueue() { Dock = DockStyle.Fill };
+                            ctl.Show();
+                        }
+
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show(this, msg.MessageContent, "Weight Service Bill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    BtnDisable();
+                }
+            }
         }
     }
 }

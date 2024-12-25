@@ -58,8 +58,9 @@ namespace TMS_Weight.Forms
             this.label1 = new System.Windows.Forms.Label();
             this.sfCbxYard = new Syncfusion.WinForms.ListView.SfComboBox();
             this.sfCbxWBId = new Syncfusion.WinForms.ListView.SfComboBox();
-            this.sfBtnWeight = new Syncfusion.WinForms.Controls.SfButton();
             this.sfBtnInView = new Syncfusion.WinForms.Controls.SfButton();
+            this.sfBtnInWeight = new Syncfusion.WinForms.Controls.SfButton();
+            this.sfbtnExport = new Syncfusion.WinForms.Controls.SfButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sfInQueueGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfCbxYard)).BeginInit();
@@ -146,22 +147,6 @@ namespace TMS_Weight.Forms
             this.sfCbxWBId.TabIndex = 20;
             this.sfCbxWBId.TabStop = false;
             // 
-            // sfBtnWeight
-            // 
-            this.sfBtnWeight.BackColor = System.Drawing.Color.SeaGreen;
-            this.sfBtnWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfBtnWeight.ForeColor = System.Drawing.Color.White;
-            this.sfBtnWeight.Location = new System.Drawing.Point(910, 62);
-            this.sfBtnWeight.Name = "sfBtnWeight";
-            this.sfBtnWeight.Size = new System.Drawing.Size(107, 34);
-            this.sfBtnWeight.Style.BackColor = System.Drawing.Color.SeaGreen;
-            this.sfBtnWeight.Style.ForeColor = System.Drawing.Color.White;
-            this.sfBtnWeight.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            this.sfBtnWeight.TabIndex = 17;
-            this.sfBtnWeight.Text = "W&eight";
-            this.sfBtnWeight.UseVisualStyleBackColor = false;
-            this.sfBtnWeight.Click += new System.EventHandler(this.sfBtnWeight_Click);
-            // 
             // sfBtnInView
             // 
             this.sfBtnInView.BackColor = System.Drawing.Color.CornflowerBlue;
@@ -172,21 +157,54 @@ namespace TMS_Weight.Forms
             this.sfBtnInView.Size = new System.Drawing.Size(107, 34);
             this.sfBtnInView.Style.BackColor = System.Drawing.Color.CornflowerBlue;
             this.sfBtnInView.Style.ForeColor = System.Drawing.Color.White;
-            this.sfBtnInView.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.sfBtnInView.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
             this.sfBtnInView.TabIndex = 17;
             this.sfBtnInView.Text = "&View";
             this.sfBtnInView.UseVisualStyleBackColor = false;
             this.sfBtnInView.Click += new System.EventHandler(this.sfBtnInView_Click);
+            // 
+            // sfBtnInWeight
+            // 
+            this.sfBtnInWeight.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.sfBtnInWeight.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sfBtnInWeight.ForeColor = System.Drawing.Color.White;
+            this.sfBtnInWeight.Location = new System.Drawing.Point(913, 62);
+            this.sfBtnInWeight.Name = "sfBtnInWeight";
+            this.sfBtnInWeight.Size = new System.Drawing.Size(107, 34);
+            this.sfBtnInWeight.Style.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.sfBtnInWeight.Style.ForeColor = System.Drawing.Color.White;
+            this.sfBtnInWeight.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.sfBtnInWeight.TabIndex = 21;
+            this.sfBtnInWeight.Text = "W&eight";
+            this.sfBtnInWeight.UseVisualStyleBackColor = false;
+            this.sfBtnInWeight.Click += new System.EventHandler(this.sfBtnWeight_Click);
+            // 
+            // sfbtnExport
+            // 
+            this.sfbtnExport.BackColor = System.Drawing.Color.ForestGreen;
+            this.sfbtnExport.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sfbtnExport.ForeColor = System.Drawing.Color.White;
+            this.sfbtnExport.Location = new System.Drawing.Point(1042, 62);
+            this.sfbtnExport.Margin = new System.Windows.Forms.Padding(4);
+            this.sfbtnExport.Name = "sfbtnExport";
+            this.sfbtnExport.Size = new System.Drawing.Size(107, 34);
+            this.sfbtnExport.Style.BackColor = System.Drawing.Color.ForestGreen;
+            this.sfbtnExport.Style.ForeColor = System.Drawing.Color.White;
+            this.sfbtnExport.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
+            this.sfbtnExport.TabIndex = 22;
+            this.sfbtnExport.Text = "Export";
+            this.sfbtnExport.UseVisualStyleBackColor = false;
             // 
             // CtlInQueue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.Controls.Add(this.sfbtnExport);
+            this.Controls.Add(this.sfBtnInWeight);
             this.Controls.Add(this.sfCbxWBId);
             this.Controls.Add(this.sfCbxYard);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.sfBtnWeight);
             this.Controls.Add(this.sfBtnInView);
             this.Controls.Add(this.lblWBId);
             this.Controls.Add(this.lblYard);
@@ -226,6 +244,7 @@ namespace TMS_Weight.Forms
         private System.Windows.Forms.Label label1;
         private Syncfusion.WinForms.ListView.SfComboBox sfCbxYard;
         private Syncfusion.WinForms.ListView.SfComboBox sfCbxWBId;
-        private Syncfusion.WinForms.Controls.SfButton sfBtnWeight;
+        private Syncfusion.WinForms.Controls.SfButton sfBtnInWeight;
+        private Syncfusion.WinForms.Controls.SfButton sfbtnExport;
     }
 }

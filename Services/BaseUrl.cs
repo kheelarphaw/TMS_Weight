@@ -9,6 +9,5 @@ namespace TMS_Weight.Services
     public class BaseUrl
     {
         public static string ApiUrl = Properties.Settings.Default.BaseuRL;
-        public static int count = 0;
     }
 }

@@ -156,13 +156,13 @@ namespace TMS_Weight.Forms
         private void btnEnabled()
         {
             this.sfBtnOutView.Enabled = true;
-            this.sfBtnWeight.Enabled = true;
+            this.sfBtnOutWeight.Enabled = true;
         }
 
         private void btnDisabled()
         {
             this.sfBtnOutView.Enabled = false;
-            this.sfBtnWeight.Enabled = false;
+            this.sfBtnOutWeight.Enabled = false;
         }
 
         private void sfBtnOutView_Click(object sender, EventArgs e)

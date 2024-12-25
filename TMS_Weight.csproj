@@ -164,6 +164,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\CtlAdHoc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CtlAdHoc.Designer.cs">
+      <DependentUpon>CtlAdHoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CtlInQueue.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -222,6 +228,9 @@
     </Compile>
     <Compile Include="Services\BaseUrl.cs" />
     <Compile Include="Services\WeightApiService.cs" />
+    <EmbeddedResource Include="Forms\CtlAdHoc.resx">
+      <DependentUpon>CtlAdHoc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CtlInQueue.resx">
       <DependentUpon>CtlInQueue.cs</DependentUpon>
     </EmbeddedResource>
@@ -253,7 +262,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="RDLC\Report1.rdlc" />
     <EmbeddedResource Include="RDLC\WeightReport.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -290,6 +298,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SqlServerTypes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\disk_blue_ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\disk_blue1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

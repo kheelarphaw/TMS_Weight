@@ -58,8 +58,13 @@ namespace TMS_Weight
 
         private void toolStripBtnAdHoc_Click(object sender, EventArgs e)
         {
-            FrmAdHoc f = new FrmAdHoc();
-            f.Show();
+            //FrmAdHoc f = new FrmAdHoc();
+            //f.Show();
+
+            panelMain.Controls.Clear();
+            var ctl = new CtlAdHoc() { Dock = DockStyle.Fill };
+
+            panelMain.Controls.Add(ctl);
         }
 
         private void toolStripBtnBill_Click(object sender, EventArgs e)
