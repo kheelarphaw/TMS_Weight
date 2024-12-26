@@ -70,11 +70,12 @@ namespace TMS_Weight.Forms
             this.sfOutQueueGrid = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.sfCbxWBId = new Syncfusion.WinForms.ListView.SfComboBox();
             this.sfCbxYard = new Syncfusion.WinForms.ListView.SfComboBox();
-            this.sfBtnWeight = new Syncfusion.WinForms.Controls.SfButton();
             this.sfBtnOutView = new Syncfusion.WinForms.Controls.SfButton();
             this.lblWBId = new System.Windows.Forms.Label();
             this.lblYard = new System.Windows.Forms.Label();
             this.lblOutQueue = new System.Windows.Forms.Label();
+            this.sfBtnOutWeight = new Syncfusion.WinForms.Controls.SfButton();
+            this.sfbtnExport = new Syncfusion.WinForms.Controls.SfButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sfOutQueueGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfCbxWBId)).BeginInit();
@@ -87,28 +88,29 @@ namespace TMS_Weight.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.Controls.Add(this.sfOutQueueGrid);
-            this.panel1.Location = new System.Drawing.Point(1, 129);
+            this.panel1.Location = new System.Drawing.Point(1, 123);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1318, 635);
+            this.panel1.Size = new System.Drawing.Size(1318, 600);
             this.panel1.TabIndex = 26;
             // 
             // sfOutQueueGrid
             // 
             this.sfOutQueueGrid.AccessibleName = "Table";
+            this.sfOutQueueGrid.AllowResizingColumns = true;
             this.sfOutQueueGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.sfOutQueueGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfOutQueueGrid.Location = new System.Drawing.Point(10, 12);
+            this.sfOutQueueGrid.Location = new System.Drawing.Point(5, 3);
             this.sfOutQueueGrid.Name = "sfOutQueueGrid";
             this.sfOutQueueGrid.PreviewRowHeight = 35;
-            this.sfOutQueueGrid.Size = new System.Drawing.Size(1295, 112);
+            this.sfOutQueueGrid.Size = new System.Drawing.Size(1295, 581);
             this.sfOutQueueGrid.TabIndex = 2;
             this.sfOutQueueGrid.Text = "sfDataGrid1";
             // 
             // sfCbxWBId
             // 
             this.sfCbxWBId.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.sfCbxWBId.Location = new System.Drawing.Point(514, 73);
+            this.sfCbxWBId.Location = new System.Drawing.Point(514, 63);
             this.sfCbxWBId.Name = "sfCbxWBId";
             this.sfCbxWBId.Size = new System.Drawing.Size(209, 31);
             this.sfCbxWBId.Style.DropDownStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
@@ -119,7 +121,7 @@ namespace TMS_Weight.Forms
             // sfCbxYard
             // 
             this.sfCbxYard.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.sfCbxYard.Location = new System.Drawing.Point(109, 72);
+            this.sfCbxYard.Location = new System.Drawing.Point(109, 66);
             this.sfCbxYard.Name = "sfCbxYard";
             this.sfCbxYard.Size = new System.Drawing.Size(209, 31);
             this.sfCbxYard.Style.DropDownStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
@@ -128,33 +130,17 @@ namespace TMS_Weight.Forms
             this.sfCbxYard.TabStop = false;
             this.sfCbxYard.ValueMember = "YardCode";
             // 
-            // sfBtnWeight
-            // 
-            this.sfBtnWeight.BackColor = System.Drawing.Color.SeaGreen;
-            this.sfBtnWeight.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfBtnWeight.ForeColor = System.Drawing.Color.White;
-            this.sfBtnWeight.Location = new System.Drawing.Point(909, 68);
-            this.sfBtnWeight.Name = "sfBtnWeight";
-            this.sfBtnWeight.Size = new System.Drawing.Size(107, 34);
-            this.sfBtnWeight.Style.BackColor = System.Drawing.Color.SeaGreen;
-            this.sfBtnWeight.Style.ForeColor = System.Drawing.Color.White;
-            this.sfBtnWeight.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            this.sfBtnWeight.TabIndex = 24;
-            this.sfBtnWeight.Text = "W&eight";
-            this.sfBtnWeight.UseVisualStyleBackColor = false;
-            this.sfBtnWeight.Click += new System.EventHandler(this.sfBtnWeight_Click);
-            // 
             // sfBtnOutView
             // 
             this.sfBtnOutView.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.sfBtnOutView.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sfBtnOutView.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sfBtnOutView.ForeColor = System.Drawing.Color.White;
-            this.sfBtnOutView.Location = new System.Drawing.Point(781, 70);
+            this.sfBtnOutView.Location = new System.Drawing.Point(781, 59);
             this.sfBtnOutView.Name = "sfBtnOutView";
             this.sfBtnOutView.Size = new System.Drawing.Size(107, 34);
             this.sfBtnOutView.Style.BackColor = System.Drawing.Color.CornflowerBlue;
             this.sfBtnOutView.Style.ForeColor = System.Drawing.Color.White;
-            this.sfBtnOutView.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.sfBtnOutView.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
             this.sfBtnOutView.TabIndex = 25;
             this.sfBtnOutView.Text = "&View";
             this.sfBtnOutView.UseVisualStyleBackColor = false;
@@ -164,7 +150,7 @@ namespace TMS_Weight.Forms
             // 
             this.lblWBId.AutoSize = true;
             this.lblWBId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWBId.Location = new System.Drawing.Point(353, 79);
+            this.lblWBId.Location = new System.Drawing.Point(353, 69);
             this.lblWBId.Name = "lblWBId";
             this.lblWBId.Size = new System.Drawing.Size(146, 25);
             this.lblWBId.TabIndex = 23;
@@ -174,7 +160,7 @@ namespace TMS_Weight.Forms
             // 
             this.lblYard.AutoSize = true;
             this.lblYard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblYard.Location = new System.Drawing.Point(28, 77);
+            this.lblYard.Location = new System.Drawing.Point(28, 72);
             this.lblYard.Name = "lblYard";
             this.lblYard.Size = new System.Drawing.Size(64, 25);
             this.lblYard.TabIndex = 22;
@@ -182,7 +168,8 @@ namespace TMS_Weight.Forms
             // 
             // lblOutQueue
             // 
-            this.lblOutQueue.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblOutQueue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOutQueue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOutQueue.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblOutQueue.Location = new System.Drawing.Point(0, 0);
@@ -192,14 +179,48 @@ namespace TMS_Weight.Forms
             this.lblOutQueue.Text = "Out Queue List";
             this.lblOutQueue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // sfBtnOutWeight
+            // 
+            this.sfBtnOutWeight.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.sfBtnOutWeight.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sfBtnOutWeight.ForeColor = System.Drawing.Color.White;
+            this.sfBtnOutWeight.Location = new System.Drawing.Point(909, 59);
+            this.sfBtnOutWeight.Margin = new System.Windows.Forms.Padding(4);
+            this.sfBtnOutWeight.Name = "sfBtnOutWeight";
+            this.sfBtnOutWeight.Size = new System.Drawing.Size(107, 34);
+            this.sfBtnOutWeight.Style.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.sfBtnOutWeight.Style.ForeColor = System.Drawing.Color.White;
+            this.sfBtnOutWeight.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.sfBtnOutWeight.TabIndex = 29;
+            this.sfBtnOutWeight.Text = "W&eight";
+            this.sfBtnOutWeight.UseVisualStyleBackColor = false;
+            this.sfBtnOutWeight.Click += new System.EventHandler(this.sfBtnWeight_Click);
+            // 
+            // sfbtnExport
+            // 
+            this.sfbtnExport.BackColor = System.Drawing.Color.ForestGreen;
+            this.sfbtnExport.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sfbtnExport.ForeColor = System.Drawing.Color.White;
+            this.sfbtnExport.Location = new System.Drawing.Point(1037, 60);
+            this.sfbtnExport.Margin = new System.Windows.Forms.Padding(4);
+            this.sfbtnExport.Name = "sfbtnExport";
+            this.sfbtnExport.Size = new System.Drawing.Size(107, 34);
+            this.sfbtnExport.Style.BackColor = System.Drawing.Color.ForestGreen;
+            this.sfbtnExport.Style.ForeColor = System.Drawing.Color.White;
+            this.sfbtnExport.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
+            this.sfbtnExport.TabIndex = 30;
+            this.sfbtnExport.Text = "Export";
+            this.sfbtnExport.UseVisualStyleBackColor = false;
+            // 
             // CtlOutQueue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.sfbtnExport);
+            this.Controls.Add(this.sfBtnOutWeight);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.sfCbxWBId);
             this.Controls.Add(this.sfCbxYard);
-            this.Controls.Add(this.sfBtnWeight);
             this.Controls.Add(this.sfBtnOutView);
             this.Controls.Add(this.lblWBId);
             this.Controls.Add(this.lblYard);
@@ -221,10 +242,11 @@ namespace TMS_Weight.Forms
         private Syncfusion.WinForms.DataGrid.SfDataGrid sfOutQueueGrid;
         private Syncfusion.WinForms.ListView.SfComboBox sfCbxWBId;
         private Syncfusion.WinForms.ListView.SfComboBox sfCbxYard;
-        private Syncfusion.WinForms.Controls.SfButton sfBtnWeight;
         private Syncfusion.WinForms.Controls.SfButton sfBtnOutView;
         private System.Windows.Forms.Label lblWBId;
         private System.Windows.Forms.Label lblYard;
         private System.Windows.Forms.Label lblOutQueue;
+        private Syncfusion.WinForms.Controls.SfButton sfBtnOutWeight;
+        private Syncfusion.WinForms.Controls.SfButton sfbtnExport;
     }
 }

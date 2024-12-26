@@ -6,7 +6,7 @@
       <Value Profile="(Default)">YTG,MN</Value>
     </Setting>
     <Setting Name="WBCode" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">YTG-WB-1</Value>
+      <Value Profile="(Default)">YTG-WB-1,YTG-WB-2</Value>
     </Setting>
     <Setting Name="GateCode" Type="System.String" Scope="Application">
       <Value Profile="(Default)">YTGGATE</Value>

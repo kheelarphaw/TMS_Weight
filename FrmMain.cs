@@ -25,18 +25,14 @@ namespace TMS_Weight
 
 		private void btnQueue_Click(object sender, EventArgs e)
 		{
-			CtlQueue ctl=new CtlQueue();
-            ctl.Dock = DockStyle.Fill;
-            panelMain.Controls.Add(ctl);
+			
 			
 		}
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             
-            CtlServiceBill ctl = new CtlServiceBill();
-            ctl.Dock = DockStyle.Fill;
-            panelMain.Controls.Add(ctl);
+           
         }
 
         private void toolStripBtnQ_Click(object sender, EventArgs e)
@@ -62,14 +58,19 @@ namespace TMS_Weight
 
         private void toolStripBtnAdHoc_Click(object sender, EventArgs e)
         {
-            FrmAdHoc f = new FrmAdHoc();
-            f.ShowDialog();
+            //FrmAdHoc f = new FrmAdHoc();
+            //f.Show();
+
+            panelMain.Controls.Clear();
+            var ctl = new CtlAdHoc() { Dock = DockStyle.Fill };
+
+            panelMain.Controls.Add(ctl);
         }
 
         private void toolStripBtnBill_Click(object sender, EventArgs e)
         {
             panelMain.Controls.Clear();
-            var ctl = new CtlServiceBill() { Dock = DockStyle.Fill };
+            var ctl = new CtlWeightServiceBill() { Dock = DockStyle.Fill };
 
             panelMain.Controls.Add(ctl);
         }

@@ -17,10 +17,11 @@ namespace TMS_Weight.Forms
     {
         public CtlInQueue()
         {
+            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Metro;
             InitializeComponent();
             LoadData();
 
-
+            this.sfInQueueGrid.Style.HeaderStyle.BackColor = Color.SteelBlue;
             this.sfInQueueGrid.Columns.Add(new GridTextColumn()
             {
                 MappingName = "InRegNo",
@@ -142,13 +143,13 @@ namespace TMS_Weight.Forms
         private void btnEnabled()
         {
             this.sfBtnInView.Enabled = true;
-            this.sfBtnWeight.Enabled = true;
+            this.sfBtnInWeight.Enabled = true;
         }
 
         private void btnDisabled()
         {
             this.sfBtnInView.Enabled = false;
-            this.sfBtnWeight.Enabled = false;
+            this.sfBtnInWeight.Enabled = false;
         }
 
         private void sfBtnWeight_Click(object sender, EventArgs e)
@@ -188,3 +189,6 @@ namespace TMS_Weight.Forms
         }
     }
 }
+
+
+
