@@ -15,7 +15,7 @@ namespace TMS_Weight.Forms
 {
     public partial class FrmServiceBillPrint : Form
     {
-        public string yard="";
+        public string yard = "";
         public string serviceNo = "";
         public FrmServiceBillPrint(string billNo, string yard)
         {
@@ -23,7 +23,7 @@ namespace TMS_Weight.Forms
             this.yard = yard;
             this.serviceNo = billNo;
 
-           // this.reportViewer1.Dock = DockStyle.Fill;
+            // this.reportViewer1.Dock = DockStyle.Fill;
         }
 
         private void FrmServiceBillPrint_Load(object sender, EventArgs e)
@@ -77,7 +77,7 @@ namespace TMS_Weight.Forms
             this.reportViewer1.RefreshReport();
 
             //!string.IsNullOrEmpty(grn.RecDate.ToString()) ? (string.Format("{0:dd-MM-yyyy}", grn.RecDate)) : ""
-        
+
         }
     }
 }
