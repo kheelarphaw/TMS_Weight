@@ -218,6 +218,8 @@ namespace TMS_Weight.Forms
             return result.Length > 4 ? result : string.Empty;
         }
 
+ 
+
         #endregion
 
         #region Utility Methods

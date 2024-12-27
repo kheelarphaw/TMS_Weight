@@ -63,7 +63,7 @@ namespace TMS_Weight.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://localhost:7100")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://localhost:44387")]
         public string BaseuRL {
             get {
                 return ((string)(this["BaseuRL"]));

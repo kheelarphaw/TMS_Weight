@@ -20,7 +20,7 @@
       <Value Profile="(Default)">Data Source=LAPTOP-EQEB97CE;Initial Catalog=tmsdb;User ID=sa;Password=123;Encrypt=True;TrustServerCertificate=True</Value>
     </Setting>
     <Setting Name="BaseuRL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://localhost:7100</Value>
+      <Value Profile="(Default)">https://localhost:44387</Value>
     </Setting>
     <Setting Name="PortName" Type="System.String" Scope="Application">
       <Value Profile="(Default)" />

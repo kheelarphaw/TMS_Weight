@@ -201,11 +201,12 @@ namespace TMS_Weight.Forms
             // 
             // sfNtxtWeight
             // 
+            this.sfNtxtWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sfNtxtWeight.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sfNtxtWeight.Location = new System.Drawing.Point(374, 23);
+            this.sfNtxtWeight.Location = new System.Drawing.Point(374, 18);
             this.sfNtxtWeight.Margin = new System.Windows.Forms.Padding(4);
             this.sfNtxtWeight.Name = "sfNtxtWeight";
-            this.sfNtxtWeight.Size = new System.Drawing.Size(338, 24);
+            this.sfNtxtWeight.Size = new System.Drawing.Size(338, 34);
             this.sfNtxtWeight.Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.sfNtxtWeight.TabIndex = 27;
             // 
@@ -241,100 +242,110 @@ namespace TMS_Weight.Forms
             // lblWeight
             // 
             this.lblWeight.AutoSize = true;
-            this.lblWeight.Location = new System.Drawing.Point(236, 27);
+            this.lblWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWeight.Location = new System.Drawing.Point(236, 24);
             this.lblWeight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWeight.Name = "lblWeight";
-            this.lblWeight.Size = new System.Drawing.Size(92, 18);
+            this.lblWeight.Size = new System.Drawing.Size(127, 25);
             this.lblWeight.TabIndex = 32;
             this.lblWeight.Text = "Weighing In :";
             // 
             // lblwbId
             // 
             this.lblwbId.AutoSize = true;
-            this.lblwbId.Location = new System.Drawing.Point(418, 241);
+            this.lblwbId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblwbId.Location = new System.Drawing.Point(418, 236);
             this.lblwbId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblwbId.Name = "lblwbId";
-            this.lblwbId.Size = new System.Drawing.Size(56, 18);
+            this.lblwbId.Size = new System.Drawing.Size(77, 25);
             this.lblwbId.TabIndex = 87;
             this.lblwbId.Text = "WB Id :";
             // 
             // lblBlno
             // 
             this.lblBlno.AutoSize = true;
-            this.lblBlno.Location = new System.Drawing.Point(809, 442);
+            this.lblBlno.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBlno.Location = new System.Drawing.Point(809, 434);
             this.lblBlno.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBlno.Name = "lblBlno";
-            this.lblBlno.Size = new System.Drawing.Size(62, 18);
+            this.lblBlno.Size = new System.Drawing.Size(83, 25);
             this.lblBlno.TabIndex = 84;
             this.lblBlno.Text = "B/L No :";
             // 
             // lblRemark
             // 
             this.lblRemark.AutoSize = true;
-            this.lblRemark.Location = new System.Drawing.Point(418, 512);
+            this.lblRemark.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRemark.Location = new System.Drawing.Point(418, 505);
             this.lblRemark.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRemark.Name = "lblRemark";
-            this.lblRemark.Size = new System.Drawing.Size(69, 18);
+            this.lblRemark.Size = new System.Drawing.Size(90, 25);
             this.lblRemark.TabIndex = 83;
             this.lblRemark.Text = "Remark :";
             // 
             // lblVesselInfo
             // 
             this.lblVesselInfo.AutoSize = true;
-            this.lblVesselInfo.Location = new System.Drawing.Point(37, 502);
+            this.lblVesselInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVesselInfo.Location = new System.Drawing.Point(30, 502);
             this.lblVesselInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblVesselInfo.Name = "lblVesselInfo";
-            this.lblVesselInfo.Size = new System.Drawing.Size(81, 18);
+            this.lblVesselInfo.Size = new System.Drawing.Size(109, 25);
             this.lblVesselInfo.TabIndex = 82;
             this.lblVesselInfo.Text = "Cargo Info:";
             // 
             // lblContainer
             // 
             this.lblContainer.AutoSize = true;
-            this.lblContainer.Location = new System.Drawing.Point(418, 439);
+            this.lblContainer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblContainer.Location = new System.Drawing.Point(413, 436);
             this.lblContainer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblContainer.Name = "lblContainer";
-            this.lblContainer.Size = new System.Drawing.Size(80, 18);
+            this.lblContainer.Size = new System.Drawing.Size(108, 25);
             this.lblContainer.TabIndex = 81;
             this.lblContainer.Text = "Container :";
             // 
             // lblLicense
             // 
             this.lblLicense.AutoSize = true;
-            this.lblLicense.Location = new System.Drawing.Point(809, 373);
+            this.lblLicense.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLicense.Location = new System.Drawing.Point(805, 368);
             this.lblLicense.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLicense.Name = "lblLicense";
-            this.lblLicense.Size = new System.Drawing.Size(78, 18);
+            this.lblLicense.Size = new System.Drawing.Size(105, 25);
             this.lblLicense.TabIndex = 78;
             this.lblLicense.Text = "DLicense :";
             // 
             // lblCategory
             // 
             this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(805, 241);
+            this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCategory.Location = new System.Drawing.Point(805, 238);
             this.lblCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(76, 18);
+            this.lblCategory.Size = new System.Drawing.Size(103, 25);
             this.lblCategory.TabIndex = 51;
             this.lblCategory.Text = "Category :";
             // 
             // lblTrailer
             // 
             this.lblTrailer.AutoSize = true;
-            this.lblTrailer.Location = new System.Drawing.Point(805, 176);
+            this.lblTrailer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTrailer.Location = new System.Drawing.Point(805, 173);
             this.lblTrailer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTrailer.Name = "lblTrailer";
-            this.lblTrailer.Size = new System.Drawing.Size(81, 18);
+            this.lblTrailer.Size = new System.Drawing.Size(108, 25);
             this.lblTrailer.TabIndex = 88;
             this.lblTrailer.Text = "Trailer No :";
             // 
             // lblTruck
             // 
             this.lblTruck.AutoSize = true;
-            this.lblTruck.Location = new System.Drawing.Point(418, 176);
+            this.lblTruck.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTruck.Location = new System.Drawing.Point(416, 172);
             this.lblTruck.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTruck.Name = "lblTruck";
-            this.lblTruck.Size = new System.Drawing.Size(78, 18);
+            this.lblTruck.Size = new System.Drawing.Size(103, 25);
             this.lblTruck.TabIndex = 89;
             this.lblTruck.Text = "Truck No :";
             // 
@@ -342,12 +353,12 @@ namespace TMS_Weight.Forms
             // 
             this.lblheader.AutoSize = true;
             this.lblheader.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblheader.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblheader.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblheader.Location = new System.Drawing.Point(495, 16);
             this.lblheader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblheader.Name = "lblheader";
             this.lblheader.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblheader.Size = new System.Drawing.Size(143, 29);
+            this.lblheader.Size = new System.Drawing.Size(170, 32);
             this.lblheader.TabIndex = 1;
             this.lblheader.Text = "Weight Data";
             this.lblheader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -377,40 +388,44 @@ namespace TMS_Weight.Forms
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 176);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(37, 170);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 18);
+            this.label1.Size = new System.Drawing.Size(59, 25);
             this.label1.TabIndex = 85;
             this.label1.Text = "Yard:";
             // 
             // lblDoNo
             // 
             this.lblDoNo.AutoSize = true;
-            this.lblDoNo.Location = new System.Drawing.Point(37, 442);
+            this.lblDoNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDoNo.Location = new System.Drawing.Point(37, 435);
             this.lblDoNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDoNo.Name = "lblDoNo";
-            this.lblDoNo.Size = new System.Drawing.Size(59, 18);
+            this.lblDoNo.Size = new System.Drawing.Size(78, 25);
             this.lblDoNo.TabIndex = 79;
             this.lblDoNo.Text = "DO No:";
             // 
             // lblBillOption
             // 
             this.lblBillOption.AutoSize = true;
+            this.lblBillOption.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBillOption.Location = new System.Drawing.Point(809, 307);
             this.lblBillOption.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBillOption.Name = "lblBillOption";
-            this.lblBillOption.Size = new System.Drawing.Size(83, 18);
+            this.lblBillOption.Size = new System.Drawing.Size(111, 25);
             this.lblBillOption.TabIndex = 80;
             this.lblBillOption.Text = "Bill Option :";
             // 
             // lblWType
             // 
             this.lblWType.AutoSize = true;
-            this.lblWType.Location = new System.Drawing.Point(418, 307);
+            this.lblWType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWType.Location = new System.Drawing.Point(418, 304);
             this.lblWType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWType.Name = "lblWType";
-            this.lblWType.Size = new System.Drawing.Size(63, 18);
+            this.lblWType.Size = new System.Drawing.Size(88, 25);
             this.lblWType.TabIndex = 76;
             this.lblWType.Text = "WType :";
             // 
@@ -496,70 +511,77 @@ namespace TMS_Weight.Forms
             // lblTime
             // 
             this.lblTime.AutoSize = true;
-            this.lblTime.Location = new System.Drawing.Point(809, 112);
+            this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime.Location = new System.Drawing.Point(809, 106);
             this.lblTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(49, 18);
+            this.lblTime.Size = new System.Drawing.Size(67, 25);
             this.lblTime.TabIndex = 62;
             this.lblTime.Text = "Time :";
             // 
             // lblDate
             // 
             this.lblDate.AutoSize = true;
+            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDate.Location = new System.Drawing.Point(418, 112);
             this.lblDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(47, 18);
+            this.lblDate.Size = new System.Drawing.Size(64, 25);
             this.lblDate.TabIndex = 61;
             this.lblDate.Text = "Date :";
             // 
             // lblCash
             // 
             this.lblCash.AutoSize = true;
-            this.lblCash.Location = new System.Drawing.Point(37, 373);
+            this.lblCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCash.Location = new System.Drawing.Point(32, 365);
             this.lblCash.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCash.Name = "lblCash";
-            this.lblCash.Size = new System.Drawing.Size(77, 18);
+            this.lblCash.Size = new System.Drawing.Size(105, 25);
             this.lblCash.TabIndex = 64;
             this.lblCash.Text = "Cash Amt:";
             // 
             // lblDriver
             // 
             this.lblDriver.AutoSize = true;
-            this.lblDriver.Location = new System.Drawing.Point(418, 373);
+            this.lblDriver.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDriver.Location = new System.Drawing.Point(391, 367);
             this.lblDriver.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDriver.Name = "lblDriver";
-            this.lblDriver.Size = new System.Drawing.Size(95, 18);
+            this.lblDriver.Size = new System.Drawing.Size(126, 25);
             this.lblDriver.TabIndex = 65;
             this.lblDriver.Text = "Driver Name:";
             // 
             // lblWOption
             // 
             this.lblWOption.AutoSize = true;
-            this.lblWOption.Location = new System.Drawing.Point(40, 307);
+            this.lblWOption.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWOption.Location = new System.Drawing.Point(40, 303);
             this.lblWOption.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWOption.Name = "lblWOption";
-            this.lblWOption.Size = new System.Drawing.Size(71, 18);
+            this.lblWOption.Size = new System.Drawing.Size(96, 25);
             this.lblWOption.TabIndex = 66;
             this.lblWOption.Text = "WOption:";
             // 
             // lblCustomer
             // 
             this.lblCustomer.AutoSize = true;
-            this.lblCustomer.Location = new System.Drawing.Point(40, 241);
+            this.lblCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCustomer.Location = new System.Drawing.Point(31, 238);
             this.lblCustomer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCustomer.Name = "lblCustomer";
-            this.lblCustomer.Size = new System.Drawing.Size(82, 18);
+            this.lblCustomer.Size = new System.Drawing.Size(108, 25);
             this.lblCustomer.TabIndex = 67;
             this.lblCustomer.Text = "Customer :";
             // 
             // lblQRegNo
             // 
             this.lblQRegNo.AutoSize = true;
-            this.lblQRegNo.Location = new System.Drawing.Point(37, 109);
+            this.lblQRegNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQRegNo.Location = new System.Drawing.Point(36, 109);
             this.lblQRegNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblQRegNo.Name = "lblQRegNo";
-            this.lblQRegNo.Size = new System.Drawing.Size(78, 18);
+            this.lblQRegNo.Size = new System.Drawing.Size(104, 25);
             this.lblQRegNo.TabIndex = 89;
             this.lblQRegNo.Text = "InReg No :";
             // 

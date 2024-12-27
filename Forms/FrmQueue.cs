@@ -279,6 +279,7 @@ namespace TMS_Weight.Forms
             MessageBoxAdv.Show(this, $"{message}\nDetails: {ex.Message}", "Weight Service Bill", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+   
         public string AddKG(string weightValue)
         {
             return string.IsNullOrEmpty(weightValue) ? "0 kg" : $"{weightValue} kg";
