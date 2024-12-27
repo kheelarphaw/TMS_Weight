@@ -98,5 +98,10 @@ namespace TMS_Weight.Forms
         {
             this.Hide();
         }
+
+        private void btnGet_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

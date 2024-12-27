@@ -169,12 +169,15 @@ namespace TMS_Weight.Forms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtlAdHoc));
             this.lbladhoc = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCancel = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnSave = new Syncfusion.WinForms.Controls.SfButton();
             this.sfNtxtCash = new Syncfusion.WinForms.Input.SfNumericTextBox();
             this.sfCbxWBId = new Syncfusion.WinForms.ListView.SfComboBox();
             this.sfCbxTrailer = new Syncfusion.WinForms.ListView.SfComboBox();
             this.sfCbxTruck = new Syncfusion.WinForms.ListView.SfComboBox();
             this.sfCbxBillOption = new Syncfusion.WinForms.ListView.SfComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.sfBtnGet = new Syncfusion.WinForms.Controls.SfButton();
             this.sfNtxtWeight = new Syncfusion.WinForms.Input.SfNumericTextBox();
             this.lblWeight = new System.Windows.Forms.Label();
             this.sfCbxTransporter = new Syncfusion.WinForms.ListView.SfComboBox();
@@ -210,9 +213,6 @@ namespace TMS_Weight.Forms
             this.lblDriver = new System.Windows.Forms.Label();
             this.lblWOption = new System.Windows.Forms.Label();
             this.lblCustomer = new System.Windows.Forms.Label();
-            this.btnCancel = new Syncfusion.WinForms.Controls.SfButton();
-            this.btnSave = new Syncfusion.WinForms.Controls.SfButton();
-            this.sfButton1 = new Syncfusion.WinForms.Controls.SfButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sfCbxWBId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfCbxTrailer)).BeginInit();
@@ -293,6 +293,40 @@ namespace TMS_Weight.Forms
             this.panel1.Size = new System.Drawing.Size(1303, 731);
             this.panel1.TabIndex = 22;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnCancel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.ImageSize = new System.Drawing.Size(24, 24);
+            this.btnCancel.Location = new System.Drawing.Point(671, 635);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(118, 40);
+            this.btnCancel.Style.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnCancel.Style.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            this.btnCancel.TabIndex = 96;
+            this.btnCancel.Text = "&Cancel";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnSave.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.ImageSize = new System.Drawing.Size(24, 24);
+            this.btnSave.Location = new System.Drawing.Point(526, 635);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(118, 40);
+            this.btnSave.Style.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnSave.Style.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Style.Image = global::TMS_Weight.Properties.Resources.disk_blue1;
+            this.btnSave.TabIndex = 95;
+            this.btnSave.Text = "&Save";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
+            // 
             // sfNtxtCash
             // 
             this.sfNtxtCash.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -360,7 +394,7 @@ namespace TMS_Weight.Forms
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.sfButton1);
+            this.panel2.Controls.Add(this.sfBtnGet);
             this.panel2.Controls.Add(this.sfNtxtWeight);
             this.panel2.Controls.Add(this.lblWeight);
             this.panel2.Location = new System.Drawing.Point(26, 511);
@@ -368,6 +402,23 @@ namespace TMS_Weight.Forms
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1268, 82);
             this.panel2.TabIndex = 91;
+            // 
+            // sfBtnGet
+            // 
+            this.sfBtnGet.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.sfBtnGet.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sfBtnGet.ForeColor = System.Drawing.Color.White;
+            this.sfBtnGet.ImageSize = new System.Drawing.Size(24, 24);
+            this.sfBtnGet.Location = new System.Drawing.Point(839, 25);
+            this.sfBtnGet.Name = "sfBtnGet";
+            this.sfBtnGet.Size = new System.Drawing.Size(98, 30);
+            this.sfBtnGet.Style.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.sfBtnGet.Style.ForeColor = System.Drawing.Color.White;
+            this.sfBtnGet.Style.Image = global::TMS_Weight.Properties.Resources.disk_blue1;
+            this.sfBtnGet.TabIndex = 95;
+            this.sfBtnGet.Text = "&Get";
+            this.sfBtnGet.UseVisualStyleBackColor = false;
+            this.sfBtnGet.Click += new System.EventHandler(this.sfBtnGet_Click);
             // 
             // sfNtxtWeight
             // 
@@ -714,56 +765,6 @@ namespace TMS_Weight.Forms
             this.lblCustomer.TabIndex = 67;
             this.lblCustomer.Text = "Customer :";
             // 
-            // btnCancel
-            // 
-            this.btnCancel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnCancel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.ImageSize = new System.Drawing.Size(24, 24);
-            this.btnCancel.Location = new System.Drawing.Point(671, 635);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(118, 40);
-            this.btnCancel.Style.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnCancel.Style.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            this.btnCancel.TabIndex = 96;
-            this.btnCancel.Text = "&Cancel";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btnSave.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.ImageSize = new System.Drawing.Size(24, 24);
-            this.btnSave.Location = new System.Drawing.Point(526, 635);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(118, 40);
-            this.btnSave.Style.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btnSave.Style.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Style.Image = global::TMS_Weight.Properties.Resources.disk_blue1;
-            this.btnSave.TabIndex = 95;
-            this.btnSave.Text = "&Save";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
-            // 
-            // sfButton1
-            // 
-            this.sfButton1.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.sfButton1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfButton1.ForeColor = System.Drawing.Color.White;
-            this.sfButton1.ImageSize = new System.Drawing.Size(24, 24);
-            this.sfButton1.Location = new System.Drawing.Point(839, 25);
-            this.sfButton1.Name = "sfButton1";
-            this.sfButton1.Size = new System.Drawing.Size(98, 30);
-            this.sfButton1.Style.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.sfButton1.Style.ForeColor = System.Drawing.Color.White;
-            this.sfButton1.Style.Image = global::TMS_Weight.Properties.Resources.disk_blue1;
-            this.sfButton1.TabIndex = 95;
-            this.sfButton1.Text = "&Get";
-            this.sfButton1.UseVisualStyleBackColor = false;
-            // 
             // CtlAdHoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -840,6 +841,6 @@ namespace TMS_Weight.Forms
         private System.Windows.Forms.Label lblCustomer;
         private Syncfusion.WinForms.Controls.SfButton btnCancel;
         private Syncfusion.WinForms.Controls.SfButton btnSave;
-        private Syncfusion.WinForms.Controls.SfButton sfButton1;
+        private Syncfusion.WinForms.Controls.SfButton sfBtnGet;
     }
 }

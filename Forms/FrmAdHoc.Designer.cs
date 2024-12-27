@@ -111,7 +111,7 @@ namespace TMS_Weight.Forms
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(670, 749);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 49);
             this.btnCancel.TabIndex = 25;
@@ -123,7 +123,7 @@ namespace TMS_Weight.Forms
             // 
             this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSave.Location = new System.Drawing.Point(544, 749);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(94, 49);
             this.btnSave.TabIndex = 24;
@@ -135,7 +135,7 @@ namespace TMS_Weight.Forms
             // 
             this.sfDate.DateTimeIcon = null;
             this.sfDate.Location = new System.Drawing.Point(154, 115);
-            this.sfDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sfDate.Margin = new System.Windows.Forms.Padding(4);
             this.sfDate.Name = "sfDate";
             this.sfDate.Size = new System.Drawing.Size(264, 28);
             this.sfDate.TabIndex = 1;
@@ -146,7 +146,7 @@ namespace TMS_Weight.Forms
             this.pnHeader.BackColor = System.Drawing.SystemColors.Control;
             this.pnHeader.Controls.Add(this.lblheader);
             this.pnHeader.Location = new System.Drawing.Point(-1, 1);
-            this.pnHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnHeader.Margin = new System.Windows.Forms.Padding(4);
             this.pnHeader.Name = "pnHeader";
             this.pnHeader.Size = new System.Drawing.Size(1324, 69);
             this.pnHeader.TabIndex = 35;
@@ -218,7 +218,7 @@ namespace TMS_Weight.Forms
             // txtTime
             // 
             this.txtTime.Location = new System.Drawing.Point(571, 115);
-            this.txtTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTime.Margin = new System.Windows.Forms.Padding(4);
             this.txtTime.Name = "txtTime";
             this.txtTime.Size = new System.Drawing.Size(264, 27);
             this.txtTime.TabIndex = 2;
@@ -267,7 +267,7 @@ namespace TMS_Weight.Forms
             // 
             this.sfCbxCategory.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
             this.sfCbxCategory.Location = new System.Drawing.Point(154, 260);
-            this.sfCbxCategory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sfCbxCategory.Margin = new System.Windows.Forms.Padding(4);
             this.sfCbxCategory.Name = "sfCbxCategory";
             this.sfCbxCategory.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
             this.sfCbxCategory.Size = new System.Drawing.Size(265, 28);
@@ -290,7 +290,7 @@ namespace TMS_Weight.Forms
             this.sfCbxTransporter.DisplayMember = "Name";
             this.sfCbxTransporter.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
             this.sfCbxTransporter.Location = new System.Drawing.Point(152, 480);
-            this.sfCbxTransporter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sfCbxTransporter.Margin = new System.Windows.Forms.Padding(4);
             this.sfCbxTransporter.Name = "sfCbxTransporter";
             this.sfCbxTransporter.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
             this.sfCbxTransporter.Size = new System.Drawing.Size(265, 28);
@@ -302,7 +302,7 @@ namespace TMS_Weight.Forms
             // txtCustomer
             // 
             this.txtCustomer.Location = new System.Drawing.Point(1005, 184);
-            this.txtCustomer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCustomer.Margin = new System.Windows.Forms.Padding(4);
             this.txtCustomer.Name = "txtCustomer";
             this.txtCustomer.Size = new System.Drawing.Size(264, 27);
             this.txtCustomer.TabIndex = 6;
@@ -331,7 +331,7 @@ namespace TMS_Weight.Forms
             // 
             this.sfCbxWOption.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
             this.sfCbxWOption.Location = new System.Drawing.Point(571, 260);
-            this.sfCbxWOption.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sfCbxWOption.Margin = new System.Windows.Forms.Padding(4);
             this.sfCbxWOption.Name = "sfCbxWOption";
             this.sfCbxWOption.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
             this.sfCbxWOption.Size = new System.Drawing.Size(265, 28);
@@ -343,7 +343,7 @@ namespace TMS_Weight.Forms
             // 
             this.sfCbxWType.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
             this.sfCbxWType.Location = new System.Drawing.Point(1005, 260);
-            this.sfCbxWType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sfCbxWType.Margin = new System.Windows.Forms.Padding(4);
             this.sfCbxWType.Name = "sfCbxWType";
             this.sfCbxWType.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
             this.sfCbxWType.Size = new System.Drawing.Size(265, 28);
@@ -364,7 +364,7 @@ namespace TMS_Weight.Forms
             // txtDoNo
             // 
             this.txtDoNo.Location = new System.Drawing.Point(1005, 410);
-            this.txtDoNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDoNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtDoNo.Name = "txtDoNo";
             this.txtDoNo.Size = new System.Drawing.Size(264, 27);
             this.txtDoNo.TabIndex = 15;
@@ -382,7 +382,7 @@ namespace TMS_Weight.Forms
             // txtDriver
             // 
             this.txtDriver.Location = new System.Drawing.Point(152, 406);
-            this.txtDriver.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDriver.Margin = new System.Windows.Forms.Padding(4);
             this.txtDriver.Name = "txtDriver";
             this.txtDriver.Size = new System.Drawing.Size(264, 27);
             this.txtDriver.TabIndex = 13;
@@ -400,7 +400,7 @@ namespace TMS_Weight.Forms
             // txtDLicense
             // 
             this.txtDLicense.Location = new System.Drawing.Point(572, 406);
-            this.txtDLicense.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDLicense.Margin = new System.Windows.Forms.Padding(4);
             this.txtDLicense.Name = "txtDLicense";
             this.txtDLicense.Size = new System.Drawing.Size(264, 27);
             this.txtDLicense.TabIndex = 14;
@@ -418,7 +418,7 @@ namespace TMS_Weight.Forms
             // txtContainer
             // 
             this.txtContainer.Location = new System.Drawing.Point(571, 480);
-            this.txtContainer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtContainer.Margin = new System.Windows.Forms.Padding(4);
             this.txtContainer.Name = "txtContainer";
             this.txtContainer.Size = new System.Drawing.Size(264, 27);
             this.txtContainer.TabIndex = 17;
@@ -426,7 +426,7 @@ namespace TMS_Weight.Forms
             // txtBlNo
             // 
             this.txtBlNo.Location = new System.Drawing.Point(1005, 480);
-            this.txtBlNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBlNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtBlNo.Name = "txtBlNo";
             this.txtBlNo.Size = new System.Drawing.Size(264, 27);
             this.txtBlNo.TabIndex = 18;
@@ -434,7 +434,7 @@ namespace TMS_Weight.Forms
             // txtVessel
             // 
             this.txtVessel.Location = new System.Drawing.Point(154, 554);
-            this.txtVessel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtVessel.Margin = new System.Windows.Forms.Padding(4);
             this.txtVessel.Name = "txtVessel";
             this.txtVessel.Size = new System.Drawing.Size(264, 27);
             this.txtVessel.TabIndex = 19;
@@ -452,7 +452,7 @@ namespace TMS_Weight.Forms
             // txtRemark
             // 
             this.txtRemark.Location = new System.Drawing.Point(1005, 550);
-            this.txtRemark.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtRemark.Margin = new System.Windows.Forms.Padding(4);
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(264, 26);
@@ -475,7 +475,7 @@ namespace TMS_Weight.Forms
             this.panel1.Controls.Add(this.lblWeight);
             this.panel1.Controls.Add(this.btnGet);
             this.panel1.Location = new System.Drawing.Point(44, 621);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1222, 82);
             this.panel1.TabIndex = 45;
@@ -484,7 +484,7 @@ namespace TMS_Weight.Forms
             // 
             this.sfNtxtWeight.ForeColor = System.Drawing.SystemColors.WindowText;
             this.sfNtxtWeight.Location = new System.Drawing.Point(415, 21);
-            this.sfNtxtWeight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sfNtxtWeight.Margin = new System.Windows.Forms.Padding(4);
             this.sfNtxtWeight.Name = "sfNtxtWeight";
             this.sfNtxtWeight.Size = new System.Drawing.Size(375, 27);
             this.sfNtxtWeight.Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
@@ -494,18 +494,19 @@ namespace TMS_Weight.Forms
             // 
             this.btnGet.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnGet.Location = new System.Drawing.Point(839, 16);
-            this.btnGet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGet.Margin = new System.Windows.Forms.Padding(4);
             this.btnGet.Name = "btnGet";
             this.btnGet.Size = new System.Drawing.Size(94, 36);
             this.btnGet.TabIndex = 23;
             this.btnGet.Text = "Get";
             this.btnGet.UseVisualStyleBackColor = true;
+            this.btnGet.Click += new System.EventHandler(this.btnGet_Click);
             // 
             // sfNtxtCash
             // 
             this.sfNtxtCash.ForeColor = System.Drawing.SystemColors.WindowText;
             this.sfNtxtCash.Location = new System.Drawing.Point(571, 334);
-            this.sfNtxtCash.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sfNtxtCash.Margin = new System.Windows.Forms.Padding(4);
             this.sfNtxtCash.Name = "sfNtxtCash";
             this.sfNtxtCash.Size = new System.Drawing.Size(264, 27);
             this.sfNtxtCash.Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
@@ -524,7 +525,7 @@ namespace TMS_Weight.Forms
             // txtCargoInfo
             // 
             this.txtCargoInfo.Location = new System.Drawing.Point(572, 554);
-            this.txtCargoInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCargoInfo.Margin = new System.Windows.Forms.Padding(4);
             this.txtCargoInfo.Multiline = true;
             this.txtCargoInfo.Name = "txtCargoInfo";
             this.txtCargoInfo.Size = new System.Drawing.Size(264, 26);
@@ -545,7 +546,7 @@ namespace TMS_Weight.Forms
             this.sfCbxWBId.DisplayMember = "Name";
             this.sfCbxWBId.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
             this.sfCbxWBId.Location = new System.Drawing.Point(1005, 334);
-            this.sfCbxWBId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sfCbxWBId.Margin = new System.Windows.Forms.Padding(4);
             this.sfCbxWBId.Name = "sfCbxWBId";
             this.sfCbxWBId.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
             this.sfCbxWBId.Size = new System.Drawing.Size(265, 28);
@@ -559,7 +560,7 @@ namespace TMS_Weight.Forms
             this.sfCbxTruck.DisplayMember = "VehicleRegNo";
             this.sfCbxTruck.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
             this.sfCbxTruck.Location = new System.Drawing.Point(154, 188);
-            this.sfCbxTruck.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sfCbxTruck.Margin = new System.Windows.Forms.Padding(4);
             this.sfCbxTruck.Name = "sfCbxTruck";
             this.sfCbxTruck.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
             this.sfCbxTruck.Size = new System.Drawing.Size(265, 28);
@@ -573,7 +574,7 @@ namespace TMS_Weight.Forms
             this.sfCbxTrailer.DisplayMember = "VehicleRegNo";
             this.sfCbxTrailer.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
             this.sfCbxTrailer.Location = new System.Drawing.Point(571, 184);
-            this.sfCbxTrailer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sfCbxTrailer.Margin = new System.Windows.Forms.Padding(4);
             this.sfCbxTrailer.Name = "sfCbxTrailer";
             this.sfCbxTrailer.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
             this.sfCbxTrailer.Size = new System.Drawing.Size(265, 28);
@@ -597,7 +598,7 @@ namespace TMS_Weight.Forms
             this.sfCbxGate.DisplayMember = "GateInfo";
             this.sfCbxGate.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
             this.sfCbxGate.Location = new System.Drawing.Point(1005, 118);
-            this.sfCbxGate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sfCbxGate.Margin = new System.Windows.Forms.Padding(4);
             this.sfCbxGate.Name = "sfCbxGate";
             this.sfCbxGate.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
             this.sfCbxGate.Size = new System.Drawing.Size(265, 28);
@@ -620,7 +621,7 @@ namespace TMS_Weight.Forms
             // 
             this.sfCbxBillOption.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
             this.sfCbxBillOption.Location = new System.Drawing.Point(152, 334);
-            this.sfCbxBillOption.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sfCbxBillOption.Margin = new System.Windows.Forms.Padding(4);
             this.sfCbxBillOption.Name = "sfCbxBillOption";
             this.sfCbxBillOption.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
             this.sfCbxBillOption.Size = new System.Drawing.Size(265, 28);
@@ -681,7 +682,7 @@ namespace TMS_Weight.Forms
             this.Controls.Add(this.lblWOption);
             this.Controls.Add(this.lblCustomer);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmAdHoc";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Frm AdHoc";

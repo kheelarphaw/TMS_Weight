@@ -22,5 +22,23 @@
     <Setting Name="BaseuRL" Type="System.String" Scope="User">
       <Value Profile="(Default)">https://localhost:7100</Value>
     </Setting>
+    <Setting Name="PortName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="BaudRate" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Parity" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DataBits" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="StopBits" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Handshake" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

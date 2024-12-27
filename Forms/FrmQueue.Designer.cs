@@ -137,7 +137,7 @@ namespace TMS_Weight.Forms
             this.sfNtxtCash = new Syncfusion.WinForms.Input.SfNumericTextBox();
             this.sfNtxtWeight = new Syncfusion.WinForms.Input.SfNumericTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.sfButton1 = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnGet = new Syncfusion.WinForms.Controls.SfButton();
             this.lblWeight = new System.Windows.Forms.Label();
             this.lblwbId = new System.Windows.Forms.Label();
             this.lblBlno = new System.Windows.Forms.Label();
@@ -212,7 +212,7 @@ namespace TMS_Weight.Forms
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.sfButton1);
+            this.panel1.Controls.Add(this.btnGet);
             this.panel1.Controls.Add(this.sfNtxtWeight);
             this.panel1.Controls.Add(this.lblWeight);
             this.panel1.Location = new System.Drawing.Point(43, 562);
@@ -221,21 +221,22 @@ namespace TMS_Weight.Forms
             this.panel1.Size = new System.Drawing.Size(1100, 72);
             this.panel1.TabIndex = 91;
             // 
-            // sfButton1
+            // btnGet
             // 
-            this.sfButton1.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.sfButton1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfButton1.ForeColor = System.Drawing.Color.White;
-            this.sfButton1.ImageSize = new System.Drawing.Size(24, 24);
-            this.sfButton1.Location = new System.Drawing.Point(764, 17);
-            this.sfButton1.Name = "sfButton1";
-            this.sfButton1.Size = new System.Drawing.Size(98, 30);
-            this.sfButton1.Style.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.sfButton1.Style.ForeColor = System.Drawing.Color.White;
-            this.sfButton1.Style.Image = global::TMS_Weight.Properties.Resources.disk_blue1;
-            this.sfButton1.TabIndex = 94;
-            this.sfButton1.Text = "&Get";
-            this.sfButton1.UseVisualStyleBackColor = false;
+            this.btnGet.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnGet.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGet.ForeColor = System.Drawing.Color.White;
+            this.btnGet.ImageSize = new System.Drawing.Size(24, 24);
+            this.btnGet.Location = new System.Drawing.Point(764, 17);
+            this.btnGet.Name = "btnGet";
+            this.btnGet.Size = new System.Drawing.Size(98, 30);
+            this.btnGet.Style.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnGet.Style.ForeColor = System.Drawing.Color.White;
+            this.btnGet.Style.Image = global::TMS_Weight.Properties.Resources.disk_blue1;
+            this.btnGet.TabIndex = 94;
+            this.btnGet.Text = "&Get";
+            this.btnGet.UseVisualStyleBackColor = false;
+            this.btnGet.Click += new System.EventHandler(this.btnGet_Click);
             // 
             // lblWeight
             // 
@@ -842,6 +843,6 @@ namespace TMS_Weight.Forms
         public System.Windows.Forms.TextBox txtbilloption;
         private Syncfusion.WinForms.Controls.SfButton btnSave;
         private Syncfusion.WinForms.Controls.SfButton btnCancel;
-        private Syncfusion.WinForms.Controls.SfButton sfButton1;
+        private Syncfusion.WinForms.Controls.SfButton btnGet;
     }
 }
