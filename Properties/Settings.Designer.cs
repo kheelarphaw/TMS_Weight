@@ -53,8 +53,8 @@ namespace TMS_Weight.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-EQEB97CE;Initial Catalog=tmsdb;User ID=sa;Password=123;Encrypt" +
-            "=True;TrustServerCertificate=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=tmsdb;User ID=sa;Password=123;Encrypt=True;TrustSer" +
+            "verCertificate=True")]
         public string tmsdbConnectionString {
             get {
                 return ((string)(this["tmsdbConnectionString"]));
