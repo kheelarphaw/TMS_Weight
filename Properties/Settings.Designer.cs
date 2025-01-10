@@ -25,7 +25,7 @@ namespace TMS_Weight.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("YTG,MN")]
+        [global::System.Configuration.DefaultSettingValueAttribute("YTG")]
         public string YardCode {
             get {
                 return ((string)(this["YardCode"]));
@@ -34,7 +34,7 @@ namespace TMS_Weight.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("YTG-WB-1,YTG-WB-2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("YTG-WB-1")]
         public string WBCode {
             get {
                 return ((string)(this["WBCode"]));
@@ -50,20 +50,9 @@ namespace TMS_Weight.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=tmsdb;User ID=sa;Password=123;Encrypt=True;TrustSer" +
-            "verCertificate=True")]
-        public string tmsdbConnectionString {
-            get {
-                return ((string)(this["tmsdbConnectionString"]));
-            }
-        }
-        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://localhost:44387")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://localhost:7100")]
         public string BaseuRL {
             get {
                 return ((string)(this["BaseuRL"]));
@@ -75,7 +64,7 @@ namespace TMS_Weight.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM5")]
         public string PortName {
             get {
                 return ((string)(this["PortName"]));
@@ -84,7 +73,7 @@ namespace TMS_Weight.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("9600")]
         public int BaudRate {
             get {
                 return ((int)(this["BaudRate"]));
@@ -93,7 +82,7 @@ namespace TMS_Weight.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
         public string Parity {
             get {
                 return ((string)(this["Parity"]));
@@ -102,7 +91,7 @@ namespace TMS_Weight.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
         public int DataBits {
             get {
                 return ((int)(this["DataBits"]));
@@ -111,7 +100,7 @@ namespace TMS_Weight.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("One")]
         public string StopBits {
             get {
                 return ((string)(this["StopBits"]));
@@ -120,10 +109,46 @@ namespace TMS_Weight.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
         public string Handshake {
             get {
                 return ((string)(this["Handshake"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("09956666369/09765681229")]
+        public string PhoneNo {
+            get {
+                return ((string)(this["PhoneNo"]));
+            }
+            set {
+                this["PhoneNo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("atkyaw@rgldryport.com")]
+        public string Email {
+            get {
+                return ((string)(this["Email"]));
+            }
+            set {
+                this["Email"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Yangon")]
+        public string Address {
+            get {
+                return ((string)(this["Address"]));
+            }
+            set {
+                this["Address"] = value;
             }
         }
     }

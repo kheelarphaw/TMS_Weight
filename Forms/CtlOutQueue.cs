@@ -119,6 +119,7 @@ namespace TMS_Weight.Forms
 
         private void sfBtnWeight_Click(object sender, EventArgs e)
         {
+
             if (sfOutQueueGrid.SelectedIndex >= 0)
             {
                 // Get the selected row
@@ -130,7 +131,13 @@ namespace TMS_Weight.Forms
                     this.sfOutQueueGrid.SelectedIndex = -1;
 
                     FrmQueue f = new FrmQueue(queue);
+
+                    // Show the form as a dialog
                     f.ShowDialog();
+
+                    // Optionally, you can refresh the grid again if data has changed after the form closes
+                    RefreshGrid();
+
 
                 }
 
@@ -155,33 +162,28 @@ namespace TMS_Weight.Forms
 
         private void btnEnabled()
         {
-            this.sfBtnOutView.Enabled = true;
+            //this.sfBtnOutView.Enabled = true;
             this.sfBtnOutWeight.Enabled = true;
         }
 
         private void btnDisabled()
         {
-            this.sfBtnOutView.Enabled = false;
+            //this.sfBtnOutView.Enabled = false;
             this.sfBtnOutWeight.Enabled = false;
         }
 
-        private void sfBtnOutView_Click(object sender, EventArgs e)
+
+        // Method to refresh the grid
+        private void RefreshGrid()
         {
-            this.btnDisabled();
 
-            if (sfCbxYard.SelectedItem != null && sfCbxWBId.SelectedItem != null)
-            {
-
-
-                LoadData(sfCbxYard.SelectedItem.ToString(), sfCbxWBId.SelectedItem.ToString());
-            }
-            else
-            {
-                MessageBoxAdv.Show(this, "Please select yard and weight bridge!",
-                                   "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            this.btnEnabled();
+            pnlOutQueue.Refresh();
+            // Refresh or reload the data in the grid
+            sfOutQueueGrid.Refresh();
+            LoadData();
+            btnEnabled();
         }
+
+
     }
 }

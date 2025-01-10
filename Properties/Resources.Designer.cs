@@ -63,6 +63,16 @@ namespace TMS_Weight.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap check {
+            get {
+                object obj = ResourceManager.GetObject("check", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap disk_blue {
             get {
                 object obj = ResourceManager.GetObject("disk_blue", resourceCulture);
@@ -86,6 +96,56 @@ namespace TMS_Weight.Properties {
         internal static System.Drawing.Bitmap disk_blue1 {
             get {
                 object obj = ResourceManager.GetObject("disk_blue1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap document_preferences {
+            get {
+                object obj = ResourceManager.GetObject("document_preferences", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap import2 {
+            get {
+                object obj = ResourceManager.GetObject("import2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap window_edit {
+            get {
+                object obj = ResourceManager.GetObject("window_edit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap window_preferences {
+            get {
+                object obj = ResourceManager.GetObject("window_preferences", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap window_view {
+            get {
+                object obj = ResourceManager.GetObject("window_view", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

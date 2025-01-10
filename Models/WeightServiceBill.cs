@@ -22,11 +22,13 @@ namespace TMS_Weight.Models
         public decimal? NetWeight { get; set; }
         public string WeightType { get; set; }
         public string CargoInfo { get; set; }
+        public string CardNo { get; set; }
         public string WeightOption { get; set; }
         public string BillOption { get; set; }
         public string CustomerId { get; set; }
         public string CustomerName { get; set; }
-        public decimal CashAmt { get; set; }
+        public decimal InWeightCash { get; set; }
+        public decimal OutWeightCash { get; set; }
         public int? CheckInRegNo { get; set; }
         public string WeightCategory { get; set; }
         public string DriverName { get; set; }
@@ -39,5 +41,13 @@ namespace TMS_Weight.Models
         public string YardID { get; set; }
         public string GateID { get; set; }
         public string Remark { get; set; }
+        public string Address { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string CustomerAddress { get; set; }
+        public string CustomerPhone { get; set; }
+        public string CustomerFax { get; set; }
+
+
     }
 }

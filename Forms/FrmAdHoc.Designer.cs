@@ -17,7 +17,7 @@ namespace TMS_Weight.Forms
         public List<Transporter> transporterList;
         public List<Vehicle> truckList;
         public List<Vehicle> trailerList;
-        public List<WeightBridge> weightBridgeList;
+        //public List<WeightBridge> weightBridgeList;
         public List<Gate> gateList;
         /// <summary>
         /// Required designer variable.
@@ -723,9 +723,9 @@ namespace TMS_Weight.Forms
                 this.sfCbxTransporter.DataSource = transporterList;
 
             this.sfCbxWBId.DataSource = null;
-            weightBridgeList = await _apiService.GetWeightBridgeList();
-            if (weightBridgeList.Count > 0)
-                this.sfCbxWBId.DataSource = weightBridgeList;
+            //weightBridgeList = await _apiService.GetWeightBridgeList();
+            //if (weightBridgeList.Count > 0)
+            //    this.sfCbxWBId.DataSource = weightBridgeList;
 
             this.sfCbxTruck.DataSource = null;
             truckList = await _apiService.GetTruckList();
@@ -778,7 +778,7 @@ namespace TMS_Weight.Forms
             serviceBill.DONo = this.txtDoNo.Text;
             serviceBill.DriverName = this.txtDriver.Text;
             serviceBill.DriverLicense = this.txtDLicense.Text;
-            serviceBill.CashAmt = Convert.ToDecimal(this.sfNtxtCash.Text);
+            serviceBill.OutWeightCash = Convert.ToDecimal(this.sfNtxtCash.Text);
             serviceBill.ContainerNo = this.txtContainer.Text;
             serviceBill.BLNo = this.txtBlNo.Text;
             serviceBill.VesselName = this.txtVessel.Text;
@@ -795,8 +795,8 @@ namespace TMS_Weight.Forms
             if (this.sfCbxTrailer.SelectedItem is Vehicle trailer)
                 serviceBill.TrailerNo = trailer.VehicleRegNo;
 
-            if (this.sfCbxWBId.SelectedItem is WeightBridge wb)
-                serviceBill.WeightBridgeID = wb.WeightBridgeID;
+            //if (this.sfCbxWBId.SelectedItem is WeightBridge wb)
+            //    serviceBill.WeightBridgeID = wb.WeightBridgeID;
 
             if (this.sfCbxGate.SelectedItem is Gate gate)
             {

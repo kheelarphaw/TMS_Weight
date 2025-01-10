@@ -144,12 +144,12 @@ namespace TMS_Weight.Forms
                 var selectedRow = sfSBGrid.SelectedItem; // Get the first selected row (if you allow multi-selection, use SelectedRecords[] for more)
 
                 var id = selectedRow.GetType().GetProperty("ServiceBillNo")?.GetValue(selectedRow, null);
-                var yard = selectedRow.GetType().GetProperty("YardID")?.GetValue(selectedRow, null);
+                //var yard = selectedRow.GetType().GetProperty("YardID")?.GetValue(selectedRow, null);
                 var inWeight = selectedRow.GetType().GetProperty("InWeight")?.GetValue(selectedRow, null);
                 var outWeight = selectedRow.GetType().GetProperty("OutWeight")?.GetValue(selectedRow, null);
                 if (inWeight != null && outWeight != null)
                 {
-                    FrmServiceBillPrint f = new FrmServiceBillPrint(id.ToString(), yard.ToString());
+                    FrmServiceBillPrint f = new FrmServiceBillPrint(id.ToString());
                     f.Show();
                 }
                 else

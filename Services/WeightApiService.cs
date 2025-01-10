@@ -76,19 +76,6 @@ namespace TMS_Weight.Services
             return transporterList;
         }
 
-        public async Task<List<WeightBridge>> GetWeightBridgeList()
-        {
-            List<WeightBridge> wbList = new List<WeightBridge>();
-            HttpClient client = new HttpClient();
-            var response = await client.GetAsync($"{_baseAddress}/api/WeightSupport/GetWeightBridgeList");
-            if (response.IsSuccessStatusCode)
-            {
-                string content = await response.Content.ReadAsStringAsync();
-                wbList = JsonConvert.DeserializeObject<List<WeightBridge>>(content);
-            }
-            return wbList;
-        }
-
         public async Task<List<Vehicle>> GetTruckList()
         {
             List<Vehicle> trailerList = new List<Vehicle>();
@@ -251,6 +238,21 @@ namespace TMS_Weight.Services
                 billList = JsonConvert.DeserializeObject<List<WeightServiceBill>>(content);
             }
             return billList;
+        }
+
+
+        public async Task<WeightServiceBill> GetServiceBillPrintData(string serviceBillNo)
+        {
+            WeightServiceBill printData = new WeightServiceBill();
+            HttpClient client = new HttpClient();
+            var response = await client.GetAsync($"{_baseAddress}/api/WeightSupport/GetServiceBillPrintData/?id={serviceBillNo}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                printData = JsonConvert.DeserializeObject<WeightServiceBill>(content);
+            }
+            return printData;
         }
 
         #endregion

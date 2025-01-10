@@ -1,4 +1,11 @@
-﻿namespace TMS_Weight.Forms
+﻿using Microsoft.Reporting.WinForms;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using TMS_Weight.Models;
+using TMS_Weight.Services;
+
+namespace TMS_Weight.Forms
 {
     partial class FrmServiceBillPrint
     {
@@ -39,13 +46,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.reportViewer1.AutoScroll = true;
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "TMS_Weight.RDLC.WeightReport.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(12, 12);
-            this.reportViewer1.MaximumSize = new System.Drawing.Size(1244, 733);
-            this.reportViewer1.MinimumSize = new System.Drawing.Size(1244, 733);
+            this.reportViewer1.Location = new System.Drawing.Point(16, 12);
+            this.reportViewer1.Margin = new System.Windows.Forms.Padding(5);
+            this.reportViewer1.MaximumSize = new System.Drawing.Size(1240, 733);
+            this.reportViewer1.MinimumSize = new System.Drawing.Size(1240, 733);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.ShowZoomControl = false;
-            this.reportViewer1.Size = new System.Drawing.Size(1244, 733);
+            this.reportViewer1.Size = new System.Drawing.Size(1240, 733);
             this.reportViewer1.TabIndex = 0;
             // 
             // FrmServiceBillPrint

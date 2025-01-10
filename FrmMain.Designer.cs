@@ -275,7 +275,7 @@
 		}
 
 		#endregion
-        private System.Windows.Forms.Panel panelMain;
+        public System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;

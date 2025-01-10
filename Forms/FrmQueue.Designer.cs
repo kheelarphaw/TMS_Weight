@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using TMS_Weight.Models;
 using TMS_Weight.Services;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
@@ -17,13 +18,9 @@ namespace TMS_Weight.Forms
         private System.ComponentModel.IContainer components = null;
         private WeightApiService _apiService = new WeightApiService();
 
-        public List<Transporter> transporterList;
-        public List<Vehicle> truckList;
-        public List<Vehicle> trailerList;
-        public List<WeightBridge> weightBridgeList;
-        public List<Gate> gateList;
         public int QRegNo;
         public string gateId;
+        public string cardNo;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -57,6 +54,7 @@ namespace TMS_Weight.Forms
             this.txtbilloption.Text = queue.BillOption;
             this.txtWType.Text = queue.Type;
             this.txtwbOption.Text = queue.WBOption;
+            this.cardNo = queue.CardNo;
          
         }
         private async Task<ResponseMessage> SaveServiceBillForQueue()
@@ -75,7 +73,7 @@ namespace TMS_Weight.Forms
             serviceBill.TruckNo = this.txtTruck.Text;
             serviceBill.DriverName = this.txtDriver.Text;
             serviceBill.DriverLicense = this.txtDLicense.Text;
-            serviceBill.CashAmt = Convert.ToDecimal(this.sfNtxtCash.Text);
+            serviceBill.InWeightCash = Convert.ToDecimal(this.txtInCash.Text);
             serviceBill.ContainerNo = this.txtContainer.Text;
             serviceBill.BLNo = this.txtBlNo.Text;
             serviceBill.Remark = this.txtRemark.Text;
@@ -84,8 +82,17 @@ namespace TMS_Weight.Forms
             serviceBill.WeightBridgeID = this.txtWbId.Text;
             serviceBill.WeightOption = this.txtwbOption.Text;
             serviceBill.BillOption = this.txtbilloption.Text;
-    
+            serviceBill.CardNo = this.cardNo;
+
+
             serviceBill.YardID = this.txtYard.Text;
+
+
+            // Extract the numeric value using regex
+            string wvalue = System.Text.RegularExpressions.Regex.Match(this.txtWeight.Text, @"\d+").Value;
+
+            // Convert the extracted number string to an integer
+            int value = int.Parse(wvalue) / 1000;
 
             if (serviceBill.WeightType == "In")
             {
@@ -94,7 +101,9 @@ namespace TMS_Weight.Forms
                 TimeSpan time = TimeSpan.Parse(timeString);// Time part 
                 serviceBill.InWeightTime = (date + time);
                 serviceBill.ServiceBillDate = serviceBill.InWeightTime;
-                serviceBill.InWeight = Convert.ToDecimal(this.sfNtxtWeight.Text);
+
+
+                serviceBill.InWeight = Convert.ToDecimal(value);
             }
             else
             {
@@ -103,7 +112,7 @@ namespace TMS_Weight.Forms
                 TimeSpan time = TimeSpan.Parse(timeString);// Time part 
                 serviceBill.OutWeightTime = (date + time);
                 serviceBill.ServiceBillDate = serviceBill.OutWeightTime;
-                serviceBill.OutWeight = Convert.ToDecimal(this.sfNtxtWeight.Text);
+                serviceBill.OutWeight = Convert.ToDecimal(value);
             }
 
             if(serviceBill.WeightType == "In")
@@ -116,7 +125,7 @@ namespace TMS_Weight.Forms
             {
                 this.Close();
                 msg = await _apiService.UpdateServiceBillForQueue(serviceBill);
-                FrmServiceBillPrint f = new FrmServiceBillPrint(msg.ServiceBillNo.ToString(), msg.Yard.ToString());
+                FrmServiceBillPrint f = new FrmServiceBillPrint(msg.ServiceBillNo.ToString());
                 f.Show();
             }
 
@@ -134,11 +143,10 @@ namespace TMS_Weight.Forms
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmQueue));
-            this.sfNtxtCash = new Syncfusion.WinForms.Input.SfNumericTextBox();
-            this.sfNtxtWeight = new Syncfusion.WinForms.Input.SfNumericTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnGet = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnGetWeight = new Syncfusion.WinForms.Controls.SfButton();
             this.lblWeight = new System.Windows.Forms.Label();
+            this.txtWeight = new System.Windows.Forms.TextBox();
             this.lblwbId = new System.Windows.Forms.Label();
             this.lblBlno = new System.Windows.Forms.Label();
             this.lblRemark = new System.Windows.Forms.Label();
@@ -177,84 +185,71 @@ namespace TMS_Weight.Forms
             this.txtTrailer = new System.Windows.Forms.TextBox();
             this.txtWbId = new System.Windows.Forms.TextBox();
             this.txtCategory = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.txtwbOption = new System.Windows.Forms.TextBox();
             this.txtWType = new System.Windows.Forms.TextBox();
             this.txtbilloption = new System.Windows.Forms.TextBox();
             this.btnCancel = new Syncfusion.WinForms.Controls.SfButton();
             this.btnSave = new Syncfusion.WinForms.Controls.SfButton();
+            this.txtInCash = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.pnHeader.SuspendLayout();
             this.SuspendLayout();
             // 
-            // sfNtxtCash
-            // 
-            this.sfNtxtCash.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sfNtxtCash.Location = new System.Drawing.Point(137, 365);
-            this.sfNtxtCash.Margin = new System.Windows.Forms.Padding(4);
-            this.sfNtxtCash.Name = "sfNtxtCash";
-            this.sfNtxtCash.Size = new System.Drawing.Size(238, 24);
-            this.sfNtxtCash.Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.sfNtxtCash.TabIndex = 13;
-            // 
-            // sfNtxtWeight
-            // 
-            this.sfNtxtWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfNtxtWeight.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sfNtxtWeight.Location = new System.Drawing.Point(374, 18);
-            this.sfNtxtWeight.Margin = new System.Windows.Forms.Padding(4);
-            this.sfNtxtWeight.Name = "sfNtxtWeight";
-            this.sfNtxtWeight.Size = new System.Drawing.Size(338, 34);
-            this.sfNtxtWeight.Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.sfNtxtWeight.TabIndex = 27;
-            // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.btnGet);
-            this.panel1.Controls.Add(this.sfNtxtWeight);
+            this.panel1.Controls.Add(this.btnGetWeight);
             this.panel1.Controls.Add(this.lblWeight);
-            this.panel1.Location = new System.Drawing.Point(43, 562);
+            this.panel1.Controls.Add(this.txtWeight);
+            this.panel1.Location = new System.Drawing.Point(16, 562);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1100, 72);
+            this.panel1.Size = new System.Drawing.Size(1148, 72);
             this.panel1.TabIndex = 91;
             // 
-            // btnGet
+            // btnGetWeight
             // 
-            this.btnGet.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btnGet.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGet.ForeColor = System.Drawing.Color.White;
-            this.btnGet.ImageSize = new System.Drawing.Size(24, 24);
-            this.btnGet.Location = new System.Drawing.Point(764, 17);
-            this.btnGet.Name = "btnGet";
-            this.btnGet.Size = new System.Drawing.Size(98, 30);
-            this.btnGet.Style.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btnGet.Style.ForeColor = System.Drawing.Color.White;
-            this.btnGet.Style.Image = global::TMS_Weight.Properties.Resources.disk_blue1;
-            this.btnGet.TabIndex = 94;
-            this.btnGet.Text = "&Get";
-            this.btnGet.UseVisualStyleBackColor = false;
-            this.btnGet.Click += new System.EventHandler(this.btnGet_Click);
+            this.btnGetWeight.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnGetWeight.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGetWeight.ForeColor = System.Drawing.Color.White;
+            this.btnGetWeight.ImageSize = new System.Drawing.Size(24, 24);
+            this.btnGetWeight.Location = new System.Drawing.Point(729, 19);
+            this.btnGetWeight.Name = "btnGetWeight";
+            this.btnGetWeight.Size = new System.Drawing.Size(98, 30);
+            this.btnGetWeight.Style.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnGetWeight.Style.ForeColor = System.Drawing.Color.White;
+            this.btnGetWeight.Style.Image = global::TMS_Weight.Properties.Resources.window_edit;
+            this.btnGetWeight.TabIndex = 22;
+            this.btnGetWeight.Text = "&Get";
+            this.btnGetWeight.UseVisualStyleBackColor = false;
+            this.btnGetWeight.Click += new System.EventHandler(this.btnGetWeight_Click);
             // 
             // lblWeight
             // 
             this.lblWeight.AutoSize = true;
             this.lblWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWeight.Location = new System.Drawing.Point(236, 24);
+            this.lblWeight.Location = new System.Drawing.Point(312, 24);
             this.lblWeight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWeight.Name = "lblWeight";
             this.lblWeight.Size = new System.Drawing.Size(127, 25);
             this.lblWeight.TabIndex = 32;
             this.lblWeight.Text = "Weighing In :";
             // 
+            // txtWeight
+            // 
+            this.txtWeight.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtWeight.Location = new System.Drawing.Point(447, 24);
+            this.txtWeight.Margin = new System.Windows.Forms.Padding(4);
+            this.txtWeight.Multiline = true;
+            this.txtWeight.Name = "txtWeight";
+            this.txtWeight.Size = new System.Drawing.Size(253, 25);
+            this.txtWeight.TabIndex = 21;
+            // 
             // lblwbId
             // 
             this.lblwbId.AutoSize = true;
             this.lblwbId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblwbId.Location = new System.Drawing.Point(418, 236);
+            this.lblwbId.Location = new System.Drawing.Point(405, 237);
             this.lblwbId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblwbId.Name = "lblwbId";
             this.lblwbId.Size = new System.Drawing.Size(77, 25);
@@ -276,7 +271,7 @@ namespace TMS_Weight.Forms
             // 
             this.lblRemark.AutoSize = true;
             this.lblRemark.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRemark.Location = new System.Drawing.Point(418, 505);
+            this.lblRemark.Location = new System.Drawing.Point(405, 504);
             this.lblRemark.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRemark.Name = "lblRemark";
             this.lblRemark.Size = new System.Drawing.Size(90, 25);
@@ -287,7 +282,7 @@ namespace TMS_Weight.Forms
             // 
             this.lblVesselInfo.AutoSize = true;
             this.lblVesselInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVesselInfo.Location = new System.Drawing.Point(30, 502);
+            this.lblVesselInfo.Location = new System.Drawing.Point(11, 503);
             this.lblVesselInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblVesselInfo.Name = "lblVesselInfo";
             this.lblVesselInfo.Size = new System.Drawing.Size(109, 25);
@@ -298,7 +293,7 @@ namespace TMS_Weight.Forms
             // 
             this.lblContainer.AutoSize = true;
             this.lblContainer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContainer.Location = new System.Drawing.Point(413, 436);
+            this.lblContainer.Location = new System.Drawing.Point(405, 431);
             this.lblContainer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblContainer.Name = "lblContainer";
             this.lblContainer.Size = new System.Drawing.Size(108, 25);
@@ -309,7 +304,7 @@ namespace TMS_Weight.Forms
             // 
             this.lblLicense.AutoSize = true;
             this.lblLicense.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLicense.Location = new System.Drawing.Point(805, 368);
+            this.lblLicense.Location = new System.Drawing.Point(809, 369);
             this.lblLicense.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLicense.Name = "lblLicense";
             this.lblLicense.Size = new System.Drawing.Size(105, 25);
@@ -342,7 +337,7 @@ namespace TMS_Weight.Forms
             // 
             this.lblTruck.AutoSize = true;
             this.lblTruck.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTruck.Location = new System.Drawing.Point(416, 172);
+            this.lblTruck.Location = new System.Drawing.Point(405, 173);
             this.lblTruck.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTruck.Name = "lblTruck";
             this.lblTruck.Size = new System.Drawing.Size(103, 25);
@@ -366,7 +361,7 @@ namespace TMS_Weight.Forms
             // sfDate
             // 
             this.sfDate.DateTimeIcon = null;
-            this.sfDate.Location = new System.Drawing.Point(514, 104);
+            this.sfDate.Location = new System.Drawing.Point(528, 104);
             this.sfDate.Margin = new System.Windows.Forms.Padding(4);
             this.sfDate.Name = "sfDate";
             this.sfDate.Size = new System.Drawing.Size(238, 26);
@@ -389,7 +384,7 @@ namespace TMS_Weight.Forms
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(37, 170);
+            this.label1.Location = new System.Drawing.Point(11, 173);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 25);
@@ -400,7 +395,7 @@ namespace TMS_Weight.Forms
             // 
             this.lblDoNo.AutoSize = true;
             this.lblDoNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDoNo.Location = new System.Drawing.Point(37, 435);
+            this.lblDoNo.Location = new System.Drawing.Point(11, 432);
             this.lblDoNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDoNo.Name = "lblDoNo";
             this.lblDoNo.Size = new System.Drawing.Size(78, 25);
@@ -422,7 +417,7 @@ namespace TMS_Weight.Forms
             // 
             this.lblWType.AutoSize = true;
             this.lblWType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWType.Location = new System.Drawing.Point(418, 304);
+            this.lblWType.Location = new System.Drawing.Point(405, 305);
             this.lblWType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWType.Name = "lblWType";
             this.lblWType.Size = new System.Drawing.Size(88, 25);
@@ -431,7 +426,7 @@ namespace TMS_Weight.Forms
             // 
             // txtTime
             // 
-            this.txtTime.Location = new System.Drawing.Point(901, 106);
+            this.txtTime.Location = new System.Drawing.Point(926, 104);
             this.txtTime.Margin = new System.Windows.Forms.Padding(4);
             this.txtTime.Name = "txtTime";
             this.txtTime.Size = new System.Drawing.Size(238, 24);
@@ -439,69 +434,69 @@ namespace TMS_Weight.Forms
             // 
             // txtDoNo
             // 
-            this.txtDoNo.Location = new System.Drawing.Point(137, 434);
+            this.txtDoNo.Location = new System.Drawing.Point(126, 435);
             this.txtDoNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtDoNo.Name = "txtDoNo";
             this.txtDoNo.Size = new System.Drawing.Size(238, 24);
-            this.txtDoNo.TabIndex = 20;
+            this.txtDoNo.TabIndex = 16;
             // 
             // txtBlNo
             // 
-            this.txtBlNo.Location = new System.Drawing.Point(904, 434);
+            this.txtBlNo.Location = new System.Drawing.Point(926, 433);
             this.txtBlNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtBlNo.Name = "txtBlNo";
             this.txtBlNo.Size = new System.Drawing.Size(238, 24);
-            this.txtBlNo.TabIndex = 23;
+            this.txtBlNo.TabIndex = 18;
             // 
             // txtDLicense
             // 
-            this.txtDLicense.Location = new System.Drawing.Point(904, 365);
+            this.txtDLicense.Location = new System.Drawing.Point(926, 364);
             this.txtDLicense.Margin = new System.Windows.Forms.Padding(4);
             this.txtDLicense.Name = "txtDLicense";
             this.txtDLicense.ReadOnly = true;
             this.txtDLicense.Size = new System.Drawing.Size(238, 24);
-            this.txtDLicense.TabIndex = 19;
+            this.txtDLicense.TabIndex = 15;
             // 
             // txtRemark
             // 
-            this.txtRemark.Location = new System.Drawing.Point(513, 505);
+            this.txtRemark.Location = new System.Drawing.Point(531, 503);
             this.txtRemark.Margin = new System.Windows.Forms.Padding(4);
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(238, 24);
-            this.txtRemark.TabIndex = 26;
+            this.txtRemark.TabIndex = 20;
             // 
             // txtCargoInfo
             // 
-            this.txtCargoInfo.Location = new System.Drawing.Point(139, 505);
+            this.txtCargoInfo.Location = new System.Drawing.Point(126, 504);
             this.txtCargoInfo.Margin = new System.Windows.Forms.Padding(4);
             this.txtCargoInfo.Multiline = true;
             this.txtCargoInfo.Name = "txtCargoInfo";
             this.txtCargoInfo.Size = new System.Drawing.Size(238, 24);
-            this.txtCargoInfo.TabIndex = 25;
+            this.txtCargoInfo.TabIndex = 19;
             // 
             // txtContainer
             // 
-            this.txtContainer.Location = new System.Drawing.Point(515, 434);
+            this.txtContainer.Location = new System.Drawing.Point(531, 432);
             this.txtContainer.Margin = new System.Windows.Forms.Padding(4);
             this.txtContainer.Name = "txtContainer";
             this.txtContainer.Size = new System.Drawing.Size(238, 24);
-            this.txtContainer.TabIndex = 22;
+            this.txtContainer.TabIndex = 17;
             // 
             // txtDriver
             // 
-            this.txtDriver.Location = new System.Drawing.Point(514, 365);
+            this.txtDriver.Location = new System.Drawing.Point(531, 369);
             this.txtDriver.Margin = new System.Windows.Forms.Padding(4);
             this.txtDriver.Name = "txtDriver";
             this.txtDriver.ReadOnly = true;
             this.txtDriver.Size = new System.Drawing.Size(238, 24);
-            this.txtDriver.TabIndex = 18;
+            this.txtDriver.TabIndex = 14;
             // 
             // txtCustomer
             // 
             this.txtCustomer.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.txtCustomer.Enabled = false;
-            this.txtCustomer.Location = new System.Drawing.Point(139, 234);
+            this.txtCustomer.Location = new System.Drawing.Point(126, 237);
             this.txtCustomer.Margin = new System.Windows.Forms.Padding(4);
             this.txtCustomer.Name = "txtCustomer";
             this.txtCustomer.ReadOnly = true;
@@ -523,7 +518,7 @@ namespace TMS_Weight.Forms
             // 
             this.lblDate.AutoSize = true;
             this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(418, 112);
+            this.lblDate.Location = new System.Drawing.Point(404, 106);
             this.lblDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(64, 25);
@@ -534,7 +529,7 @@ namespace TMS_Weight.Forms
             // 
             this.lblCash.AutoSize = true;
             this.lblCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCash.Location = new System.Drawing.Point(32, 365);
+            this.lblCash.Location = new System.Drawing.Point(11, 364);
             this.lblCash.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCash.Name = "lblCash";
             this.lblCash.Size = new System.Drawing.Size(105, 25);
@@ -545,7 +540,7 @@ namespace TMS_Weight.Forms
             // 
             this.lblDriver.AutoSize = true;
             this.lblDriver.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDriver.Location = new System.Drawing.Point(391, 367);
+            this.lblDriver.Location = new System.Drawing.Point(404, 368);
             this.lblDriver.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDriver.Name = "lblDriver";
             this.lblDriver.Size = new System.Drawing.Size(126, 25);
@@ -556,7 +551,7 @@ namespace TMS_Weight.Forms
             // 
             this.lblWOption.AutoSize = true;
             this.lblWOption.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWOption.Location = new System.Drawing.Point(40, 303);
+            this.lblWOption.Location = new System.Drawing.Point(11, 299);
             this.lblWOption.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWOption.Name = "lblWOption";
             this.lblWOption.Size = new System.Drawing.Size(96, 25);
@@ -567,7 +562,7 @@ namespace TMS_Weight.Forms
             // 
             this.lblCustomer.AutoSize = true;
             this.lblCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustomer.Location = new System.Drawing.Point(31, 238);
+            this.lblCustomer.Location = new System.Drawing.Point(11, 236);
             this.lblCustomer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCustomer.Name = "lblCustomer";
             this.lblCustomer.Size = new System.Drawing.Size(108, 25);
@@ -578,7 +573,7 @@ namespace TMS_Weight.Forms
             // 
             this.lblQRegNo.AutoSize = true;
             this.lblQRegNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQRegNo.Location = new System.Drawing.Point(36, 109);
+            this.lblQRegNo.Location = new System.Drawing.Point(11, 109);
             this.lblQRegNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblQRegNo.Name = "lblQRegNo";
             this.lblQRegNo.Size = new System.Drawing.Size(104, 25);
@@ -589,7 +584,7 @@ namespace TMS_Weight.Forms
             // 
             this.txtInRegNo.BackColor = System.Drawing.SystemColors.Control;
             this.txtInRegNo.Enabled = false;
-            this.txtInRegNo.Location = new System.Drawing.Point(139, 106);
+            this.txtInRegNo.Location = new System.Drawing.Point(126, 106);
             this.txtInRegNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtInRegNo.Name = "txtInRegNo";
             this.txtInRegNo.Size = new System.Drawing.Size(238, 24);
@@ -599,117 +594,85 @@ namespace TMS_Weight.Forms
             // 
             this.txtYard.BackColor = System.Drawing.SystemColors.Control;
             this.txtYard.Enabled = false;
-            this.txtYard.Location = new System.Drawing.Point(137, 169);
+            this.txtYard.Location = new System.Drawing.Point(126, 169);
             this.txtYard.Margin = new System.Windows.Forms.Padding(4);
             this.txtYard.Name = "txtYard";
             this.txtYard.Size = new System.Drawing.Size(238, 24);
-            this.txtYard.TabIndex = 1;
+            this.txtYard.TabIndex = 4;
             // 
             // txtTruck
             // 
             this.txtTruck.BackColor = System.Drawing.SystemColors.Control;
             this.txtTruck.Enabled = false;
-            this.txtTruck.Location = new System.Drawing.Point(513, 169);
+            this.txtTruck.Location = new System.Drawing.Point(530, 169);
             this.txtTruck.Margin = new System.Windows.Forms.Padding(4);
             this.txtTruck.Name = "txtTruck";
             this.txtTruck.Size = new System.Drawing.Size(238, 24);
-            this.txtTruck.TabIndex = 1;
+            this.txtTruck.TabIndex = 5;
             // 
             // txtTrailer
             // 
             this.txtTrailer.BackColor = System.Drawing.SystemColors.Control;
             this.txtTrailer.Cursor = System.Windows.Forms.Cursors.VSplit;
             this.txtTrailer.Enabled = false;
-            this.txtTrailer.Location = new System.Drawing.Point(904, 169);
+            this.txtTrailer.Location = new System.Drawing.Point(926, 169);
             this.txtTrailer.Margin = new System.Windows.Forms.Padding(4);
             this.txtTrailer.Name = "txtTrailer";
             this.txtTrailer.Size = new System.Drawing.Size(238, 24);
-            this.txtTrailer.TabIndex = 1;
+            this.txtTrailer.TabIndex = 6;
             // 
             // txtWbId
             // 
             this.txtWbId.BackColor = System.Drawing.SystemColors.Control;
             this.txtWbId.Enabled = false;
-            this.txtWbId.Location = new System.Drawing.Point(513, 234);
+            this.txtWbId.Location = new System.Drawing.Point(531, 234);
             this.txtWbId.Margin = new System.Windows.Forms.Padding(4);
             this.txtWbId.Name = "txtWbId";
             this.txtWbId.Size = new System.Drawing.Size(238, 24);
-            this.txtWbId.TabIndex = 1;
+            this.txtWbId.TabIndex = 8;
             // 
             // txtCategory
             // 
             this.txtCategory.BackColor = System.Drawing.SystemColors.Control;
             this.txtCategory.Cursor = System.Windows.Forms.Cursors.VSplit;
             this.txtCategory.Enabled = false;
-            this.txtCategory.Location = new System.Drawing.Point(904, 234);
+            this.txtCategory.Location = new System.Drawing.Point(926, 234);
             this.txtCategory.Margin = new System.Windows.Forms.Padding(4);
             this.txtCategory.Name = "txtCategory";
             this.txtCategory.Size = new System.Drawing.Size(238, 24);
-            this.txtCategory.TabIndex = 1;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(139, 301);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(238, 24);
-            this.textBox1.TabIndex = 7;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(138, 301);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(238, 24);
-            this.textBox2.TabIndex = 7;
-            // 
-            // textBox4
-            // 
-            this.textBox4.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(515, 301);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(238, 24);
-            this.textBox4.TabIndex = 1;
+            this.txtCategory.TabIndex = 9;
             // 
             // txtwbOption
             // 
             this.txtwbOption.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.txtwbOption.Enabled = false;
-            this.txtwbOption.Location = new System.Drawing.Point(139, 302);
+            this.txtwbOption.Location = new System.Drawing.Point(126, 301);
             this.txtwbOption.Margin = new System.Windows.Forms.Padding(4);
             this.txtwbOption.Name = "txtwbOption";
             this.txtwbOption.ReadOnly = true;
             this.txtwbOption.Size = new System.Drawing.Size(238, 24);
-            this.txtwbOption.TabIndex = 7;
+            this.txtwbOption.TabIndex = 10;
             // 
             // txtWType
             // 
             this.txtWType.BackColor = System.Drawing.SystemColors.Control;
             this.txtWType.Enabled = false;
-            this.txtWType.Location = new System.Drawing.Point(518, 301);
+            this.txtWType.Location = new System.Drawing.Point(531, 307);
             this.txtWType.Margin = new System.Windows.Forms.Padding(4);
             this.txtWType.Name = "txtWType";
             this.txtWType.Size = new System.Drawing.Size(238, 24);
-            this.txtWType.TabIndex = 1;
+            this.txtWType.TabIndex = 11;
             // 
             // txtbilloption
             // 
             this.txtbilloption.BackColor = System.Drawing.SystemColors.Control;
             this.txtbilloption.Cursor = System.Windows.Forms.Cursors.VSplit;
             this.txtbilloption.Enabled = false;
-            this.txtbilloption.Location = new System.Drawing.Point(915, 301);
+            this.txtbilloption.Location = new System.Drawing.Point(926, 299);
             this.txtbilloption.Margin = new System.Windows.Forms.Padding(4);
             this.txtbilloption.Name = "txtbilloption";
             this.txtbilloption.Size = new System.Drawing.Size(238, 24);
-            this.txtbilloption.TabIndex = 1;
+            this.txtbilloption.TabIndex = 12;
             // 
             // btnCancel
             // 
@@ -723,7 +686,7 @@ namespace TMS_Weight.Forms
             this.btnCancel.Style.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.btnCancel.Style.ForeColor = System.Drawing.Color.White;
             this.btnCancel.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            this.btnCancel.TabIndex = 94;
+            this.btnCancel.TabIndex = 24;
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -740,10 +703,18 @@ namespace TMS_Weight.Forms
             this.btnSave.Style.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnSave.Style.ForeColor = System.Drawing.Color.White;
             this.btnSave.Style.Image = global::TMS_Weight.Properties.Resources.disk_blue1;
-            this.btnSave.TabIndex = 93;
+            this.btnSave.TabIndex = 23;
             this.btnSave.Text = "&Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.sfBtnSave_Click);
+            // 
+            // txtInCash
+            // 
+            this.txtInCash.Location = new System.Drawing.Point(124, 370);
+            this.txtInCash.Margin = new System.Windows.Forms.Padding(4);
+            this.txtInCash.Name = "txtInCash";
+            this.txtInCash.Size = new System.Drawing.Size(238, 24);
+            this.txtInCash.TabIndex = 13;
             // 
             // FrmQueue
             // 
@@ -753,7 +724,6 @@ namespace TMS_Weight.Forms
             this.ClientSize = new System.Drawing.Size(1184, 724);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.sfNtxtCash);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblwbId);
             this.Controls.Add(this.lblBlno);
@@ -775,12 +745,12 @@ namespace TMS_Weight.Forms
             this.Controls.Add(this.txtCategory);
             this.Controls.Add(this.txtTrailer);
             this.Controls.Add(this.txtWType);
-            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.txtWbId);
             this.Controls.Add(this.txtTruck);
             this.Controls.Add(this.txtYard);
             this.Controls.Add(this.txtInRegNo);
             this.Controls.Add(this.txtTime);
+            this.Controls.Add(this.txtInCash);
             this.Controls.Add(this.txtDoNo);
             this.Controls.Add(this.txtBlNo);
             this.Controls.Add(this.txtDLicense);
@@ -789,8 +759,6 @@ namespace TMS_Weight.Forms
             this.Controls.Add(this.txtContainer);
             this.Controls.Add(this.txtDriver);
             this.Controls.Add(this.txtwbOption);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.txtCustomer);
             this.Controls.Add(this.lblTime);
             this.Controls.Add(this.lblDate);
@@ -814,9 +782,6 @@ namespace TMS_Weight.Forms
         }
 
         #endregion
-
-        public Syncfusion.WinForms.Input.SfNumericTextBox sfNtxtCash;
-        public Syncfusion.WinForms.Input.SfNumericTextBox sfNtxtWeight;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblWeight;
         private System.Windows.Forms.Label lblwbId;
@@ -857,14 +822,13 @@ namespace TMS_Weight.Forms
         public System.Windows.Forms.TextBox txtTrailer;
         public System.Windows.Forms.TextBox txtWbId;
         public System.Windows.Forms.TextBox txtCategory;
-        public System.Windows.Forms.TextBox textBox1;
-        public System.Windows.Forms.TextBox textBox2;
-        public System.Windows.Forms.TextBox textBox4;
         public System.Windows.Forms.TextBox txtwbOption;
         public System.Windows.Forms.TextBox txtWType;
         public System.Windows.Forms.TextBox txtbilloption;
         private Syncfusion.WinForms.Controls.SfButton btnSave;
         private Syncfusion.WinForms.Controls.SfButton btnCancel;
-        private Syncfusion.WinForms.Controls.SfButton btnGet;
+        private Syncfusion.WinForms.Controls.SfButton btnGetWeight;
+        public System.Windows.Forms.TextBox txtWeight;
+        public System.Windows.Forms.TextBox txtInCash;
     }
 }

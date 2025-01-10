@@ -27,7 +27,7 @@
         </Field>
         <Field Name="ServiceBillDate">
           <DataField>ServiceBillDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="TruckNo">
           <DataField>TruckNo</DataField>
@@ -39,11 +39,11 @@
         </Field>
         <Field Name="QRegNo">
           <DataField>QRegNo</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Weight">
           <DataField>Weight</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="WeightType">
           <DataField>WeightType</DataField>
@@ -67,38 +67,22 @@
         </Field>
         <Field Name="CashAmt">
           <DataField>CashAmt</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="CheckInRegNo">
           <DataField>CheckInRegNo</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="WeightCategory">
-          <DataField>WeightCategory</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="DriverName">
-          <DataField>DriverName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="DriverLicense">
           <DataField>DriverLicense</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="CreatedDate">
-          <DataField>CreatedDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="CreatedUser">
-          <DataField>CreatedUser</DataField>
+        <Field Name="DriverName">
+          <DataField>DriverName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="UpdatedDate">
-          <DataField>UpdatedDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="UpdatedUser">
-          <DataField>UpdatedUser</DataField>
+        <Field Name="WeightCategory">
+          <DataField>WeightCategory</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
@@ -106,9 +90,9 @@
         <rd:DataSetName>DataSet</rd:DataSetName>
         <rd:SchemaPath>D:\TMS-CODE\TMS_Weight\RDLC\DataSet.xsd</rd:SchemaPath>
         <rd:TableName>WeightServiceBill</rd:TableName>
-        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
-        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>WeightServiceBillTableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -310,71 +294,6 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox21">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Fax  :</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox15</rd:DefaultName>
-            <Top>0.58389in</Top>
-            <Left>3.05737in</Left>
-            <Height>0.25in</Height>
-            <Width>0.50751in</Width>
-            <ZIndex>6</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <VerticalAlign>Middle</VerticalAlign>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="txtCustomerFax">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!CustomerFax.Value</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <Top>0.58389in</Top>
-            <Left>3.6135in</Left>
-            <Height>0.25in</Height>
-            <Width>1.87082in</Width>
-            <ZIndex>7</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <VerticalAlign>Middle</VerticalAlign>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Textbox Name="txtTrailer">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
@@ -391,11 +310,11 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>0.85333in</Top>
-            <Left>3.82681in</Left>
+            <Top>1.17361in</Top>
+            <Left>1.53099in</Left>
             <Height>0.25in</Height>
-            <Width>1.65751in</Width>
-            <ZIndex>8</ZIndex>
+            <Width>1.4861in</Width>
+            <ZIndex>6</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -414,7 +333,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Trailer No :</Value>
+                    <Value>Trailer No           :</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -424,11 +343,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox15</rd:DefaultName>
-            <Top>0.845in</Top>
-            <Left>3.04765in</Left>
+            <Top>1.17223in</Top>
+            <Left>0.28678in</Left>
             <Height>0.25in</Height>
-            <Width>0.75in</Width>
-            <ZIndex>9</ZIndex>
+            <Width>1.1692in</Width>
+            <ZIndex>7</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -464,7 +383,7 @@
             <Left>1.53099in</Left>
             <Height>0.25in</Height>
             <Width>1.4861in</Width>
-            <ZIndex>10</ZIndex>
+            <ZIndex>8</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -497,7 +416,7 @@
             <Left>0.28099in</Left>
             <Height>0.25in</Height>
             <Width>1.18333in</Width>
-            <ZIndex>11</ZIndex>
+            <ZIndex>9</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -516,7 +435,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>DO No.               :</Value>
+                    <Value>DO No.       :</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -526,11 +445,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox15</rd:DefaultName>
-            <Top>1.15973in</Top>
-            <Left>0.28099in</Left>
+            <Top>1.18473in</Top>
+            <Left>3.05678in</Left>
             <Height>0.25in</Height>
-            <Width>1.18333in</Width>
-            <ZIndex>12</ZIndex>
+            <Width>0.87499in</Width>
+            <ZIndex>10</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -559,11 +478,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox15</rd:DefaultName>
-            <Top>1.14861in</Top>
-            <Left>1.55182in</Left>
+            <Top>1.18473in</Top>
+            <Left>3.97621in</Left>
             <Height>0.25in</Height>
             <Width>1.48333in</Width>
-            <ZIndex>13</ZIndex>
+            <ZIndex>11</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -596,7 +515,7 @@
             <Left>6.57461in</Left>
             <Height>0.25in</Height>
             <Width>0.79443in</Width>
-            <ZIndex>14</ZIndex>
+            <ZIndex>12</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -629,7 +548,7 @@
             <Left>6.57461in</Left>
             <Height>0.25in</Height>
             <Width>0.79443in</Width>
-            <ZIndex>15</ZIndex>
+            <ZIndex>13</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -662,7 +581,7 @@
             <Left>7.41904in</Left>
             <Height>0.25in</Height>
             <Width>1.94165in</Width>
-            <ZIndex>16</ZIndex>
+            <ZIndex>14</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -695,7 +614,7 @@
             <Left>7.41904in</Left>
             <Height>0.25in</Height>
             <Width>1.92776in</Width>
-            <ZIndex>17</ZIndex>
+            <ZIndex>15</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -920,7 +839,7 @@
                                   <Style />
                                 </TextRun>
                                 <TextRun>
-                                  <Value>   KG</Value>
+                                  <Value> KG</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1389,6 +1308,10 @@
                                   <Value>=Parameters!NetWeight.Value</Value>
                                   <Style />
                                 </TextRun>
+                                <TextRun>
+                                  <Value> KG</Value>
+                                  <Style />
+                                </TextRun>
                               </TextRuns>
                               <Style>
                                 <TextAlign>Center</TextAlign>
@@ -1474,7 +1397,7 @@
             <Left>0.28099in</Left>
             <Height>1.5in</Height>
             <Width>8.99636in</Width>
-            <ZIndex>18</ZIndex>
+            <ZIndex>16</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1502,7 +1425,7 @@
             <Left>1.20205in</Left>
             <Height>0.25in</Height>
             <Width>5.4945in</Width>
-            <ZIndex>19</ZIndex>
+            <ZIndex>17</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1535,7 +1458,7 @@
             <Left>0.28678in</Left>
             <Height>0.25in</Height>
             <Width>0.875in</Width>
-            <ZIndex>20</ZIndex>
+            <ZIndex>18</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1568,7 +1491,7 @@
             <Left>0.28678in</Left>
             <Height>0.25in</Height>
             <Width>0.875in</Width>
-            <ZIndex>21</ZIndex>
+            <ZIndex>19</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1601,7 +1524,7 @@
             <Left>1.20206in</Left>
             <Height>0.25in</Height>
             <Width>1.92695in</Width>
-            <ZIndex>22</ZIndex>
+            <ZIndex>20</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1634,7 +1557,7 @@
             <Left>4.06038in</Left>
             <Height>0.25in</Height>
             <Width>1.92695in</Width>
-            <ZIndex>23</ZIndex>
+            <ZIndex>21</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1665,11 +1588,77 @@
             <Left>3.15678in</Left>
             <Height>0.25in</Height>
             <Width>0.87499in</Width>
+            <ZIndex>22</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox32">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Card No.    :</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox15</rd:DefaultName>
+            <Top>0.87in</Top>
+            <Left>3.06153in</Left>
+            <Height>0.25in</Height>
+            <Width>0.87499in</Width>
+            <ZIndex>23</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox41">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!CardNo.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox15</rd:DefaultName>
+            <Top>0.88056in</Top>
+            <Left>3.98097in</Left>
+            <Height>0.25in</Height>
+            <Width>1.48333in</Width>
             <ZIndex>24</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
+              <VerticalAlign>Middle</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -2025,10 +2014,6 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="CustomerFax">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
     <ReportParameter Name="Truck">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
@@ -2077,15 +2062,15 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="Vessel">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
     <ReportParameter Name="InWeightTime">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="OutWeightTime">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CardNo">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
@@ -2124,11 +2109,6 @@
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>1</RowIndex>
           <ParameterName>CustomerPhone</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>2</ColumnIndex>
-          <RowIndex>1</RowIndex>
-          <ParameterName>CustomerFax</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>3</ColumnIndex>
@@ -2191,11 +2171,6 @@
           <ParameterName>BlNo</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>3</ColumnIndex>
-          <RowIndex>4</RowIndex>
-          <ParameterName>Vessel</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>5</RowIndex>
           <ParameterName>InWeightTime</ParameterName>
@@ -2204,6 +2179,11 @@
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>5</RowIndex>
           <ParameterName>OutWeightTime</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>5</RowIndex>
+          <ParameterName>CardNo</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

@@ -1,6 +1,7 @@
 ﻿using Syncfusion.Windows.Forms;
 using Syncfusion.WinForms.DataGrid;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,7 @@ namespace TMS_Weight.Forms
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Metro;
             InitializeComponent();
             LoadData();
+            btnEnabled();
 
             this.sfInQueueGrid.Style.HeaderStyle.BackColor = Color.SteelBlue;
             this.sfInQueueGrid.Columns.Add(new GridTextColumn()
@@ -114,46 +116,23 @@ namespace TMS_Weight.Forms
                 HeaderText = "Gate",
                 Width = 100
             });
-
-
         }
-
-        private void sfBtnInView_Click(object sender, EventArgs e)
-        {
-            this.btnDisabled();
-
-            if (sfCbxYard.SelectedItem != null && sfCbxWBId.SelectedItem != null )
-            {
-              
-                
-                LoadData(sfCbxYard.SelectedItem.ToString(), sfCbxWBId.SelectedItem.ToString());
-            }
-            else
-            {
-                MessageBoxAdv.Show(this, "Please select yard and weight bridge!",
-                                   "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            this.btnEnabled();
-        }
-
-
-
 
         private void btnEnabled()
         {
-            this.sfBtnInView.Enabled = true;
+            this.sfbtnExport.Enabled = true;
             this.sfBtnInWeight.Enabled = true;
         }
 
         private void btnDisabled()
         {
-            this.sfBtnInView.Enabled = false;
+            this.sfbtnExport.Enabled = false;
             this.sfBtnInWeight.Enabled = false;
         }
 
         private void sfBtnWeight_Click(object sender, EventArgs e)
         {
+
             if (sfInQueueGrid.SelectedIndex >= 0)
             {
                 // Get the selected row
@@ -165,10 +144,14 @@ namespace TMS_Weight.Forms
                     this.sfInQueueGrid.SelectedIndex = -1;
 
                     FrmQueue f = new FrmQueue(queue);
+
+                    // Show the form as a dialog
                     f.ShowDialog();
 
-                }
+                    // Optionally, you can refresh the grid again if data has changed after the form closes
+                    RefreshGrid();
 
+                }
             }
             else
             {
@@ -187,6 +170,19 @@ namespace TMS_Weight.Forms
                 }
             }
         }
+
+
+        // Method to refresh the grid
+        private void RefreshGrid()
+        {
+            btnEnabled();
+            pnlInQueue.Refresh();
+            // Refresh or reload the data in the grid
+            sfInQueueGrid.Refresh();
+            LoadData();
+           
+        }
+
     }
 }
 

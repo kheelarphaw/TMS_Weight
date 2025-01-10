@@ -27,21 +27,26 @@ namespace TMS_Weight.Forms
             InitializeComponent();
             LoadData();
 
+
+
             DateTime d = DateTime.Now;
             this.txtTime.Text = new TimeSpan(d.Hour, d.Minute, d.Second).ToString();
+
+            // Assuming you have a DateTimePicker control named dateTimePicker1
+            sfDate.Value = DateTime.Now;
 
         }
 
         private void BtnDisable()
         {
-            btnSave.Enabled = false;
-            btnCancel.Enabled = false;
+            btnAdHocSave.Enabled = false;
+            btnAdHocCancel.Enabled = false;
         }
 
         private void BtnEnable()
         {
-            btnSave.Enabled = true;
-            btnCancel.Enabled = true;
+            btnAdHocSave.Enabled = true;
+            btnAdHocCancel.Enabled = true;
         }
 
 
@@ -62,11 +67,9 @@ namespace TMS_Weight.Forms
             sfCbxTrailer.SelectedIndex = -1;
             sfCbxTransporter.SelectedIndex = -1;
             sfCbxTruck.SelectedIndex = -1;
-            sfCbxWBId.SelectedIndex = -1;
-            sfCbxWOption.SelectedIndex = -1;
-            sfCbxWType.SelectedIndex = -1;
-            sfNtxtCash.Clear();
-            sfNtxtWeight.Clear();
+            txtwbId.Clear();
+            txtCash.Clear();
+            txtAdHocWeight.Clear();
 
         }
 
@@ -101,13 +104,45 @@ namespace TMS_Weight.Forms
             }
         }
 
-        private void sfBtnGet_Click(object sender, EventArgs e)
+        private void sfBtnGetAdHocWeight_Click(object sender, EventArgs e)
         {
-            SerialPortProcess();
+            PortIntial();
+
+            // serialPort
+            if (!_serialPort.IsOpen)
+                _serialPort.Open();
+            string wdata = ReadWeight();
+            if (wdata == "Invalid weight data")
+            {
+                _serialPort.Close();
+                sfBtnGetAdHoc.Enabled = false;
+
+            }
+            if (_serialPort.IsOpen)
+                _serialPort.Close();
+            txtAdHocWeight.Text = wdata;
+            sfBtnGetAdHoc.Enabled = false;
+
+
+            btnAdHocCancel.Enabled = true;
+
+
+            ///Manual
+            //string wdata = "15700 g";
+            //txtAdHocWeight.Text = wdata;
+
+            // Extract the numeric value using regex
+            string wvalue = System.Text.RegularExpressions.Regex.Match(wdata, @"\d+").Value;
+
+            // Convert the extracted number string to an integer
+            int value = int.Parse(wvalue);
+            if (value > 0)
+                btnAdHocSave.Enabled = true;
+
         }
 
-        #region Serial Port Properties
-        public void SerialPortProcess()
+
+        public void PortIntial()
         {
             Control.CheckForIllegalCrossThreadCalls = false;
             _serialPort = new SerialPort();
@@ -121,118 +156,96 @@ namespace TMS_Weight.Forms
                 _serialPort.DataBits = Properties.Settings.Default.DataBits;
                 _serialPort.StopBits = (StopBits)Enum.Parse(typeof(StopBits), Properties.Settings.Default.StopBits.ToString(), true);
                 _serialPort.Handshake = (Handshake)Enum.Parse(typeof(Handshake), Properties.Settings.Default.Handshake.ToString(), true);
-                _serialPort.ReadTimeout = 500;
-                _serialPort.WriteTimeout = 500;
+                _serialPort.ReadTimeout = 5000;
+                _serialPort.WriteTimeout = 5000;
 
-                // Attach event handler
-                _serialPort.DataReceived += SerialPortDataReceived;
+               
 
-                // Open the serial port
-                _serialPort.Open();
             }
             catch (UnauthorizedAccessException ex)
             {
                 ShowError("Access to the serial port is denied.", ex);
+                _serialPort.Close();
             }
             catch (IOException ex)
             {
                 ShowError("Failed to open the serial port.", ex);
+                _serialPort.Close();
             }
             catch (ArgumentOutOfRangeException ex)
             {
                 ShowError("Invalid serial port configuration.", ex);
+                _serialPort.Close();
             }
         }
 
-        #endregion
-
-        #region Serial Port Data Receive Function
-        private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e)
+        public string ReadWeight()
         {
-            try
+            if (_serialPort.IsOpen)
             {
-                // Read available bytes from the serial port
-                byte[] buffer = new byte[_serialPort.BytesToRead];
-                int bytesRead = _serialPort.Read(buffer, 0, buffer.Length);
-
-                if (bytesRead > 0)
+                try
                 {
-                    string rawData = Encoding.ASCII.GetString(buffer, 0, bytesRead);
-                    ProcessWeightData(rawData);
-                }
-            }
-            catch (Exception ex)
-            {
-                ShowError("Error while receiving data from the serial port.", ex);
-            }
-        }
-
-        private void ProcessWeightData(string data)
-        {
-            try
-            {
-                string weightString = ParseWeightFromData(data);
-
-                if (!string.IsNullOrEmpty(weightString))
-                {
-                    string weightStringKG = AddKG(weightString);
-
-                    // Update UI in a thread-safe manner
-                    sfNtxtWeight.Invoke((MethodInvoker)delegate
+                    string weightData = string.Empty;
+                    while (_serialPort.BytesToRead > 0)
                     {
-                        sfNtxtWeight.Text = weightStringKG;
-                    });
+                        weightData += _serialPort.ReadExisting();  // Read data in chunks
+                    }
+
+                    return ParseWeight(weightData);  // Parse the received weight data
+                }
+                catch (TimeoutException ex)
+                {
+                    Console.WriteLine("Read timeout.");
+                    ShowError("Read timeout.", ex);
+
+                    return string.Empty;
                 }
             }
-            catch (FormatException ex)
-            {
-                ShowError("Failed to parse weight data.", ex);
-            }
+            return string.Empty;
         }
 
-        private string ParseWeightFromData(string data)
+        private string ParseWeight(string data)
         {
-            StringBuilder bufferString = new StringBuilder();
-            bool readingWeight = false;
+            Console.WriteLine("Raw data: " + data);  // Log raw data for debugging
 
-            foreach (char ch in data)
+            // Adjust this to match your data format
+            if (!string.IsNullOrEmpty(data) && data.Contains("G"))
             {
-                if (ch == '+')
-                {
-                    if (readingWeight) break; // End of weight
-                    readingWeight = true; // Start reading weight
-                    continue;
-                }
+                // Split the data by "G" and extract the part containing the weight
+                string[] parts = data.Split('G');
 
-                if (readingWeight && (char.IsDigit(ch) || ch == '.'))
+                foreach (var part in parts)
                 {
-                    bufferString.Append(ch);
+                    // Trim leading/trailing whitespace and other control characters
+                    string trimmedPart = part.Trim(new char[] { '\u0002', '\u0003', ' ', '-' });
+
+                    // Check if the part contains a valid numeric weight
+                    if (double.TryParse(trimmedPart, out double weight))
+                    {
+                        // Return the weight in grams (e.g., "20G")
+
+                        if (weight > 0)
+                            return weight.ToString("F2") + " g";
+                    }
                 }
             }
 
-            string result = bufferString.ToString();
-
-            // Adjust for specific device quirks
-            if (result == "0.0005") result = "0.000";
-
-            return result.Length > 4 ? result : string.Empty;
+            // Return "Invalid weight data" if no valid weight is found
+            return "Invalid weight data";
         }
 
- 
 
-        #endregion
+
+
 
         #region Utility Methods
 
-        private void ShowError(string message, Exception ex)
-        {
-            MessageBoxAdv.Show(this, $"{message}\nDetails: {ex.Message}", "Weight Service Bill", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+        //private void ShowError(string message, Exception ex)
+        //{
+        //    MessageBoxAdv.Show(this, $"{message}\nDetails: {ex.Message}", "Weight Service Bill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //}
 
-        public string AddKG(string weightValue)
-        {
-            return string.IsNullOrEmpty(weightValue) ? "0 kg" : $"{weightValue} kg";
-        }
+
 
         #endregion
 
