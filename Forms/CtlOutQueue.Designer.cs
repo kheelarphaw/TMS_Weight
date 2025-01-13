@@ -99,9 +99,9 @@ namespace TMS_Weight.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlOutQueue.BackColor = System.Drawing.SystemColors.Control;
             this.pnlOutQueue.Controls.Add(this.sfOutQueueGrid);
-            this.pnlOutQueue.Location = new System.Drawing.Point(1, 115);
+            this.pnlOutQueue.Location = new System.Drawing.Point(6, 106);
             this.pnlOutQueue.Name = "pnlOutQueue";
-            this.pnlOutQueue.Size = new System.Drawing.Size(1318, 613);
+            this.pnlOutQueue.Size = new System.Drawing.Size(1312, 613);
             this.pnlOutQueue.TabIndex = 26;
             // 
             // sfOutQueueGrid
@@ -114,7 +114,7 @@ namespace TMS_Weight.Forms
             this.sfOutQueueGrid.Location = new System.Drawing.Point(12, 9);
             this.sfOutQueueGrid.Name = "sfOutQueueGrid";
             this.sfOutQueueGrid.PreviewRowHeight = 35;
-            this.sfOutQueueGrid.Size = new System.Drawing.Size(1295, 579);
+            this.sfOutQueueGrid.Size = new System.Drawing.Size(1289, 530);
             this.sfOutQueueGrid.TabIndex = 2;
             this.sfOutQueueGrid.Text = "sfDataGrid1";
             // 

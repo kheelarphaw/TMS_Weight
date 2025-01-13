@@ -13,8 +13,30 @@ namespace TMS_Weight.Services
 {
     public class WeightApiService
     {
-        public static readonly string _baseAddress = BaseUrl.ApiUrl;
+        public static readonly string _baseAddress = Properties.Settings.Default.BaseuRL;
 
+
+        #region Login Jan_10_2025
+        public async Task<AuthResponse> LoginAsync(LoginUser login)
+        {
+            AuthResponse info = new AuthResponse();
+            string jsonData = JsonConvert.SerializeObject(login);
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var httpClient = new HttpClient();
+            var response = await httpClient.PostAsync($"{_baseAddress}/api/Account/Login", content);
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                info = JsonConvert.DeserializeObject<AuthResponse>(result);
+            }
+            else
+            {
+                info.IsAuthSuccessful = false;
+                info.ErrorMessage = response.ReasonPhrase;
+            }
+            return info;
+        }
+        #endregion
 
         #region In Weight 11_Dec_2024
         public async Task<List<WeightBridgeQueue>> GetWeightBridgeQueueList()

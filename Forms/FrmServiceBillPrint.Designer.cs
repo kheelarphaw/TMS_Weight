@@ -65,7 +65,7 @@ namespace TMS_Weight.Forms
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmServiceBillPrint";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Frm Service Bill Print";
+            this.Text = "Service Bill Print";
             this.Load += new System.EventHandler(this.FrmServiceBillPrint_Load);
             this.ResumeLayout(false);
 

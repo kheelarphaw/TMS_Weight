@@ -65,8 +65,8 @@ namespace TMS_Weight.Forms
             this.pnlInQueue = new System.Windows.Forms.Panel();
             this.sfInQueueGrid = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.label1 = new System.Windows.Forms.Label();
-            this.sfBtnInWeight = new Syncfusion.WinForms.Controls.SfButton();
             this.sfbtnExport = new Syncfusion.WinForms.Controls.SfButton();
+            this.sfBtnInWeight = new Syncfusion.WinForms.Controls.SfButton();
             this.pnlInQueue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sfInQueueGrid)).BeginInit();
             this.SuspendLayout();
@@ -77,9 +77,9 @@ namespace TMS_Weight.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlInQueue.BackColor = System.Drawing.SystemColors.Control;
             this.pnlInQueue.Controls.Add(this.sfInQueueGrid);
-            this.pnlInQueue.Location = new System.Drawing.Point(2, 119);
+            this.pnlInQueue.Location = new System.Drawing.Point(6, 109);
             this.pnlInQueue.Name = "pnlInQueue";
-            this.pnlInQueue.Size = new System.Drawing.Size(1318, 637);
+            this.pnlInQueue.Size = new System.Drawing.Size(1312, 637);
             this.pnlInQueue.TabIndex = 19;
             // 
             // sfInQueueGrid
@@ -88,11 +88,11 @@ namespace TMS_Weight.Forms
             this.sfInQueueGrid.AllowResizingColumns = true;
             this.sfInQueueGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.sfInQueueGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sfInQueueGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sfInQueueGrid.Location = new System.Drawing.Point(10, 3);
             this.sfInQueueGrid.Name = "sfInQueueGrid";
             this.sfInQueueGrid.PreviewRowHeight = 35;
-            this.sfInQueueGrid.Size = new System.Drawing.Size(1295, 605);
+            this.sfInQueueGrid.Size = new System.Drawing.Size(1289, 499);
             this.sfInQueueGrid.TabIndex = 2;
             this.sfInQueueGrid.Text = "sfDataGrid1";
             // 
@@ -108,23 +108,6 @@ namespace TMS_Weight.Forms
             this.label1.Text = "In Queue List";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // sfBtnInWeight
-            // 
-            this.sfBtnInWeight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.sfBtnInWeight.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.sfBtnInWeight.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfBtnInWeight.ForeColor = System.Drawing.Color.White;
-            this.sfBtnInWeight.Location = new System.Drawing.Point(1064, 57);
-            this.sfBtnInWeight.Name = "sfBtnInWeight";
-            this.sfBtnInWeight.Size = new System.Drawing.Size(107, 34);
-            this.sfBtnInWeight.Style.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.sfBtnInWeight.Style.ForeColor = System.Drawing.Color.White;
-            this.sfBtnInWeight.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            this.sfBtnInWeight.TabIndex = 21;
-            this.sfBtnInWeight.Text = "W&eight";
-            this.sfBtnInWeight.UseVisualStyleBackColor = false;
-            this.sfBtnInWeight.Click += new System.EventHandler(this.sfBtnWeight_Click);
-            // 
             // sfbtnExport
             // 
             this.sfbtnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -137,10 +120,27 @@ namespace TMS_Weight.Forms
             this.sfbtnExport.Size = new System.Drawing.Size(107, 34);
             this.sfbtnExport.Style.BackColor = System.Drawing.Color.ForestGreen;
             this.sfbtnExport.Style.ForeColor = System.Drawing.Color.White;
-            this.sfbtnExport.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.sfbtnExport.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
             this.sfbtnExport.TabIndex = 22;
             this.sfbtnExport.Text = "Export";
             this.sfbtnExport.UseVisualStyleBackColor = false;
+            // 
+            // sfBtnInWeight
+            // 
+            this.sfBtnInWeight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.sfBtnInWeight.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.sfBtnInWeight.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sfBtnInWeight.ForeColor = System.Drawing.Color.White;
+            this.sfBtnInWeight.Location = new System.Drawing.Point(1064, 57);
+            this.sfBtnInWeight.Name = "sfBtnInWeight";
+            this.sfBtnInWeight.Size = new System.Drawing.Size(107, 34);
+            this.sfBtnInWeight.Style.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.sfBtnInWeight.Style.ForeColor = System.Drawing.Color.White;
+            this.sfBtnInWeight.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.sfBtnInWeight.TabIndex = 21;
+            this.sfBtnInWeight.Text = "W&eight";
+            this.sfBtnInWeight.UseVisualStyleBackColor = false;
+            this.sfBtnInWeight.Click += new System.EventHandler(this.sfBtnWeight_Click);
             // 
             // CtlInQueue
             // 

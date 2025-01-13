@@ -771,7 +771,7 @@ namespace TMS_Weight.Forms
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmQueue";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Frm Queue";
+            this.Text = "Weight Queue";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.pnHeader.ResumeLayout(false);
