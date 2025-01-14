@@ -145,9 +145,11 @@ namespace TMS_Weight.Forms
 
                 var id = selectedRow.GetType().GetProperty("ServiceBillNo")?.GetValue(selectedRow, null);
                 //var yard = selectedRow.GetType().GetProperty("YardID")?.GetValue(selectedRow, null);
-                var inWeight = selectedRow.GetType().GetProperty("InWeight")?.GetValue(selectedRow, null);
-                var outWeight = selectedRow.GetType().GetProperty("OutWeight")?.GetValue(selectedRow, null);
-                if (inWeight != null && outWeight != null)
+                //var inWeight = selectedRow.GetType().GetProperty("InWeight")?.GetValue(selectedRow, null);
+                //var outWeight = selectedRow.GetType().GetProperty("OutWeight")?.GetValue(selectedRow, null);
+                var status = selectedRow.GetType().GetProperty("Status")?.GetValue(selectedRow, null);
+
+                if (status != "In(Weight)")
                 {
                     FrmServiceBillPrint f = new FrmServiceBillPrint(id.ToString());
                     f.Show();

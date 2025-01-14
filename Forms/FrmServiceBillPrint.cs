@@ -71,7 +71,7 @@ namespace TMS_Weight.Forms
             parameters[18] = new ReportParameter("InWeightTime", !string.IsNullOrEmpty(bill.InWeightTime.ToString()) ? (string.Format("{0:dd-MM-yyyy hh:mm}", bill.InWeightTime.ToString())) : " ");
             parameters[19] = new ReportParameter("OutWeightTime", !string.IsNullOrEmpty(bill.OutWeightTime.ToString()) ? string.Format("{0:dd-MM-yyyy hh:mm}", bill.OutWeightTime.ToString()) : " ");
 
-            parameters[20] = new ReportParameter("CardNo", !string.IsNullOrEmpty(bill.CardNo.ToString()) ? string.Format("{0:dd-MM-yyyy hh:mm}", bill.OutWeightTime.ToString()) : " ");
+            parameters[20] = new ReportParameter("CardNo", !string.IsNullOrEmpty(bill.CardNo.ToString()) ? bill.CardNo.ToString() : " ");
 
             // Pass the parameters to the report
 

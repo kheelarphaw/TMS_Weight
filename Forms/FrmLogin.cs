@@ -75,7 +75,6 @@ namespace TMS_Weight.Forms
         private void btnQuit_Click(object sender, EventArgs e)
         {
             Application.Exit();
-
         }
     }
 }

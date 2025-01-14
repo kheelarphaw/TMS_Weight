@@ -180,6 +180,8 @@ namespace TMS_Weight.Forms
             pnlOutQueue.Refresh();
             // Refresh or reload the data in the grid
             sfOutQueueGrid.Refresh();
+            // Add a delay of 1000 milliseconds (1 second) before refreshing the grid
+            System.Threading.Thread.Sleep(2000);  // Sleep for 5 second
             LoadData();
             btnEnabled();
         }

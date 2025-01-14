@@ -27,13 +27,16 @@ namespace TMS_Weight.Forms
             InitializeComponent();
             LoadData();
 
+            BtnEnable();
 
 
-            DateTime d = DateTime.Now;
-            this.txtTime.Text = new TimeSpan(d.Hour, d.Minute, d.Second).ToString();
+              DateTime d = DateTime.Now;
+            //this.txtTime.Text = new TimeSpan(d.Hour, d.Minute, d.Second).ToString();
 
             // Assuming you have a DateTimePicker control named dateTimePicker1
             sfDate.Value = DateTime.Now;
+
+            txtwbId.Text = Properties.Settings.Default.WBCode.ToString();
 
         }
 
@@ -47,6 +50,7 @@ namespace TMS_Weight.Forms
         {
             btnAdHocSave.Enabled = true;
             btnAdHocCancel.Enabled = true;
+            sfBtnGetAdHoc.Enabled = true;   
         }
 
 
@@ -93,7 +97,10 @@ namespace TMS_Weight.Forms
                 {
                     ClearDialogContents();
 
-                    MessageBoxAdv.Show(this, "Successfuly Saved!", "Weight Service Bill", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    FrmServiceBillPrint f = new FrmServiceBillPrint(msg.ServiceBillNo.ToString());
+                    f.Show();
+
+                    //MessageBoxAdv.Show(this, "Successfuly Saved!", "Weight Service Bill", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     BtnEnable();
                 }
                 else

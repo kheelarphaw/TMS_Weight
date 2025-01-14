@@ -19,7 +19,7 @@ namespace TMS_Weight.Forms
     public partial class FrmQueue : Form
     {
 
-        SerialPort _serialPort;
+        SerialPort _serialPort= new SerialPort();
        
         public FrmQueue(WeightBridgeQueue queue)
         {
@@ -28,12 +28,12 @@ namespace TMS_Weight.Forms
             LoadData(queue);
 
             btnGetWeight.Enabled = true;
-            btnCancel.Enabled = false;
-            btnSave.Enabled = false;
+            btnCancel.Enabled = true;
+            btnSave.Enabled = true;
 
 
             DateTime d = DateTime.Now;
-            this.txtTime.Text = new TimeSpan(d.Hour, d.Minute, d.Second).ToString();
+            //this.txtTime.Text = new TimeSpan(d.Hour, d.Minute, d.Second).ToString();
 
             // Assuming you have a DateTimePicker control named dateTimePicker1
             sfDate.Value = DateTime.Now;
@@ -58,6 +58,9 @@ namespace TMS_Weight.Forms
         {
 
             PortIntial();
+
+            btnSave.Enabled = false;
+            btnCancel.Enabled = false;
 
             ///serialPort
             if (!_serialPort.IsOpen)

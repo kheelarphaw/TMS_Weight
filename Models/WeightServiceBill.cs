@@ -36,7 +36,6 @@ namespace TMS_Weight.Models
         public string ContainerNo { get; set; }
         public string DONo { get; set; }
         public string BLNo { get; set; }
-        public string VesselName { get; set; }
         public string TransporterID { get; set; }
         public string YardID { get; set; }
         public string GateID { get; set; }

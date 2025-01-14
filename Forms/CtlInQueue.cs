@@ -34,7 +34,7 @@ namespace TMS_Weight.Forms
             {
                 MappingName = "Type",
                 HeaderText = "Type",
-                Width = 100
+                Width = 50
             });
             this.sfInQueueGrid.Columns.Add(new GridTextColumn()
             {
@@ -177,10 +177,12 @@ namespace TMS_Weight.Forms
         {
             btnEnabled();
             pnlInQueue.Refresh();
-            // Refresh or reload the data in the grid
+            // Add a delay of 1000 milliseconds (1 second) before refreshing the grid
+            System.Threading.Thread.Sleep(2000);  // Sleep for 5 second
+                                                  // Refresh or reload the data in the grid
             sfInQueueGrid.Refresh();
             LoadData();
-           
+
         }
 
     }

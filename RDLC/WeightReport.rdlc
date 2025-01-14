@@ -147,7 +147,7 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>0.33945in</Top>
+            <Top>0.31806in</Top>
             <Left>1.57265in</Left>
             <Height>0.25in</Height>
             <Width>3.14167in</Width>
@@ -1065,11 +1065,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!NetWeight.Value</Value>
-                                  <Style />
-                                </TextRun>
-                                <TextRun>
-                                  <Value> KG</Value>
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
