@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using TMS_Weight.Forms;
 using TMS_Weight.Models;
 
 namespace TMS_Weight.Services
@@ -23,7 +24,7 @@ namespace TMS_Weight.Services
             string jsonData = JsonConvert.SerializeObject(login);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var httpClient = new HttpClient();
-            var response = await httpClient.PostAsync($"{_baseAddress}/api/Account/Login", content);
+            var response = await httpClient.PostAsync($"{_baseAddress}/api/Account/GateLogin", content);
             if (response.IsSuccessStatusCode)
             {
                 string result = await response.Content.ReadAsStringAsync();
@@ -36,6 +37,28 @@ namespace TMS_Weight.Services
             }
             return info;
         }
+
+        public async Task<AuthResponse> ResetPassword(LoginUser login)
+        {
+            AuthResponse info = new AuthResponse();
+            string jsonData = JsonConvert.SerializeObject(login);
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var httpClient = new HttpClient();
+            var response = await httpClient.PostAsync($"{_baseAddress}/api/Account/ResetPassword", content);
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                //info = JsonConvert.DeserializeObject<AuthResponse>(result);
+                info.IsAuthSuccessful = true;
+            }
+            else
+            {
+                info.IsAuthSuccessful = false;
+                info.ErrorMessage = response.ReasonPhrase;
+            }
+            return info;
+        }
+
 
         #endregion
 
@@ -125,6 +148,20 @@ namespace TMS_Weight.Services
             return truckList;
         }
 
+
+        public async Task<List<Customer>> GetCustomerList()
+        {
+            List<Customer> cusList = new List<Customer>();
+            HttpClient client = new HttpClient();
+            var response = await client.GetAsync($"{_baseAddress}/api/WeightSupport/GetCustomerList");
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                cusList = JsonConvert.DeserializeObject<List<Customer>>(content);
+            }
+            return cusList;
+        }
+
         public async Task<List<Gate>> GetGateList()
         {
             List<Gate> gateList = new List<Gate>();
@@ -185,7 +222,7 @@ namespace TMS_Weight.Services
         }
 
 
-        public async Task<ResponseMessage> SaveServiceBillForQueue(WeightServiceBill weightInfo)
+        public async Task<ResponseMessage> SaveServiceBillForInQueue(WeightServiceBill weightInfo)
         {
             ResponseMessage msg = new ResponseMessage();
             try
@@ -218,7 +255,7 @@ namespace TMS_Weight.Services
             return msg;
         }
 
-        public async Task<ResponseMessage> UpdateServiceBillForQueue(WeightServiceBill weightInfo)
+        public async Task<ResponseMessage> UpdateServiceBillForOutQueue(WeightServiceBill weightInfo)
         {
             ResponseMessage msg = new ResponseMessage();
             try
@@ -250,15 +287,15 @@ namespace TMS_Weight.Services
             }
             return msg;
         }
-        public async Task<List<WeightServiceBill>> GetServiceBillList(string fromDate)
+        public async Task<List<ServiceBill>> GetServiceBillList(string fromDate)
         {
-            List<WeightServiceBill> billList = new List<WeightServiceBill>();
+            List<ServiceBill> billList = new List<ServiceBill>();
             HttpClient client = new HttpClient();
             var response = await client.GetAsync($"{_baseAddress}/api/WeightSupport/GetServiceBillList/?fromDate={fromDate}");
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
-                billList = JsonConvert.DeserializeObject<List<WeightServiceBill>>(content);
+                billList = JsonConvert.DeserializeObject<List<ServiceBill>>(content);
             }
             return billList;
         }

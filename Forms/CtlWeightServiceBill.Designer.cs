@@ -77,6 +77,7 @@ namespace TMS_Weight.Forms
             this.sfBtnSBView = new Syncfusion.WinForms.Controls.SfButton();
             this.lblsbill = new System.Windows.Forms.Label();
             this.sfDate = new Syncfusion.WinForms.Input.SfDateTimeEdit();
+            this.sfbtnInExport = new Syncfusion.WinForms.Controls.SfButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sfSBGrid)).BeginInit();
             this.SuspendLayout();
@@ -120,13 +121,13 @@ namespace TMS_Weight.Forms
             // 
             // sfBtnPrint
             // 
-            this.sfBtnPrint.BackColor = System.Drawing.Color.SeaGreen;
+            this.sfBtnPrint.BackColor = System.Drawing.Color.ForestGreen;
             this.sfBtnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sfBtnPrint.ForeColor = System.Drawing.Color.White;
             this.sfBtnPrint.Location = new System.Drawing.Point(550, 73);
             this.sfBtnPrint.Name = "sfBtnPrint";
             this.sfBtnPrint.Size = new System.Drawing.Size(107, 34);
-            this.sfBtnPrint.Style.BackColor = System.Drawing.Color.SeaGreen;
+            this.sfBtnPrint.Style.BackColor = System.Drawing.Color.ForestGreen;
             this.sfBtnPrint.Style.ForeColor = System.Drawing.Color.White;
             this.sfBtnPrint.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
             this.sfBtnPrint.TabIndex = 24;
@@ -169,10 +170,28 @@ namespace TMS_Weight.Forms
             this.sfDate.TabIndex = 27;
             this.sfDate.ToolTipText = "";
             // 
+            // sfbtnInExport
+            // 
+            this.sfbtnInExport.BackColor = System.Drawing.Color.ForestGreen;
+            this.sfbtnInExport.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sfbtnInExport.ForeColor = System.Drawing.Color.White;
+            this.sfbtnInExport.Location = new System.Drawing.Point(700, 73);
+            this.sfbtnInExport.Margin = new System.Windows.Forms.Padding(4);
+            this.sfbtnInExport.Name = "sfbtnInExport";
+            this.sfbtnInExport.Size = new System.Drawing.Size(107, 34);
+            this.sfbtnInExport.Style.BackColor = System.Drawing.Color.ForestGreen;
+            this.sfbtnInExport.Style.ForeColor = System.Drawing.Color.White;
+            this.sfbtnInExport.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
+            this.sfbtnInExport.TabIndex = 28;
+            this.sfbtnInExport.Text = "Export";
+            this.sfbtnInExport.UseVisualStyleBackColor = false;
+            this.sfbtnInExport.Click += new System.EventHandler(this.sfbtnInExport_Click);
+            // 
             // CtlWeightServiceBill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.sfbtnInExport);
             this.Controls.Add(this.sfDate);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblSB);
@@ -197,5 +216,6 @@ namespace TMS_Weight.Forms
         private Syncfusion.WinForms.Controls.SfButton sfBtnSBView;
         private System.Windows.Forms.Label lblsbill;
         private Syncfusion.WinForms.Input.SfDateTimeEdit sfDate;
+        private Syncfusion.WinForms.Controls.SfButton sfbtnInExport;
     }
 }

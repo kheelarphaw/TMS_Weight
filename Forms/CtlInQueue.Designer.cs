@@ -26,6 +26,7 @@ namespace TMS_Weight.Forms
             base.Dispose(disposing);
         }
 
+
         private async void LoadData()
         {
            
@@ -65,7 +66,7 @@ namespace TMS_Weight.Forms
             this.pnlInQueue = new System.Windows.Forms.Panel();
             this.sfInQueueGrid = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.label1 = new System.Windows.Forms.Label();
-            this.sfbtnExport = new Syncfusion.WinForms.Controls.SfButton();
+            this.sfbtnInExport = new Syncfusion.WinForms.Controls.SfButton();
             this.sfBtnInWeight = new Syncfusion.WinForms.Controls.SfButton();
             this.pnlInQueue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sfInQueueGrid)).BeginInit();
@@ -108,22 +109,23 @@ namespace TMS_Weight.Forms
             this.label1.Text = "In Queue List";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // sfbtnExport
+            // sfbtnInExport
             // 
-            this.sfbtnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.sfbtnExport.BackColor = System.Drawing.Color.ForestGreen;
-            this.sfbtnExport.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfbtnExport.ForeColor = System.Drawing.Color.White;
-            this.sfbtnExport.Location = new System.Drawing.Point(1195, 57);
-            this.sfbtnExport.Margin = new System.Windows.Forms.Padding(4);
-            this.sfbtnExport.Name = "sfbtnExport";
-            this.sfbtnExport.Size = new System.Drawing.Size(107, 34);
-            this.sfbtnExport.Style.BackColor = System.Drawing.Color.ForestGreen;
-            this.sfbtnExport.Style.ForeColor = System.Drawing.Color.White;
-            this.sfbtnExport.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            this.sfbtnExport.TabIndex = 22;
-            this.sfbtnExport.Text = "Export";
-            this.sfbtnExport.UseVisualStyleBackColor = false;
+            this.sfbtnInExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.sfbtnInExport.BackColor = System.Drawing.Color.ForestGreen;
+            this.sfbtnInExport.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sfbtnInExport.ForeColor = System.Drawing.Color.White;
+            this.sfbtnInExport.Location = new System.Drawing.Point(1195, 57);
+            this.sfbtnInExport.Margin = new System.Windows.Forms.Padding(4);
+            this.sfbtnInExport.Name = "sfbtnInExport";
+            this.sfbtnInExport.Size = new System.Drawing.Size(107, 34);
+            this.sfbtnInExport.Style.BackColor = System.Drawing.Color.ForestGreen;
+            this.sfbtnInExport.Style.ForeColor = System.Drawing.Color.White;
+            this.sfbtnInExport.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            this.sfbtnInExport.TabIndex = 22;
+            this.sfbtnInExport.Text = "Export";
+            this.sfbtnInExport.UseVisualStyleBackColor = false;
+            this.sfbtnInExport.Click += new System.EventHandler(this.sfbtnInExport_Click);
             // 
             // sfBtnInWeight
             // 
@@ -147,7 +149,7 @@ namespace TMS_Weight.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.Controls.Add(this.sfbtnExport);
+            this.Controls.Add(this.sfbtnInExport);
             this.Controls.Add(this.sfBtnInWeight);
             this.Controls.Add(this.pnlInQueue);
             this.Controls.Add(this.label1);
@@ -166,6 +168,6 @@ namespace TMS_Weight.Forms
         private Syncfusion.WinForms.DataGrid.SfDataGrid sfInQueueGrid;
         private System.Windows.Forms.Label label1;
         private Syncfusion.WinForms.Controls.SfButton sfBtnInWeight;
-        private Syncfusion.WinForms.Controls.SfButton sfbtnExport;
+        private Syncfusion.WinForms.Controls.SfButton sfbtnInExport;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Syncfusion.Windows.Forms;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,125 +15,103 @@ using TMS_Weight.Models;
 
 namespace TMS_Weight.Forms
 {
-    public partial class CtlAdHoc : UserControl
+    public partial class FrmOutQueue : Form
     {
-        SerialPort _serialPort;
-       
-        public CtlAdHoc()
+        SerialPort _serialPort = new SerialPort();
+        public FrmOutQueue(WeightBridgeQueue queue)
         {
+            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Metro;
             InitializeComponent();
-            LoadData();
+            LoadData(queue);
 
-            BtnEnable();
+            btnGetWeight.Enabled = true;
+            btnCancel.Enabled = true;
+            btnSave.Enabled = true;
 
 
-              DateTime d = DateTime.Now;
+            DateTime d = DateTime.Now;
             //this.txtTime.Text = new TimeSpan(d.Hour, d.Minute, d.Second).ToString();
 
             // Assuming you have a DateTimePicker control named dateTimePicker1
             sfDate.Value = DateTime.Now;
-
-            txtwbId.Text = Properties.Settings.Default.WBCode.ToString();
-
         }
+
 
         private void BtnDisable()
         {
-            btnAdHocSave.Enabled = false;
-            btnAdHocCancel.Enabled = false;
+            btnSave.Enabled = false;
+            btnCancel.Enabled = false;
+            btnGetWeight.Enabled = false;
         }
 
         private void BtnEnable()
         {
-            btnAdHocSave.Enabled = true;
-            btnAdHocCancel.Enabled = true;
-            sfBtnGetAdHoc.Enabled = true;   
+            btnSave.Enabled = true;
+            btnCancel.Enabled = true;
+            btnGetWeight.Enabled = true;
         }
 
 
-        private void ClearDialogContents()
+        private async void btnSave_Click(object sender, EventArgs e)
         {
-            // Assuming you have a dialog with textboxes and combo boxes
+            ResponseMessage message = new ResponseMessage();
+            DialogResult result = MessageBoxAdv.Show(this,
+                  "Save changes?",
+                  "Weight Service Bill",
+                  MessageBoxButtons.YesNo,
+                  MessageBoxIcon.Question);
 
-            txtBlNo.Clear();// Clears text in TextBox
-            txtCargoInfo.Clear();
-            txtContainer.Clear();
-            txtDLicense.Clear();
-            txtDoNo.Clear();
-            txtDriver.Clear();
-            txtRemark.Clear();
-            sfCbxBillOption.SelectedIndex = -1; // Clears selection in ComboBox
-            sfCbxCategory.SelectedIndex = -1;
-            sfCbxTrailer.SelectedIndex = -1;
-            sfCbxTransporter.SelectedIndex = -1;
-            sfCbxTruck.SelectedIndex = -1;
-            sfCbxCustomer.SelectedIndex = -1;
-            txtwbId.Clear();
-            txtCash.Clear();
-            txtAdHocWeight.Clear();
+            if (result == DialogResult.Yes)
+            {
+                BtnDisable();
+                ResponseMessage msg = await SaveServiceBillForOutQueue();
+                if (msg.Status)
+                {
+                    BtnEnable();
+                }
+                else
+                {
+                    MessageBox.Show(this, msg.MessageContent, "Weight Service Bill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    BtnDisable();
+                }
+            }
+            // If the user clicks No, prevent the form from closing or saving
+            else
+            {
+                return;
+            }
 
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Hide();
+            _serialPort.Close();
         }
 
-        private async void btnSave_Click_1(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBoxAdv.Show(this,
-                  "Save changes?",
-                  "Weight Service Bill",
-                  MessageBoxButtons.YesNo,
-                  MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                BtnDisable();
-                ResponseMessage msg = await SaveServiceBillForAdHoc();
-                if (msg.Status)
-                {
-                    ClearDialogContents();
-
-                    FrmServiceBillPrint f = new FrmServiceBillPrint(msg.ServiceBillNo.ToString());
-                    f.Show();
-
-                    //MessageBoxAdv.Show(this, "Successfuly Saved!", "Weight Service Bill", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    BtnEnable();
-                }
-                else
-                {
-                    MessageBoxAdv.Show(this, msg.MessageContent, "Weight Service Bill", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    BtnDisable();
-                }
-            }
-        }
-
-        private void sfBtnGetAdHocWeight_Click(object sender, EventArgs e)
+        private void btnGetWeight_Click(object sender, EventArgs e)
         {
             PortIntial();
 
-            // serialPort
+            btnSave.Enabled = false;
+            btnCancel.Enabled = false;
+
+            ///serialPort
             if (!_serialPort.IsOpen)
                 _serialPort.Open();
             string wdata = ReadWeight();
             if (wdata == "Invalid weight data")
             {
                 _serialPort.Close();
-                sfBtnGetAdHoc.Enabled = false;
+                btnGetWeight.Enabled = false;
 
             }
             if (_serialPort.IsOpen)
                 _serialPort.Close();
-            txtAdHocWeight.Text = wdata;
-            sfBtnGetAdHoc.Enabled = false;
+            txtWeight.Text = wdata;
+            btnGetWeight.Enabled = false;
 
-
-            btnAdHocCancel.Enabled = true;
-
-
-            ///Manual
-            //string wdata = "15700 g";
-            //txtAdHocWeight.Text = wdata;
+            btnCancel.Enabled = true;
 
             // Extract the numeric value using regex
             string wvalue = System.Text.RegularExpressions.Regex.Match(wdata, @"\d+").Value;
@@ -140,10 +119,8 @@ namespace TMS_Weight.Forms
             // Convert the extracted number string to an integer
             int value = int.Parse(wvalue);
             if (value > 0)
-                btnAdHocSave.Enabled = true;
-
+                btnSave.Enabled = true;
         }
-
 
         public void PortIntial()
         {
@@ -161,8 +138,6 @@ namespace TMS_Weight.Forms
                 _serialPort.Handshake = (Handshake)Enum.Parse(typeof(Handshake), Properties.Settings.Default.Handshake.ToString(), true);
                 _serialPort.ReadTimeout = 5000;
                 _serialPort.WriteTimeout = 5000;
-
-               
 
             }
             catch (UnauthorizedAccessException ex)
@@ -239,19 +214,14 @@ namespace TMS_Weight.Forms
 
 
 
-
-
         #region Utility Methods
 
-        //private void ShowError(string message, Exception ex)
-        //{
-        //    MessageBoxAdv.Show(this, $"{message}\nDetails: {ex.Message}", "Weight Service Bill", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //}
-
-
+        private void ShowError(string message, Exception ex)
+        {
+            MessageBoxAdv.Show(this, $"{message}\nDetails: {ex.Message}", "Weight Service Bill", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
 
         #endregion
-
 
     }
 }

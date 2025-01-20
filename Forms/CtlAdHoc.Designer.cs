@@ -16,7 +16,8 @@ namespace TMS_Weight.Forms
         public List<Transporter> transporterList;
         public List<Vehicle> truckList;
         public List<Vehicle> trailerList;
-       // public List<WeightBridge> weightBridgeList;
+        public List<Customer> cusList;
+        // public List<WeightBridge> weightBridgeList;
         public List<Gate> gateList;
         /// <summary> 
         /// Required designer variable.
@@ -69,6 +70,12 @@ namespace TMS_Weight.Forms
             if (trailerList.Count > 0)
                 this.sfCbxTrailer.DataSource = trailerList;
 
+
+            this.sfCbxCustomer.DataSource = null;
+            cusList = await _apiService.GetCustomerList();
+            if (cusList.Count > 0)
+                this.sfCbxCustomer.DataSource = cusList;
+
         }
 
 
@@ -86,8 +93,7 @@ namespace TMS_Weight.Forms
 
             WeightServiceBill serviceBill = new WeightServiceBill();
 
-            serviceBill.ServiceBillNo = "";
-            serviceBill.CustomerName = this.txtCustomer.Text;
+            serviceBill.ServiceBillNo = ""; 
             serviceBill.WeightBridgeID = this.txtwbId.Text;
             serviceBill.WeightCategory = this.sfCbxCategory.SelectedItem.ToString();
             serviceBill.WeightOption = this.txtWOption.Text;
@@ -96,12 +102,19 @@ namespace TMS_Weight.Forms
             serviceBill.DONo = this.txtDoNo.Text;
             serviceBill.DriverName = this.txtDriver.Text;
             serviceBill.DriverLicense = this.txtDLicense.Text;
-            serviceBill.InWeightCash = Convert.ToDecimal(this.txtCash.Text);
+            serviceBill.OutWeightCash = Convert.ToDecimal(this.txtCash.Text);
             serviceBill.ContainerNo = this.txtContainer.Text;
             serviceBill.BLNo = this.txtBlNo.Text;
             serviceBill.Remark = this.txtRemark.Text;
             serviceBill.CargoInfo = this.txtCargoInfo.Text;
-            serviceBill.OutWeight = Convert.ToDecimal(this.txtAdHocWeight.Text);
+            serviceBill.CreatedUser = CommonData.userName;
+            // Extract the numeric value using regex
+            string wvalue = System.Text.RegularExpressions.Regex.Match(this.txtAdHocWeight.Text, @"\d+").Value;
+
+            // Convert the extracted number string to an integer
+            int value = int.Parse(wvalue);
+
+            serviceBill.OutWeight = Convert.ToDecimal(value);
 
             if (this.sfCbxTransporter.SelectedItem is Transporter t)
                 serviceBill.TransporterID = t.TransporterID;
@@ -111,6 +124,10 @@ namespace TMS_Weight.Forms
 
             if (this.sfCbxTrailer.SelectedItem is Vehicle trailer)
                 serviceBill.TrailerNo = trailer.VehicleRegNo;
+
+            if (this.sfCbxCustomer.SelectedItem is Customer cus)
+                serviceBill.CustomerName = cus.Name;
+
 
 
             DateTime date = (DateTime)this.sfDate.Value; // Date part
@@ -164,6 +181,7 @@ namespace TMS_Weight.Forms
             this.btnAdHocCancel = new Syncfusion.WinForms.Controls.SfButton();
             this.btnAdHocSave = new Syncfusion.WinForms.Controls.SfButton();
             this.sfCbxTrailer = new Syncfusion.WinForms.ListView.SfComboBox();
+            this.sfCbxCustomer = new Syncfusion.WinForms.ListView.SfComboBox();
             this.sfCbxTruck = new Syncfusion.WinForms.ListView.SfComboBox();
             this.sfCbxBillOption = new Syncfusion.WinForms.ListView.SfComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -202,9 +220,9 @@ namespace TMS_Weight.Forms
             this.lblDriver = new System.Windows.Forms.Label();
             this.lblWOption = new System.Windows.Forms.Label();
             this.lblCustomer = new System.Windows.Forms.Label();
-            this.txtCustomer = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sfCbxTrailer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sfCbxCustomer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfCbxTruck)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfCbxBillOption)).BeginInit();
             this.panel2.SuspendLayout();
@@ -222,7 +240,7 @@ namespace TMS_Weight.Forms
             this.lbladhoc.Location = new System.Drawing.Point(0, 0);
             this.lbladhoc.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.lbladhoc.Name = "lbladhoc";
-            this.lbladhoc.Size = new System.Drawing.Size(1491, 52);
+            this.lbladhoc.Size = new System.Drawing.Size(1534, 52);
             this.lbladhoc.TabIndex = 21;
             this.lbladhoc.Text = "Weight Data";
             this.lbladhoc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -236,6 +254,7 @@ namespace TMS_Weight.Forms
             this.panel1.Controls.Add(this.btnAdHocCancel);
             this.panel1.Controls.Add(this.btnAdHocSave);
             this.panel1.Controls.Add(this.sfCbxTrailer);
+            this.panel1.Controls.Add(this.sfCbxCustomer);
             this.panel1.Controls.Add(this.sfCbxTruck);
             this.panel1.Controls.Add(this.sfCbxBillOption);
             this.panel1.Controls.Add(this.panel2);
@@ -266,7 +285,6 @@ namespace TMS_Weight.Forms
             this.panel1.Controls.Add(this.txtWType);
             this.panel1.Controls.Add(this.txtCash);
             this.panel1.Controls.Add(this.txtWOption);
-            this.panel1.Controls.Add(this.txtCustomer);
             this.panel1.Controls.Add(this.lblDate);
             this.panel1.Controls.Add(this.lblCash);
             this.panel1.Controls.Add(this.lblDriver);
@@ -277,7 +295,7 @@ namespace TMS_Weight.Forms
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 1, 2);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.panel1.Size = new System.Drawing.Size(1483, 710);
+            this.panel1.Size = new System.Drawing.Size(1497, 710);
             this.panel1.TabIndex = 0;
             // 
             // btnAdHocCancel
@@ -318,26 +336,41 @@ namespace TMS_Weight.Forms
             // 
             this.sfCbxTrailer.DisplayMember = "VehicleRegNo";
             this.sfCbxTrailer.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.sfCbxTrailer.Location = new System.Drawing.Point(1183, 26);
+            this.sfCbxTrailer.Location = new System.Drawing.Point(1145, 29);
             this.sfCbxTrailer.Margin = new System.Windows.Forms.Padding(5);
             this.sfCbxTrailer.Name = "sfCbxTrailer";
             this.sfCbxTrailer.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.sfCbxTrailer.Size = new System.Drawing.Size(265, 28);
+            this.sfCbxTrailer.Size = new System.Drawing.Size(312, 33);
             this.sfCbxTrailer.Style.DropDownStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.sfCbxTrailer.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.sfCbxTrailer.TabIndex = 4;
             this.sfCbxTrailer.TabStop = false;
             this.sfCbxTrailer.ValueMember = "VehicleRegNo";
             // 
+            // sfCbxCustomer
+            // 
+            this.sfCbxCustomer.DisplayMember = "Name";
+            this.sfCbxCustomer.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
+            this.sfCbxCustomer.Location = new System.Drawing.Point(171, 92);
+            this.sfCbxCustomer.Margin = new System.Windows.Forms.Padding(5);
+            this.sfCbxCustomer.Name = "sfCbxCustomer";
+            this.sfCbxCustomer.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
+            this.sfCbxCustomer.Size = new System.Drawing.Size(312, 28);
+            this.sfCbxCustomer.Style.DropDownStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.sfCbxCustomer.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.sfCbxCustomer.TabIndex = 3;
+            this.sfCbxCustomer.TabStop = false;
+            this.sfCbxCustomer.ValueMember = "Name";
+            // 
             // sfCbxTruck
             // 
             this.sfCbxTruck.DisplayMember = "VehicleRegNo";
             this.sfCbxTruck.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.sfCbxTruck.Location = new System.Drawing.Point(688, 26);
+            this.sfCbxTruck.Location = new System.Drawing.Point(652, 29);
             this.sfCbxTruck.Margin = new System.Windows.Forms.Padding(5);
             this.sfCbxTruck.Name = "sfCbxTruck";
             this.sfCbxTruck.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.sfCbxTruck.Size = new System.Drawing.Size(265, 28);
+            this.sfCbxTruck.Size = new System.Drawing.Size(312, 33);
             this.sfCbxTruck.Style.DropDownStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.sfCbxTruck.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.sfCbxTruck.TabIndex = 3;
@@ -347,11 +380,11 @@ namespace TMS_Weight.Forms
             // sfCbxBillOption
             // 
             this.sfCbxBillOption.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.sfCbxBillOption.Location = new System.Drawing.Point(688, 157);
+            this.sfCbxBillOption.Location = new System.Drawing.Point(652, 160);
             this.sfCbxBillOption.Margin = new System.Windows.Forms.Padding(5);
             this.sfCbxBillOption.Name = "sfCbxBillOption";
             this.sfCbxBillOption.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.sfCbxBillOption.Size = new System.Drawing.Size(265, 28);
+            this.sfCbxBillOption.Size = new System.Drawing.Size(312, 28);
             this.sfCbxBillOption.Style.DropDownStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.sfCbxBillOption.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.sfCbxBillOption.TabIndex = 9;
@@ -366,7 +399,7 @@ namespace TMS_Weight.Forms
             this.panel2.Location = new System.Drawing.Point(52, 452);
             this.panel2.Margin = new System.Windows.Forms.Padding(5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1402, 82);
+            this.panel2.Size = new System.Drawing.Size(1406, 82);
             this.panel2.TabIndex = 91;
             // 
             // sfBtnGetAdHoc
@@ -409,11 +442,11 @@ namespace TMS_Weight.Forms
             // 
             this.sfCbxTransporter.DisplayMember = "Name";
             this.sfCbxTransporter.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.sfCbxTransporter.Location = new System.Drawing.Point(691, 298);
+            this.sfCbxTransporter.Location = new System.Drawing.Point(655, 303);
             this.sfCbxTransporter.Margin = new System.Windows.Forms.Padding(5);
             this.sfCbxTransporter.Name = "sfCbxTransporter";
             this.sfCbxTransporter.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.sfCbxTransporter.Size = new System.Drawing.Size(262, 28);
+            this.sfCbxTransporter.Size = new System.Drawing.Size(309, 28);
             this.sfCbxTransporter.Style.DropDownStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.sfCbxTransporter.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.sfCbxTransporter.TabIndex = 15;
@@ -423,11 +456,11 @@ namespace TMS_Weight.Forms
             // sfCbxCategory
             // 
             this.sfCbxCategory.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.sfCbxCategory.Location = new System.Drawing.Point(688, 92);
+            this.sfCbxCategory.Location = new System.Drawing.Point(652, 98);
             this.sfCbxCategory.Margin = new System.Windows.Forms.Padding(5);
             this.sfCbxCategory.Name = "sfCbxCategory";
             this.sfCbxCategory.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.sfCbxCategory.Size = new System.Drawing.Size(265, 28);
+            this.sfCbxCategory.Size = new System.Drawing.Size(312, 28);
             this.sfCbxCategory.Style.DropDownStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.sfCbxCategory.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.sfCbxCategory.TabIndex = 6;
@@ -456,7 +489,7 @@ namespace TMS_Weight.Forms
             // lblRemark
             // 
             this.lblRemark.AutoSize = true;
-            this.lblRemark.Location = new System.Drawing.Point(1030, 379);
+            this.lblRemark.Location = new System.Drawing.Point(998, 377);
             this.lblRemark.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRemark.Name = "lblRemark";
             this.lblRemark.Size = new System.Drawing.Size(90, 25);
@@ -466,7 +499,7 @@ namespace TMS_Weight.Forms
             // lblVesselInfo
             // 
             this.lblVesselInfo.AutoSize = true;
-            this.lblVesselInfo.Location = new System.Drawing.Point(532, 381);
+            this.lblVesselInfo.Location = new System.Drawing.Point(516, 377);
             this.lblVesselInfo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblVesselInfo.Name = "lblVesselInfo";
             this.lblVesselInfo.Size = new System.Drawing.Size(109, 25);
@@ -476,7 +509,7 @@ namespace TMS_Weight.Forms
             // lblContainer
             // 
             this.lblContainer.AutoSize = true;
-            this.lblContainer.Location = new System.Drawing.Point(1030, 296);
+            this.lblContainer.Location = new System.Drawing.Point(998, 301);
             this.lblContainer.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblContainer.Name = "lblContainer";
             this.lblContainer.Size = new System.Drawing.Size(108, 25);
@@ -486,7 +519,7 @@ namespace TMS_Weight.Forms
             // lblLicense
             // 
             this.lblLicense.AutoSize = true;
-            this.lblLicense.Location = new System.Drawing.Point(1030, 227);
+            this.lblLicense.Location = new System.Drawing.Point(998, 230);
             this.lblLicense.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblLicense.Name = "lblLicense";
             this.lblLicense.Size = new System.Drawing.Size(105, 25);
@@ -496,7 +529,7 @@ namespace TMS_Weight.Forms
             // lblCategory
             // 
             this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(530, 98);
+            this.lblCategory.Location = new System.Drawing.Point(514, 98);
             this.lblCategory.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblCategory.Name = "lblCategory";
             this.lblCategory.Size = new System.Drawing.Size(103, 25);
@@ -506,7 +539,7 @@ namespace TMS_Weight.Forms
             // lblTrailer
             // 
             this.lblTrailer.AutoSize = true;
-            this.lblTrailer.Location = new System.Drawing.Point(1026, 29);
+            this.lblTrailer.Location = new System.Drawing.Point(998, 34);
             this.lblTrailer.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTrailer.Name = "lblTrailer";
             this.lblTrailer.Size = new System.Drawing.Size(108, 25);
@@ -516,7 +549,7 @@ namespace TMS_Weight.Forms
             // lblTruck
             // 
             this.lblTruck.AutoSize = true;
-            this.lblTruck.Location = new System.Drawing.Point(530, 29);
+            this.lblTruck.Location = new System.Drawing.Point(514, 29);
             this.lblTruck.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTruck.Name = "lblTruck";
             this.lblTruck.Size = new System.Drawing.Size(103, 25);
@@ -526,11 +559,11 @@ namespace TMS_Weight.Forms
             // sfDate
             // 
             this.sfDate.DateTimeIcon = null;
-            this.sfDate.Location = new System.Drawing.Point(182, 21);
+            this.sfDate.Location = new System.Drawing.Point(171, 21);
             this.sfDate.Margin = new System.Windows.Forms.Padding(5);
             this.sfDate.MinDateTime = new System.DateTime(2025, 1, 14, 16, 28, 53, 0);
             this.sfDate.Name = "sfDate";
-            this.sfDate.Size = new System.Drawing.Size(264, 33);
+            this.sfDate.Size = new System.Drawing.Size(312, 33);
             this.sfDate.TabIndex = 1;
             this.sfDate.ToolTipText = "";
             this.sfDate.Value = new System.DateTime(2025, 1, 14, 16, 28, 53, 0);
@@ -548,7 +581,7 @@ namespace TMS_Weight.Forms
             // lblTransporter
             // 
             this.lblTransporter.AutoSize = true;
-            this.lblTransporter.Location = new System.Drawing.Point(530, 301);
+            this.lblTransporter.Location = new System.Drawing.Point(514, 301);
             this.lblTransporter.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTransporter.Name = "lblTransporter";
             this.lblTransporter.Size = new System.Drawing.Size(124, 25);
@@ -558,7 +591,7 @@ namespace TMS_Weight.Forms
             // lblBillOption
             // 
             this.lblBillOption.AutoSize = true;
-            this.lblBillOption.Location = new System.Drawing.Point(530, 162);
+            this.lblBillOption.Location = new System.Drawing.Point(514, 163);
             this.lblBillOption.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblBillOption.Name = "lblBillOption";
             this.lblBillOption.Size = new System.Drawing.Size(111, 25);
@@ -577,94 +610,94 @@ namespace TMS_Weight.Forms
             // 
             // txtDoNo
             // 
-            this.txtDoNo.Location = new System.Drawing.Point(182, 299);
+            this.txtDoNo.Location = new System.Drawing.Point(170, 301);
             this.txtDoNo.Margin = new System.Windows.Forms.Padding(5);
             this.txtDoNo.Name = "txtDoNo";
-            this.txtDoNo.Size = new System.Drawing.Size(263, 30);
+            this.txtDoNo.Size = new System.Drawing.Size(312, 30);
             this.txtDoNo.TabIndex = 14;
             // 
             // txtBlNo
             // 
-            this.txtBlNo.Location = new System.Drawing.Point(181, 376);
+            this.txtBlNo.Location = new System.Drawing.Point(170, 374);
             this.txtBlNo.Margin = new System.Windows.Forms.Padding(5);
             this.txtBlNo.Name = "txtBlNo";
-            this.txtBlNo.Size = new System.Drawing.Size(263, 30);
+            this.txtBlNo.Size = new System.Drawing.Size(313, 30);
             this.txtBlNo.TabIndex = 17;
             // 
             // txtDLicense
             // 
-            this.txtDLicense.Location = new System.Drawing.Point(1183, 227);
+            this.txtDLicense.Location = new System.Drawing.Point(1146, 227);
             this.txtDLicense.Margin = new System.Windows.Forms.Padding(5);
             this.txtDLicense.Name = "txtDLicense";
-            this.txtDLicense.Size = new System.Drawing.Size(263, 30);
+            this.txtDLicense.Size = new System.Drawing.Size(312, 30);
             this.txtDLicense.TabIndex = 13;
             // 
             // txtRemark
             // 
-            this.txtRemark.Location = new System.Drawing.Point(1185, 378);
+            this.txtRemark.Location = new System.Drawing.Point(1148, 376);
             this.txtRemark.Margin = new System.Windows.Forms.Padding(5);
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Size = new System.Drawing.Size(263, 26);
+            this.txtRemark.Size = new System.Drawing.Size(312, 26);
             this.txtRemark.TabIndex = 19;
             // 
             // txtCargoInfo
             // 
-            this.txtCargoInfo.Location = new System.Drawing.Point(691, 373);
+            this.txtCargoInfo.Location = new System.Drawing.Point(655, 373);
             this.txtCargoInfo.Margin = new System.Windows.Forms.Padding(5);
             this.txtCargoInfo.Multiline = true;
             this.txtCargoInfo.Name = "txtCargoInfo";
-            this.txtCargoInfo.Size = new System.Drawing.Size(263, 30);
+            this.txtCargoInfo.Size = new System.Drawing.Size(309, 30);
             this.txtCargoInfo.TabIndex = 18;
             // 
             // txtContainer
             // 
-            this.txtContainer.Location = new System.Drawing.Point(1183, 296);
+            this.txtContainer.Location = new System.Drawing.Point(1148, 298);
             this.txtContainer.Margin = new System.Windows.Forms.Padding(5);
             this.txtContainer.Name = "txtContainer";
-            this.txtContainer.Size = new System.Drawing.Size(263, 30);
+            this.txtContainer.Size = new System.Drawing.Size(312, 30);
             this.txtContainer.TabIndex = 16;
             // 
             // txtDriver
             // 
-            this.txtDriver.Location = new System.Drawing.Point(688, 227);
+            this.txtDriver.Location = new System.Drawing.Point(652, 227);
             this.txtDriver.Margin = new System.Windows.Forms.Padding(5);
             this.txtDriver.Name = "txtDriver";
-            this.txtDriver.Size = new System.Drawing.Size(265, 30);
+            this.txtDriver.Size = new System.Drawing.Size(312, 30);
             this.txtDriver.TabIndex = 12;
             // 
             // txtwbId
             // 
-            this.txtwbId.Location = new System.Drawing.Point(181, 227);
+            this.txtwbId.Location = new System.Drawing.Point(170, 230);
             this.txtwbId.Margin = new System.Windows.Forms.Padding(5);
             this.txtwbId.Name = "txtwbId";
-            this.txtwbId.Size = new System.Drawing.Size(263, 30);
+            this.txtwbId.Size = new System.Drawing.Size(313, 30);
             this.txtwbId.TabIndex = 8;
             // 
             // txtWType
             // 
-            this.txtWType.Location = new System.Drawing.Point(181, 157);
+            this.txtWType.Location = new System.Drawing.Point(170, 159);
             this.txtWType.Margin = new System.Windows.Forms.Padding(5);
             this.txtWType.Name = "txtWType";
-            this.txtWType.Size = new System.Drawing.Size(263, 30);
+            this.txtWType.Size = new System.Drawing.Size(313, 30);
             this.txtWType.TabIndex = 8;
             this.txtWType.Text = "Single";
             // 
             // txtCash
             // 
-            this.txtCash.Location = new System.Drawing.Point(1183, 155);
+            this.txtCash.Location = new System.Drawing.Point(1145, 161);
             this.txtCash.Margin = new System.Windows.Forms.Padding(5);
             this.txtCash.Name = "txtCash";
-            this.txtCash.Size = new System.Drawing.Size(265, 30);
+            this.txtCash.Size = new System.Drawing.Size(312, 30);
             this.txtCash.TabIndex = 10;
             this.txtCash.Text = "0";
             // 
             // txtWOption
             // 
-            this.txtWOption.Location = new System.Drawing.Point(1183, 90);
+            this.txtWOption.Location = new System.Drawing.Point(1147, 98);
             this.txtWOption.Margin = new System.Windows.Forms.Padding(5);
             this.txtWOption.Name = "txtWOption";
-            this.txtWOption.Size = new System.Drawing.Size(265, 30);
+            this.txtWOption.Size = new System.Drawing.Size(312, 30);
             this.txtWOption.TabIndex = 7;
             this.txtWOption.Text = "Single";
             // 
@@ -681,7 +714,7 @@ namespace TMS_Weight.Forms
             // lblCash
             // 
             this.lblCash.AutoSize = true;
-            this.lblCash.Location = new System.Drawing.Point(1026, 162);
+            this.lblCash.Location = new System.Drawing.Point(998, 164);
             this.lblCash.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblCash.Name = "lblCash";
             this.lblCash.Size = new System.Drawing.Size(105, 25);
@@ -691,7 +724,7 @@ namespace TMS_Weight.Forms
             // lblDriver
             // 
             this.lblDriver.AutoSize = true;
-            this.lblDriver.Location = new System.Drawing.Point(530, 235);
+            this.lblDriver.Location = new System.Drawing.Point(514, 235);
             this.lblDriver.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblDriver.Name = "lblDriver";
             this.lblDriver.Size = new System.Drawing.Size(126, 25);
@@ -701,7 +734,7 @@ namespace TMS_Weight.Forms
             // lblWOption
             // 
             this.lblWOption.AutoSize = true;
-            this.lblWOption.Location = new System.Drawing.Point(1026, 98);
+            this.lblWOption.Location = new System.Drawing.Point(998, 98);
             this.lblWOption.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblWOption.Name = "lblWOption";
             this.lblWOption.Size = new System.Drawing.Size(96, 25);
@@ -718,14 +751,6 @@ namespace TMS_Weight.Forms
             this.lblCustomer.TabIndex = 67;
             this.lblCustomer.Text = "Customer :";
             // 
-            // txtCustomer
-            // 
-            this.txtCustomer.Location = new System.Drawing.Point(181, 90);
-            this.txtCustomer.Margin = new System.Windows.Forms.Padding(5);
-            this.txtCustomer.Name = "txtCustomer";
-            this.txtCustomer.Size = new System.Drawing.Size(263, 30);
-            this.txtCustomer.TabIndex = 5;
-            // 
             // CtlAdHoc
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -736,10 +761,11 @@ namespace TMS_Weight.Forms
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "CtlAdHoc";
             this.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.Size = new System.Drawing.Size(1502, 1102);
+            this.Size = new System.Drawing.Size(1545, 1102);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sfCbxTrailer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sfCbxCustomer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfCbxTruck)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfCbxBillOption)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -796,6 +822,6 @@ namespace TMS_Weight.Forms
         public System.Windows.Forms.TextBox txtCash;
         public System.Windows.Forms.TextBox txtWOption;
         public TextBox txtwbId;
-        public TextBox txtCustomer;
+        public Syncfusion.WinForms.ListView.SfComboBox sfCbxCustomer;
     }
 }

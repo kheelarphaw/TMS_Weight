@@ -3,37 +3,19 @@
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-        <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="tmsdbConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="tmsdbConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.TMS_Weight.Properties.Settings.GlobalReference.Default.tmsdbConnectionString" Provider="System.Data.SqlClient" />
-        </Connections>
+        <Connections />
         <Tables />
         <Sources />
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="DataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DataSet" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet">
+  <xs:element name="DataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DataSet" msprop:Generator_DataSetName="DataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="WeightServiceBill" msprop:Generator_RowClassName="WeightServiceBillRow" msprop:Generator_RowEvHandlerName="WeightServiceBillRowChangeEventHandler" msprop:Generator_RowDeletedName="WeightServiceBillRowDeleted" msprop:Generator_RowDeletingName="WeightServiceBillRowDeleting" msprop:Generator_RowEvArgName="WeightServiceBillRowChangeEvent" msprop:Generator_TablePropName="WeightServiceBill" msprop:Generator_RowChangedName="WeightServiceBillRowChanged" msprop:Generator_UserTableName="WeightServiceBill" msprop:Generator_RowChangingName="WeightServiceBillRowChanging" msprop:Generator_TableClassName="WeightServiceBillDataTable" msprop:Generator_TableVarName="tableWeightServiceBill">
+        <xs:element name="WeightServiceBill" msprop:Generator_RowEvHandlerName="WeightServiceBillRowChangeEventHandler" msprop:Generator_RowDeletedName="WeightServiceBillRowDeleted" msprop:Generator_RowDeletingName="WeightServiceBillRowDeleting" msprop:Generator_RowEvArgName="WeightServiceBillRowChangeEvent" msprop:Generator_TablePropName="WeightServiceBill" msprop:Generator_RowChangedName="WeightServiceBillRowChanged" msprop:Generator_RowChangingName="WeightServiceBillRowChanging" msprop:Generator_TableClassName="WeightServiceBillDataTable" msprop:Generator_RowClassName="WeightServiceBillRow" msprop:Generator_TableVarName="tableWeightServiceBill" msprop:Generator_UserTableName="WeightServiceBill">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ServiceBillNo" msprop:Generator_UserColumnName="ServiceBillNo" msprop:Generator_ColumnPropNameInTable="ServiceBillNoColumn" msprop:Generator_ColumnPropNameInRow="ServiceBillNo" msprop:Generator_ColumnVarNameInTable="columnServiceBillNo" type="xs:string" minOccurs="0" />
-              <xs:element name="WeightBridgeID" msprop:Generator_UserColumnName="WeightBridgeID" msprop:Generator_ColumnPropNameInTable="WeightBridgeIDColumn" msprop:Generator_ColumnPropNameInRow="WeightBridgeID" msprop:Generator_ColumnVarNameInTable="columnWeightBridgeID" type="xs:string" minOccurs="0" />
-              <xs:element name="ServiceBillDate" msprop:Generator_UserColumnName="ServiceBillDate" msprop:Generator_ColumnPropNameInTable="ServiceBillDateColumn" msprop:Generator_ColumnPropNameInRow="ServiceBillDate" msprop:Generator_ColumnVarNameInTable="columnServiceBillDate" type="xs:string" minOccurs="0" />
-              <xs:element name="TruckNo" msprop:Generator_UserColumnName="TruckNo" msprop:Generator_ColumnPropNameInTable="TruckNoColumn" msprop:Generator_ColumnPropNameInRow="TruckNo" msprop:Generator_ColumnVarNameInTable="columnTruckNo" type="xs:string" minOccurs="0" />
-              <xs:element name="TrailerNo" msprop:Generator_UserColumnName="TrailerNo" msprop:Generator_ColumnPropNameInTable="TrailerNoColumn" msprop:Generator_ColumnPropNameInRow="TrailerNo" msprop:Generator_ColumnVarNameInTable="columnTrailerNo" type="xs:string" minOccurs="0" />
-              <xs:element name="QRegNo" msprop:Generator_UserColumnName="QRegNo" msprop:Generator_ColumnPropNameInTable="QRegNoColumn" msprop:Generator_ColumnPropNameInRow="QRegNo" msprop:Generator_ColumnVarNameInTable="columnQRegNo" type="xs:string" minOccurs="0" />
-              <xs:element name="Weight" msprop:Generator_UserColumnName="Weight" msprop:Generator_ColumnPropNameInTable="WeightColumn" msprop:Generator_ColumnPropNameInRow="Weight" msprop:Generator_ColumnVarNameInTable="columnWeight" type="xs:string" minOccurs="0" />
-              <xs:element name="WeightType" msprop:Generator_UserColumnName="WeightType" msprop:Generator_ColumnPropNameInTable="WeightTypeColumn" msprop:Generator_ColumnPropNameInRow="WeightType" msprop:Generator_ColumnVarNameInTable="columnWeightType" type="xs:string" minOccurs="0" />
-              <xs:element name="CargoInfo" msprop:Generator_UserColumnName="CargoInfo" msprop:Generator_ColumnPropNameInTable="CargoInfoColumn" msprop:Generator_ColumnPropNameInRow="CargoInfo" msprop:Generator_ColumnVarNameInTable="columnCargoInfo" type="xs:string" minOccurs="0" />
-              <xs:element name="WeightOption" msprop:Generator_UserColumnName="WeightOption" msprop:Generator_ColumnPropNameInTable="WeightOptionColumn" msprop:Generator_ColumnPropNameInRow="WeightOption" msprop:Generator_ColumnVarNameInTable="columnWeightOption" type="xs:string" minOccurs="0" />
-              <xs:element name="CustomerId" msprop:Generator_UserColumnName="CustomerId" msprop:Generator_ColumnPropNameInTable="CustomerIdColumn" msprop:Generator_ColumnPropNameInRow="CustomerId" msprop:Generator_ColumnVarNameInTable="columnCustomerId" type="xs:string" minOccurs="0" />
-              <xs:element name="CustomerName" msprop:Generator_UserColumnName="CustomerName" msprop:Generator_ColumnPropNameInTable="CustomerNameColumn" msprop:Generator_ColumnPropNameInRow="CustomerName" msprop:Generator_ColumnVarNameInTable="columnCustomerName" type="xs:string" minOccurs="0" />
-              <xs:element name="CashAmt" msprop:Generator_UserColumnName="CashAmt" msprop:Generator_ColumnPropNameInTable="CashAmtColumn" msprop:Generator_ColumnPropNameInRow="CashAmt" msprop:Generator_ColumnVarNameInTable="columnCashAmt" type="xs:string" minOccurs="0" />
-              <xs:element name="CheckInRegNo" msprop:Generator_UserColumnName="CheckInRegNo" msprop:Generator_ColumnPropNameInTable="CheckInRegNoColumn" msprop:Generator_ColumnPropNameInRow="CheckInRegNo" msprop:Generator_ColumnVarNameInTable="columnCheckInRegNo" type="xs:string" minOccurs="0" />
-              <xs:element name="DriverLicense" msprop:Generator_UserColumnName="DriverLicense" msprop:Generator_ColumnPropNameInTable="DriverLicenseColumn" msprop:Generator_ColumnPropNameInRow="DriverLicense" msprop:Generator_ColumnVarNameInTable="columnDriverLicense" type="xs:string" minOccurs="0" />
-              <xs:element name="DriverName" msprop:Generator_UserColumnName="DriverName" msprop:Generator_ColumnPropNameInTable="DriverNameColumn" msprop:Generator_ColumnPropNameInRow="DriverName" msprop:Generator_ColumnVarNameInTable="columnDriverName" type="xs:string" minOccurs="0" />
-              <xs:element name="WeightCategory" msprop:Generator_UserColumnName="WeightCategory" msprop:Generator_ColumnPropNameInTable="WeightCategoryColumn" msprop:Generator_ColumnPropNameInRow="WeightCategory" msprop:Generator_ColumnVarNameInTable="columnWeightCategory" type="xs:string" minOccurs="0" />
+              <xs:element name="CustomerName" msprop:Generator_ColumnPropNameInRow="CustomerName" msprop:Generator_ColumnPropNameInTable="CustomerNameColumn" msprop:Generator_ColumnVarNameInTable="columnCustomerName" msprop:Generator_UserColumnName="CustomerName" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

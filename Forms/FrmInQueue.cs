@@ -16,12 +16,12 @@ using Syncfusion.Windows.Forms.Tools.Win32API;
 
 namespace TMS_Weight.Forms
 {
-    public partial class FrmQueue : Form
+    public partial class FrmInQueue : Form
     {
 
         SerialPort _serialPort= new SerialPort();
        
-        public FrmQueue(WeightBridgeQueue queue)
+        public FrmInQueue(WeightBridgeQueue queue)
         {
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Metro;
             InitializeComponent();
@@ -181,7 +181,7 @@ namespace TMS_Weight.Forms
                         // Return the weight in grams (e.g., "20G")
 
                         if (weight > 0)
-                            return weight.ToString("F2") + " g";
+                            return weight.ToString("F2") + " KG";
                     }
                 }
             }
@@ -208,7 +208,7 @@ namespace TMS_Weight.Forms
             if (result == DialogResult.Yes)
             {
                 BtnDisable();
-                ResponseMessage msg = await SaveServiceBillForQueue();
+                ResponseMessage msg = await SaveServiceBillForInQueue();
                 if (msg.Status)
                 {
 

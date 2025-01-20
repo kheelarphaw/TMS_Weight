@@ -21,6 +21,8 @@ namespace TMS_Weight.Forms
             ValidUser();
             //lblGate.Text =Properties.Settings.Default.Gate;
             lblLogin.Text = lblLogin.Text + " (" + Properties.Settings.Default.WBCode + ")";
+            txtUserName.Text = "admin@gmail.com";
+            txtPassword.Text = "Password@123";
 
         }
 
@@ -38,6 +40,8 @@ namespace TMS_Weight.Forms
                     LoginUser loginUser = new LoginUser();
                     loginUser.Email = txtUserName.Text;
                     loginUser.Password = txtPassword.Text;
+                    loginUser.YardCode = Properties.Settings.Default.YardCode;
+                    loginUser.Operation = Properties.Settings.Default.WBCode;
                     btnLogin.Enabled = false;
                     btnQuit.Enabled = false;
                     AuthResponse msg = new AuthResponse();

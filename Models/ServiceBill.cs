@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TMS_Weight.Models
 {
-    public class WeightServiceBill
+    public class ServiceBill
     {
-        public string ServiceBillNo { get; set; } 
+        public string ServiceBillNo { get; set; }
         public string WeightBridgeID { get; set; }
         public DateTime? ServiceBillDate { get; set; }
         public DateTime? InWeightTime { get; set; }
@@ -25,7 +24,6 @@ namespace TMS_Weight.Models
         public string CardNo { get; set; }
         public string WeightOption { get; set; }
         public string BillOption { get; set; }
-        public string CustomerId { get; set; }
         public string CustomerName { get; set; }
         public decimal InWeightCash { get; set; }
         public decimal OutWeightCash { get; set; }
@@ -40,17 +38,6 @@ namespace TMS_Weight.Models
         public string YardID { get; set; }
         public string GateID { get; set; }
         public string Remark { get; set; }
-        public string Address { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
-        public string CustomerAddress { get; set; }
-        public string CustomerPhone { get; set; }
-        public string CustomerFax { get; set; }
-
-        public string CreatedUser { get; set; }
-
-        public string UpdatedUser { get; set; }
-
-
+        public string Status { get; set; }
     }
 }

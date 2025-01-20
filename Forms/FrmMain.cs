@@ -57,7 +57,10 @@ namespace TMS_Weight.Forms
 
         private void toolStripBtnPsw_Click(object sender, EventArgs e)
         {
+            panelMain.Controls.Clear();
+            var ctl = new CtlChangePsw() { Dock = DockStyle.Fill };
 
+            panelMain.Controls.Add(ctl);
         }
 
         private void toolStripBtnLogout_Click(object sender, EventArgs e)

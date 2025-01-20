@@ -1,14 +1,14 @@
 ﻿using Syncfusion.Windows.Forms;
 using Syncfusion.WinForms.DataGrid;
+using Syncfusion.WinForms.DataGridConverter;
+using Syncfusion.XlsIO;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 using TMS_Weight.Models;
 
@@ -30,24 +30,35 @@ namespace TMS_Weight.Forms
                 HeaderText = "CheckInNo",
                 Width = 100
             });
+
             this.sfInQueueGrid.Columns.Add(new GridTextColumn()
             {
                 MappingName = "Type",
                 HeaderText = "Type",
                 Width = 50
             });
+
             this.sfInQueueGrid.Columns.Add(new GridTextColumn()
             {
                 MappingName = "CardNo",
                 HeaderText = "Card No",
                 Width = 100
             });
+
             this.sfInQueueGrid.Columns.Add(new GridTextColumn()
             {
                 MappingName = "TruckVehicleRegNo",
                 HeaderText = "Truck No",
                 Width = 100
             });
+
+            this.sfInQueueGrid.Columns.Add(new GridTextColumn()
+            {
+                MappingName = "InGatePassTime",
+                HeaderText = "InGate Pass Time",
+                Width = 150
+            });
+
             this.sfInQueueGrid.Columns.Add(new GridTextColumn()
             {
                 MappingName = "TrailerVehicleRegNo",
@@ -120,13 +131,13 @@ namespace TMS_Weight.Forms
 
         private void btnEnabled()
         {
-            this.sfbtnExport.Enabled = true;
+            this.sfbtnInExport.Enabled = true;
             this.sfBtnInWeight.Enabled = true;
         }
 
         private void btnDisabled()
         {
-            this.sfbtnExport.Enabled = false;
+            this.sfbtnInExport.Enabled = false;
             this.sfBtnInWeight.Enabled = false;
         }
 
@@ -143,7 +154,7 @@ namespace TMS_Weight.Forms
                 {
                     this.sfInQueueGrid.SelectedIndex = -1;
 
-                    FrmQueue f = new FrmQueue(queue);
+                    FrmInQueue f = new FrmInQueue(queue);
 
                     // Show the form as a dialog
                     f.ShowDialog();
@@ -185,6 +196,55 @@ namespace TMS_Weight.Forms
 
         }
 
+        private void sfbtnInExport_Click(object sender, EventArgs e)
+        {
+            if (sfInQueueGrid.View != null)
+            {
+                var options = new ExcelExportingOptions
+                {
+                    ExcelVersion = ExcelVersion.Excel2013
+                };
+                var excelEngine = this.sfInQueueGrid.ExportToExcel(sfInQueueGrid.View, options);
+                var workBook = excelEngine.Excel.Workbooks[0];
+
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "Excel 97 to 2003 Files(*.xls)|*.xls|Excel 2007 to 2010 Files(*.xlsx)|*.xlsx|Excel 2013 File(*.xlsx)|*.xlsx",
+                    FilterIndex = 2
+                })
+                {
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        using (Stream stream = saveFileDialog.OpenFile())
+                        {
+                            switch (saveFileDialog.FilterIndex)
+                            {
+                                case 1:
+                                    workBook.Version = ExcelVersion.Excel97to2003;
+                                    break;
+                                case 2:
+                                    workBook.Version = ExcelVersion.Excel2010;
+                                    break;
+                                case 3:
+                                    workBook.Version = ExcelVersion.Excel2013;
+                                    break;
+                            }
+                            workBook.SaveAs(stream);
+                        }
+
+                        if (MessageBox.Show("Do you want to view the workbook?", "Export Successful",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                        {
+                            System.Diagnostics.Process.Start(saveFileDialog.FileName);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBoxAdv.Show(this, "No Data!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }
 

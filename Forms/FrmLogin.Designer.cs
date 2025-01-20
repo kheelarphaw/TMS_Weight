@@ -87,9 +87,9 @@ namespace TMS_Weight.Forms
             this.panel3.BackColor = System.Drawing.SystemColors.Menu;
             this.panel3.Controls.Add(this.txtPassword);
             this.panel3.Controls.Add(this.pictureBox3);
-            this.panel3.Location = new System.Drawing.Point(165, 254);
+            this.panel3.Location = new System.Drawing.Point(195, 254);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(375, 48);
+            this.panel3.Size = new System.Drawing.Size(430, 48);
             this.panel3.TabIndex = 11;
             // 
             // txtPassword
@@ -119,7 +119,7 @@ namespace TMS_Weight.Forms
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Stencil", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.lblTitle.Location = new System.Drawing.Point(378, 88);
+            this.lblTitle.Location = new System.Drawing.Point(502, 78);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(573, 39);
             this.lblTitle.TabIndex = 20;
@@ -129,7 +129,7 @@ namespace TMS_Weight.Forms
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(872, 652);
+            this.label5.Location = new System.Drawing.Point(857, 644);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(123, 25);
             this.label5.TabIndex = 19;
@@ -140,9 +140,9 @@ namespace TMS_Weight.Forms
             this.panel1.BackColor = System.Drawing.SystemColors.Menu;
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.txtUserName);
-            this.panel1.Location = new System.Drawing.Point(167, 175);
+            this.panel1.Location = new System.Drawing.Point(197, 175);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(375, 48);
+            this.panel1.Size = new System.Drawing.Size(430, 48);
             this.panel1.TabIndex = 10;
             // 
             // pictureBox2
@@ -172,7 +172,7 @@ namespace TMS_Weight.Forms
             this.label7.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(879, 681);
+            this.label7.Location = new System.Drawing.Point(871, 679);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(69, 18);
             this.label7.TabIndex = 22;
@@ -182,7 +182,7 @@ namespace TMS_Weight.Forms
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(872, 630);
+            this.label4.Location = new System.Drawing.Point(856, 617);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(340, 25);
             this.label4.TabIndex = 18;
@@ -203,7 +203,7 @@ namespace TMS_Weight.Forms
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(15, 264);
+            this.label3.Location = new System.Drawing.Point(18, 264);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(142, 29);
             this.label3.TabIndex = 5;
@@ -213,7 +213,7 @@ namespace TMS_Weight.Forms
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 185);
+            this.label1.Location = new System.Drawing.Point(16, 185);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(158, 29);
             this.label1.TabIndex = 0;
@@ -225,7 +225,7 @@ namespace TMS_Weight.Forms
             this.btnQuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuit.ForeColor = System.Drawing.SystemColors.Control;
             this.btnQuit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnQuit.Location = new System.Drawing.Point(342, 325);
+            this.btnQuit.Location = new System.Drawing.Point(369, 325);
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(128, 46);
             this.btnQuit.TabIndex = 8;
@@ -239,7 +239,7 @@ namespace TMS_Weight.Forms
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.SystemColors.Control;
             this.btnLogin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLogin.Location = new System.Drawing.Point(183, 325);
+            this.btnLogin.Location = new System.Drawing.Point(210, 325);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(128, 46);
             this.btnLogin.TabIndex = 7;
@@ -249,7 +249,7 @@ namespace TMS_Weight.Forms
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel2.BackColor = System.Drawing.Color.Azure;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.panel1);
@@ -259,9 +259,9 @@ namespace TMS_Weight.Forms
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.btnQuit);
             this.panel2.Controls.Add(this.btnLogin);
-            this.panel2.Location = new System.Drawing.Point(266, 180);
+            this.panel2.Location = new System.Drawing.Point(335, 165);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(593, 449);
+            this.panel2.Size = new System.Drawing.Size(651, 429);
             this.panel2.TabIndex = 17;
             // 
             // pictureBox1
@@ -276,7 +276,7 @@ namespace TMS_Weight.Forms
             // pictureBox4
             // 
             this.pictureBox4.Image = global::TMS_Weight.Properties.Resources.logo11;
-            this.pictureBox4.Location = new System.Drawing.Point(88, 53);
+            this.pictureBox4.Location = new System.Drawing.Point(214, 43);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(294, 108);
             this.pictureBox4.TabIndex = 21;
@@ -286,7 +286,7 @@ namespace TMS_Weight.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1300, 753);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.lblTitle);

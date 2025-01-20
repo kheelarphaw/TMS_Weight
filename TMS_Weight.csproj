@@ -90,6 +90,9 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Syncfusion.Compression.Base, Version=27.1462.58.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Compression.Base.27.1.58\lib\net462\Syncfusion.Compression.Base.dll</HintPath>
+    </Reference>
     <Reference Include="Syncfusion.Core.WinForms, Version=27.1462.58.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>packages\Syncfusion.Core.WinForms.27.1.58\lib\net462\Syncfusion.Core.WinForms.dll</HintPath>
     </Reference>
@@ -111,8 +114,14 @@
     <Reference Include="Syncfusion.Licensing, Version=27.1462.58.0, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
       <HintPath>packages\Syncfusion.Licensing.27.1.58\lib\net462\Syncfusion.Licensing.dll</HintPath>
     </Reference>
+    <Reference Include="Syncfusion.Pdf.Base, Version=27.1462.58.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Pdf.WinForms.27.1.58\lib\net462\Syncfusion.Pdf.Base.dll</HintPath>
+    </Reference>
     <Reference Include="Syncfusion.SfDataGrid.WinForms, Version=27.1462.58.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>packages\Syncfusion.SfDataGrid.WinForms.27.1.58\lib\net462\Syncfusion.SfDataGrid.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfDataGridConverter.WinForms, Version=27.1462.58.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.DataGridExport.WinForms.27.1.58\lib\net462\Syncfusion.SfDataGridConverter.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfInput.WinForms, Version=27.1462.58.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>packages\Syncfusion.SfInput.WinForms.27.1.58\lib\net462\Syncfusion.SfInput.WinForms.dll</HintPath>
@@ -134,6 +143,9 @@
     </Reference>
     <Reference Include="Syncfusion.Tools.Windows, Version=27.1462.58.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>packages\Syncfusion.Tools.Windows.27.1.58\lib\net462\Syncfusion.Tools.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.XlsIO.Base, Version=27.1462.58.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.XlsIO.WinForms.27.1.58\lib\net462\Syncfusion.XlsIO.Base.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
@@ -179,6 +191,12 @@
     <Compile Include="Forms\CtlAdHoc.Designer.cs">
       <DependentUpon>CtlAdHoc.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CtlChangePsw.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CtlChangePsw.Designer.cs">
+      <DependentUpon>CtlChangePsw.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CtlInQueue.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -209,17 +227,23 @@
     <Compile Include="Forms\FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmOutQueue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmOutQueue.Designer.cs">
+      <DependentUpon>FrmOutQueue.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmServiceBillPrint.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FrmServiceBillPrint.Designer.cs">
       <DependentUpon>FrmServiceBillPrint.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FrmQueue.cs">
+    <Compile Include="Forms\FrmInQueue.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FrmQueue.Designer.cs">
-      <DependentUpon>FrmQueue.cs</DependentUpon>
+    <Compile Include="Forms\FrmInQueue.Designer.cs">
+      <DependentUpon>FrmInQueue.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMainold.cs">
       <SubType>Form</SubType>
@@ -228,9 +252,12 @@
       <DependentUpon>FrmMainold.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AuthResponse.cs" />
+    <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Gate.cs" />
     <Compile Include="Models\LoginUser.cs" />
+    <Compile Include="Models\Networking.cs" />
     <Compile Include="Models\ResponseMessage.cs" />
+    <Compile Include="Models\ServiceBill.cs" />
     <Compile Include="Models\Transporter.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Models\WeightBridgeQueue.cs" />
@@ -247,6 +274,9 @@
     <EmbeddedResource Include="Forms\CtlAdHoc.resx">
       <DependentUpon>CtlAdHoc.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CtlChangePsw.resx">
+      <DependentUpon>CtlChangePsw.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CtlInQueue.resx">
       <DependentUpon>CtlInQueue.cs</DependentUpon>
     </EmbeddedResource>
@@ -262,8 +292,11 @@
     <EmbeddedResource Include="Forms\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FrmQueue.resx">
-      <DependentUpon>FrmQueue.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FrmOutQueue.resx">
+      <DependentUpon>FrmOutQueue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmInQueue.resx">
+      <DependentUpon>FrmInQueue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmServiceBillPrint.resx">
       <DependentUpon>FrmServiceBillPrint.cs</DependentUpon>

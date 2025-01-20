@@ -1,10 +1,13 @@
 ﻿using Syncfusion.Windows.Forms;
 using Syncfusion.WinForms.DataGrid;
+using Syncfusion.WinForms.DataGridConverter;
+using Syncfusion.XlsIO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +22,7 @@ namespace TMS_Weight.Forms
         {
             InitializeComponent();
             this.sfSBGrid.Style.HeaderStyle.BackColor = Color.SteelBlue;
+
             this.sfSBGrid.Columns.Add(new GridDateTimeColumn()
             {
                 MappingName = "ServiceBillDate",
@@ -26,12 +30,42 @@ namespace TMS_Weight.Forms
                 Format = "dd/MM/yyyy hh:mm:ss",
                 Width = 150
             });
+
+            this.sfSBGrid.Columns.Add(new GridTextColumn()
+            {
+                MappingName = "TruckNo",
+                HeaderText = "Truck",
+                Width = 80
+            });
+
+            this.sfSBGrid.Columns.Add(new GridTextColumn()
+            {
+                MappingName = "CardNo",
+                HeaderText = "Card No",
+                Width = 100
+            });
+
+            this.sfSBGrid.Columns.Add(new GridTextColumn()
+            {
+                MappingName = "TrailerNo",
+                HeaderText = "Trailer",
+                Width = 80
+            });
+
+            this.sfSBGrid.Columns.Add(new GridTextColumn()
+            {
+                MappingName = "CustomerName",
+                HeaderText = "Customer",
+                Width = 300
+            });
+
             this.sfSBGrid.Columns.Add(new GridTextColumn()
             {
                 MappingName = "InWeightTime",
                 HeaderText = "In Weight Time",
                 Width = 150
             });
+
             this.sfSBGrid.Columns.Add(new GridTextColumn()
             {
                 MappingName = "OutWeightTime",
@@ -42,14 +76,16 @@ namespace TMS_Weight.Forms
             {
                 MappingName = "InWeight",
                 HeaderText = "Weighing In",
-                Width = 150
+                Width = 150,
             });
+
             this.sfSBGrid.Columns.Add(new GridTextColumn()
             {
                 MappingName = "OutWeight",
                 HeaderText = "Weighing Out",
                 Width = 150
             });
+
             this.sfSBGrid.Columns.Add(new GridTextColumn()
             {
                 MappingName = "NetWeight",
@@ -59,41 +95,74 @@ namespace TMS_Weight.Forms
 
             this.sfSBGrid.Columns.Add(new GridTextColumn()
             {
+                MappingName = "InWeightCash",
+                HeaderText = "In Weight Cash",
+                Width = 150
+            });
+
+            this.sfSBGrid.Columns.Add(new GridTextColumn()
+            {
+                MappingName = "OutWeightCash",
+                HeaderText = "Out Weight Cash",
+                Width = 150
+            });
+
+            this.sfSBGrid.Columns.Add(new GridTextColumn()
+            {
+                MappingName = "Status",
+                HeaderText = "Status",
+                Width = 100
+            });
+
+            this.sfSBGrid.Columns.Add(new GridTextColumn()
+            {
                 MappingName = "WeightBridgeID",
                 HeaderText = "Weight Bridge",
                 Width = 150
             });
+
             this.sfSBGrid.Columns.Add(new GridTextColumn()
             {
                 MappingName = "GateID",
                 HeaderText = "Gate",
                 Width = 150
             });
+
             this.sfSBGrid.Columns.Add(new GridTextColumn()
             {
                 MappingName = "YardID",
                 HeaderText = "Yard",
                 Width = 150
             });
+
             this.sfSBGrid.Columns.Add(new GridTextColumn()
             {
                 MappingName = "DriverName",
                 HeaderText = "Driver Name",
-                Width = 150
+                Width = 120
             });
 
             this.sfSBGrid.Columns.Add(new GridTextColumn()
             {
-                MappingName = "WBOption",
-                HeaderText = "Weight Bridge Option",
-                Width = 150
+                MappingName = "WeightOption",
+                HeaderText = "Weight Option",
+                Width = 120
             });
+
             this.sfSBGrid.Columns.Add(new GridTextColumn()
             {
                 MappingName = "BillOption",
                 HeaderText = "Bill Option",
-                Width = 150
+                Width = 100
             });
+
+            this.sfSBGrid.Columns.Add(new GridTextColumn()
+            {
+                MappingName = "WeightCategory",
+                HeaderText = "Weight Category",
+                Width = 120
+            });
+
             this.sfSBGrid.Columns.Add(new GridTextColumn()
             {
                 MappingName = "CargoInfo",
@@ -103,9 +172,37 @@ namespace TMS_Weight.Forms
 
             this.sfSBGrid.Columns.Add(new GridTextColumn()
             {
+                MappingName = "ContainerNo",
+                HeaderText = "Container",
+                Width = 200
+            });
+
+            this.sfSBGrid.Columns.Add(new GridTextColumn()
+            {
+                MappingName = "BLNo",
+                HeaderText = "BL No",
+                Width = 100
+            });
+
+            this.sfSBGrid.Columns.Add(new GridTextColumn()
+            {
+                MappingName = "TransporterID",
+                HeaderText = "Transporter",
+                Width = 100
+            });
+
+            this.sfSBGrid.Columns.Add(new GridTextColumn()
+            {
                 MappingName = "Remark",
                 HeaderText = "Remark",
                 Width = 150
+            });
+
+            this.sfSBGrid.Columns.Add(new GridTextColumn()
+            {
+                MappingName = "ServiceBillNo",
+                HeaderText = "Service Bill No",
+                Width = 170
             });
 
         }
@@ -124,6 +221,7 @@ namespace TMS_Weight.Forms
 
         private async void sfBtnSBView_Click(object sender, EventArgs e)
         {
+            this.sfSBGrid.AllowResizingColumns = true;
             ResponseMessage msg = await GetServiceBill();
             if (msg.Status)
             {
@@ -186,6 +284,56 @@ namespace TMS_Weight.Forms
                 {
                     // Do something
                 }
+            }
+        }
+
+        private void sfbtnInExport_Click(object sender, EventArgs e)
+        {
+            if (sfSBGrid.View != null)
+            {
+                var options = new ExcelExportingOptions
+                {
+                    ExcelVersion = ExcelVersion.Excel2013
+                };
+                var excelEngine = this.sfSBGrid.ExportToExcel(sfSBGrid.View, options);
+                var workBook = excelEngine.Excel.Workbooks[0];
+
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "Excel 97 to 2003 Files(*.xls)|*.xls|Excel 2007 to 2010 Files(*.xlsx)|*.xlsx|Excel 2013 File(*.xlsx)|*.xlsx",
+                    FilterIndex = 2
+                })
+                {
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        using (Stream stream = saveFileDialog.OpenFile())
+                        {
+                            switch (saveFileDialog.FilterIndex)
+                            {
+                                case 1:
+                                    workBook.Version = ExcelVersion.Excel97to2003;
+                                    break;
+                                case 2:
+                                    workBook.Version = ExcelVersion.Excel2010;
+                                    break;
+                                case 3:
+                                    workBook.Version = ExcelVersion.Excel2013;
+                                    break;
+                            }
+                            workBook.SaveAs(stream);
+                        }
+
+                        if (MessageBox.Show("Do you want to view the workbook?", "Export Successful",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                        {
+                            System.Diagnostics.Process.Start(saveFileDialog.FileName);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBoxAdv.Show(this, "No Data!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

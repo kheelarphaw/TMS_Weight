@@ -48,19 +48,19 @@ namespace TMS_Weight.Forms
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "TMS_Weight.RDLC.WeightReport.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(16, 12);
             this.reportViewer1.Margin = new System.Windows.Forms.Padding(5);
-            this.reportViewer1.MaximumSize = new System.Drawing.Size(1240, 733);
-            this.reportViewer1.MinimumSize = new System.Drawing.Size(1240, 733);
+            this.reportViewer1.MaximumSize = new System.Drawing.Size(1300, 800);
+            this.reportViewer1.MinimumSize = new System.Drawing.Size(1300, 800);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.ShowZoomControl = false;
-            this.reportViewer1.Size = new System.Drawing.Size(1240, 733);
+            this.reportViewer1.Size = new System.Drawing.Size(1300, 800);
             this.reportViewer1.TabIndex = 0;
             // 
             // FrmServiceBillPrint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1268, 757);
+            this.ClientSize = new System.Drawing.Size(1326, 826);
             this.Controls.Add(this.reportViewer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmServiceBillPrint";

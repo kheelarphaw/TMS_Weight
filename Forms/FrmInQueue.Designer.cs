@@ -10,7 +10,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace TMS_Weight.Forms
 {
-    partial class FrmQueue
+    partial class FrmInQueue
     {
         /// <summary>
         /// Required designer variable.
@@ -57,7 +57,7 @@ namespace TMS_Weight.Forms
             this.cardNo = queue.CardNo;
          
         }
-        private async Task<ResponseMessage> SaveServiceBillForQueue()
+        private async Task<ResponseMessage> SaveServiceBillForInQueue()
         {
             ResponseMessage msg = new ResponseMessage();
 
@@ -88,13 +88,14 @@ namespace TMS_Weight.Forms
 
 
             serviceBill.YardID = this.txtYard.Text;
+            serviceBill.CreatedUser = CommonData.userName;
 
 
             // Extract the numeric value using regex
             string wvalue = System.Text.RegularExpressions.Regex.Match(this.txtWeight.Text, @"\d+").Value;
 
             // Convert the extracted number string to an integer
-            int value = int.Parse(wvalue) / 1000;
+            int value = int.Parse(wvalue);
 
             DateTime d = DateTime.Now;
             string timeString = new TimeSpan(d.Hour, d.Minute, d.Second).ToString();
@@ -125,12 +126,12 @@ namespace TMS_Weight.Forms
             {
                 this.Close();
 
-                msg = await _apiService.SaveServiceBillForQueue(serviceBill);
+                msg = await _apiService.SaveServiceBillForInQueue(serviceBill);
             }
             else
             {
                 this.Close();
-                msg = await _apiService.UpdateServiceBillForQueue(serviceBill);
+                msg = await _apiService.UpdateServiceBillForOutQueue(serviceBill);
                 FrmServiceBillPrint f = new FrmServiceBillPrint(msg.ServiceBillNo.ToString());
                 f.Show();
             }
@@ -148,14 +149,13 @@ namespace TMS_Weight.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmQueue));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmInQueue));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnGetWeight = new Syncfusion.WinForms.Controls.SfButton();
-            this.lblWeight = new System.Windows.Forms.Label();
             this.txtWeight = new System.Windows.Forms.TextBox();
+            this.lblWeight = new System.Windows.Forms.Label();
             this.lblwbId = new System.Windows.Forms.Label();
             this.lblBlno = new System.Windows.Forms.Label();
-            this.lblRemark = new System.Windows.Forms.Label();
             this.lblVesselInfo = new System.Windows.Forms.Label();
             this.lblContainer = new System.Windows.Forms.Label();
             this.lblLicense = new System.Windows.Forms.Label();
@@ -195,6 +195,7 @@ namespace TMS_Weight.Forms
             this.btnCancel = new Syncfusion.WinForms.Controls.SfButton();
             this.btnSave = new Syncfusion.WinForms.Controls.SfButton();
             this.txtInCash = new System.Windows.Forms.TextBox();
+            this.lblRemark = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.pnHeader.SuspendLayout();
             this.SuspendLayout();
@@ -203,8 +204,8 @@ namespace TMS_Weight.Forms
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.btnGetWeight);
-            this.panel1.Controls.Add(this.lblWeight);
             this.panel1.Controls.Add(this.txtWeight);
+            this.panel1.Controls.Add(this.lblWeight);
             this.panel1.Location = new System.Drawing.Point(16, 562);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
@@ -228,26 +229,26 @@ namespace TMS_Weight.Forms
             this.btnGetWeight.UseVisualStyleBackColor = false;
             this.btnGetWeight.Click += new System.EventHandler(this.btnGetWeight_Click);
             // 
+            // txtWeight
+            // 
+            this.txtWeight.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtWeight.Location = new System.Drawing.Point(455, 24);
+            this.txtWeight.Margin = new System.Windows.Forms.Padding(4);
+            this.txtWeight.Multiline = true;
+            this.txtWeight.Name = "txtWeight";
+            this.txtWeight.Size = new System.Drawing.Size(263, 25);
+            this.txtWeight.TabIndex = 20;
+            // 
             // lblWeight
             // 
             this.lblWeight.AutoSize = true;
             this.lblWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWeight.Location = new System.Drawing.Point(312, 24);
+            this.lblWeight.Location = new System.Drawing.Point(324, 24);
             this.lblWeight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWeight.Name = "lblWeight";
             this.lblWeight.Size = new System.Drawing.Size(127, 25);
-            this.lblWeight.TabIndex = 32;
+            this.lblWeight.TabIndex = 83;
             this.lblWeight.Text = "Weighing In :";
-            // 
-            // txtWeight
-            // 
-            this.txtWeight.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtWeight.Location = new System.Drawing.Point(464, 24);
-            this.txtWeight.Margin = new System.Windows.Forms.Padding(4);
-            this.txtWeight.Multiline = true;
-            this.txtWeight.Name = "txtWeight";
-            this.txtWeight.Size = new System.Drawing.Size(253, 25);
-            this.txtWeight.TabIndex = 20;
             // 
             // lblwbId
             // 
@@ -270,17 +271,6 @@ namespace TMS_Weight.Forms
             this.lblBlno.Size = new System.Drawing.Size(83, 25);
             this.lblBlno.TabIndex = 84;
             this.lblBlno.Text = "B/L No :";
-            // 
-            // lblRemark
-            // 
-            this.lblRemark.AutoSize = true;
-            this.lblRemark.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRemark.Location = new System.Drawing.Point(13, 502);
-            this.lblRemark.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblRemark.Name = "lblRemark";
-            this.lblRemark.Size = new System.Drawing.Size(90, 25);
-            this.lblRemark.TabIndex = 83;
-            this.lblRemark.Text = "Remark :";
             // 
             // lblVesselInfo
             // 
@@ -702,6 +692,17 @@ namespace TMS_Weight.Forms
             this.txtInCash.Size = new System.Drawing.Size(258, 24);
             this.txtInCash.TabIndex = 12;
             // 
+            // lblRemark
+            // 
+            this.lblRemark.AutoSize = true;
+            this.lblRemark.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRemark.Location = new System.Drawing.Point(7, 502);
+            this.lblRemark.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRemark.Name = "lblRemark";
+            this.lblRemark.Size = new System.Drawing.Size(90, 25);
+            this.lblRemark.TabIndex = 81;
+            this.lblRemark.Text = "Remark :";
+            // 
             // FrmQueue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -713,8 +714,8 @@ namespace TMS_Weight.Forms
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblwbId);
             this.Controls.Add(this.lblBlno);
-            this.Controls.Add(this.lblRemark);
             this.Controls.Add(this.lblVesselInfo);
+            this.Controls.Add(this.lblRemark);
             this.Controls.Add(this.lblContainer);
             this.Controls.Add(this.lblLicense);
             this.Controls.Add(this.lblCategory);
@@ -755,7 +756,7 @@ namespace TMS_Weight.Forms
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmQueue";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Weight Queue";
+            this.Text = "Weight In Queue";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.pnHeader.ResumeLayout(false);
@@ -767,10 +768,9 @@ namespace TMS_Weight.Forms
 
         #endregion
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lblWeight;
         private System.Windows.Forms.Label lblwbId;
         private System.Windows.Forms.Label lblBlno;
-        private System.Windows.Forms.Label lblRemark;
+        private System.Windows.Forms.Label lblWeight;
         private System.Windows.Forms.Label lblVesselInfo;
         private System.Windows.Forms.Label lblContainer;
         private System.Windows.Forms.Label lblLicense;
@@ -812,5 +812,6 @@ namespace TMS_Weight.Forms
         private Syncfusion.WinForms.Controls.SfButton btnGetWeight;
         public System.Windows.Forms.TextBox txtWeight;
         public System.Windows.Forms.TextBox txtInCash;
+        private System.Windows.Forms.Label lblRemark;
     }
 }

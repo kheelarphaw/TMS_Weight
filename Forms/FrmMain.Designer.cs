@@ -39,21 +39,21 @@
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripBtnQuit = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripBtnInQueue = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripBtnOutQueue = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripBtnAdHoc = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripBtnBill = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripBtnPsw = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripBtnLogout = new System.Windows.Forms.ToolStripButton();
             this.panelMain = new System.Windows.Forms.Panel();
             this.pictureHome = new System.Windows.Forms.PictureBox();
-            this.toolStripBtnQuit = new System.Windows.Forms.ToolStripButton();
-            this.toolStripBtnInQueue = new System.Windows.Forms.ToolStripButton();
-            this.toolStripBtnOutQueue = new System.Windows.Forms.ToolStripButton();
-            this.toolStripBtnAdHoc = new System.Windows.Forms.ToolStripButton();
-            this.toolStripBtnBill = new System.Windows.Forms.ToolStripButton();
-            this.toolStripBtnPsw = new System.Windows.Forms.ToolStripButton();
-            this.toolStripBtnLogout = new System.Windows.Forms.ToolStripButton();
             this.panelTool.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -96,44 +96,44 @@
             this.changePasswordToolStripMenuItem,
             this.logOutToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(63, 35);
             this.fileToolStripMenuItem.Text = "File";
             this.fileToolStripMenuItem.Click += new System.EventHandler(this.fileToolStripMenuItem_Click);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(282, 36);
             this.quitToolStripMenuItem.Text = "Quit";
             // 
             // inToolStripMenuItem
             // 
             this.inToolStripMenuItem.Name = "inToolStripMenuItem";
-            this.inToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+            this.inToolStripMenuItem.Size = new System.Drawing.Size(282, 36);
             this.inToolStripMenuItem.Text = "In";
             // 
             // outToolStripMenuItem
             // 
             this.outToolStripMenuItem.Name = "outToolStripMenuItem";
-            this.outToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+            this.outToolStripMenuItem.Size = new System.Drawing.Size(282, 36);
             this.outToolStripMenuItem.Text = "Out";
             // 
             // adHocToolStripMenuItem
             // 
             this.adHocToolStripMenuItem.Name = "adHocToolStripMenuItem";
-            this.adHocToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+            this.adHocToolStripMenuItem.Size = new System.Drawing.Size(282, 36);
             this.adHocToolStripMenuItem.Text = "AdHoc";
             // 
             // changePasswordToolStripMenuItem
             // 
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(282, 36);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             // 
             // logOutToolStripMenuItem
             // 
             this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(282, 36);
             this.logOutToolStripMenuItem.Text = "LogOut";
             // 
             // toolStrip1
@@ -162,58 +162,6 @@
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "&Quit";
             // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 55);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 55);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 55);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 55);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 55);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 55);
-            // 
-            // panelMain
-            // 
-            this.panelMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelMain.Controls.Add(this.pictureHome);
-            this.panelMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelMain.Location = new System.Drawing.Point(0, 92);
-            this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(1310, 942);
-            this.panelMain.TabIndex = 2;
-            // 
-            // pictureHome
-            // 
-            this.pictureHome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureHome.Image = global::TMS_Weight.Properties.Resources.weight_logo;
-            this.pictureHome.Location = new System.Drawing.Point(26, 19);
-            this.pictureHome.Name = "pictureHome";
-            this.pictureHome.Size = new System.Drawing.Size(1251, 796);
-            this.pictureHome.TabIndex = 1;
-            this.pictureHome.TabStop = false;
-            // 
             // toolStripBtnQuit
             // 
             this.toolStripBtnQuit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -226,6 +174,11 @@
             this.toolStripBtnQuit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripBtnQuit.Click += new System.EventHandler(this.toolStripBtnQuit_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 55);
+            // 
             // toolStripBtnInQueue
             // 
             this.toolStripBtnInQueue.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -237,6 +190,11 @@
             this.toolStripBtnInQueue.Text = "I&n";
             this.toolStripBtnInQueue.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripBtnInQueue.Click += new System.EventHandler(this.toolStripBtnInQueue_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 55);
             // 
             // toolStripBtnOutQueue
             // 
@@ -251,6 +209,11 @@
             this.toolStripBtnOutQueue.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripBtnOutQueue.Click += new System.EventHandler(this.toolStripBtnOutQueue_Click);
             // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 55);
+            // 
             // toolStripBtnAdHoc
             // 
             this.toolStripBtnAdHoc.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -264,6 +227,11 @@
             this.toolStripBtnAdHoc.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripBtnAdHoc.Click += new System.EventHandler(this.toolStripBtnAdHoc_Click);
             // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 55);
+            // 
             // toolStripBtnBill
             // 
             this.toolStripBtnBill.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -276,6 +244,11 @@
             this.toolStripBtnBill.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripBtnBill.Click += new System.EventHandler(this.toolStripBtnBill_Click);
             // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 55);
+            // 
             // toolStripBtnPsw
             // 
             this.toolStripBtnPsw.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -286,6 +259,11 @@
             this.toolStripBtnPsw.Text = "Change Password";
             this.toolStripBtnPsw.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripBtnPsw.Click += new System.EventHandler(this.toolStripBtnPsw_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 55);
             // 
             // toolStripBtnLogout
             // 
@@ -298,6 +276,28 @@
             this.toolStripBtnLogout.Text = "LogOut";
             this.toolStripBtnLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripBtnLogout.Click += new System.EventHandler(this.toolStripBtnLogout_Click);
+            // 
+            // panelMain
+            // 
+            this.panelMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelMain.Controls.Add(this.pictureHome);
+            this.panelMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelMain.Location = new System.Drawing.Point(0, 81);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(1318, 942);
+            this.panelMain.TabIndex = 2;
+            // 
+            // pictureHome
+            // 
+            this.pictureHome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureHome.Image = global::TMS_Weight.Properties.Resources.weight_logo;
+            this.pictureHome.Location = new System.Drawing.Point(26, 19);
+            this.pictureHome.Name = "pictureHome";
+            this.pictureHome.Size = new System.Drawing.Size(1259, 796);
+            this.pictureHome.TabIndex = 1;
+            this.pictureHome.TabStop = false;
             // 
             // FrmMain
             // 

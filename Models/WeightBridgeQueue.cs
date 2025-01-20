@@ -28,16 +28,15 @@ namespace TMS_Weight.Models
 
         public string WBOption { get; set; }// Both, Single
         public string BillOption { get; set; }//Credit,Foc,Cash,None
-        //public int? WBillNo { get; set; }
         public string Customer { get; set; }
-        //public string JobCode { get; set; }
-        //public string JobDescription { get; set; }
-        //public DateTime? WeightDateTime { get; set; }
+    
         public string Status { get; set; }//Queue,Done
 
         public string BLNo { get; set; }
         public string ContainerNo { get; set; }
 
         public string PCCode { get; set; }
+
+        public DateTime? InGatePassTime { get; set; }
     }
 }

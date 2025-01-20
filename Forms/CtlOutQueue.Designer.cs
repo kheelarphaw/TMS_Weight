@@ -165,6 +165,7 @@ namespace TMS_Weight.Forms
             this.sfbtnExport.TabIndex = 30;
             this.sfbtnExport.Text = "Export";
             this.sfbtnExport.UseVisualStyleBackColor = false;
+            this.sfbtnExport.Click += new System.EventHandler(this.sfbtnExport_Click);
             // 
             // CtlOutQueue
             // 
