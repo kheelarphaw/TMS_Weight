@@ -10,6 +10,7 @@ namespace TMS_Weight.Models
     {
         public string ServiceBillNo { get; set; }
         public string WeightBridgeID { get; set; }
+        public string OutWeightBridgeID { get; set; }
         public DateTime? ServiceBillDate { get; set; }
         public DateTime? InWeightTime { get; set; }
         public DateTime? OutWeightTime { get; set; }

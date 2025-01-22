@@ -77,7 +77,7 @@ namespace TMS_Weight.Forms
             serviceBill.Remark = this.txtRemark.Text;
             serviceBill.CargoInfo = this.txtCargoInfo.Text;
             serviceBill.WeightType = this.txtWType.Text;
-            serviceBill.WeightBridgeID = this.txtWbId.Text;
+            serviceBill.OutWeightBridgeID = this.txtWbId.Text;
             serviceBill.WeightOption = this.txtwbOption.Text;
             serviceBill.BillOption = this.txtbilloption.Text;
             serviceBill.CardNo = this.cardNo;
@@ -546,6 +546,7 @@ namespace TMS_Weight.Forms
             this.txtInCash.Name = "txtInCash";
             this.txtInCash.Size = new System.Drawing.Size(290, 24);
             this.txtInCash.TabIndex = 103;
+            this.txtInCash.Text = "0";
             // 
             // txtDoNo
             // 

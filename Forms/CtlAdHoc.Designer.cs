@@ -93,8 +93,11 @@ namespace TMS_Weight.Forms
 
             WeightServiceBill serviceBill = new WeightServiceBill();
 
-            serviceBill.ServiceBillNo = ""; 
-            serviceBill.WeightBridgeID = this.txtwbId.Text;
+            serviceBill.ServiceBillNo = "";
+            // Retrieve the YardCode setting from Properties
+            serviceBill.YardID = Properties.Settings.Default.YardCode;
+            serviceBill.GateID = Properties.Settings.Default.GateCode;
+            serviceBill.OutWeightBridgeID = this.txtwbId.Text;
             serviceBill.WeightCategory = this.sfCbxCategory.SelectedItem.ToString();
             serviceBill.WeightOption = this.txtWOption.Text;
             serviceBill.WeightType = this.txtWType.Text;

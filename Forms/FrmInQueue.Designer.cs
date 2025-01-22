@@ -101,40 +101,19 @@ namespace TMS_Weight.Forms
             string timeString = new TimeSpan(d.Hour, d.Minute, d.Second).ToString();
             TimeSpan time = TimeSpan.Parse(timeString);// Time part 
 
-            if (serviceBill.WeightType == "In")
-            {
-                DateTime date = (DateTime)this.sfDate.Value; // Date part
-                //string timeString = this.txtTime.Text.ToString();
+            DateTime date = (DateTime)this.sfDate.Value; // Date part
+            //string timeString = this.txtTime.Text.ToString();
                 
-                serviceBill.InWeightTime = (date + time);
-                serviceBill.ServiceBillDate = serviceBill.InWeightTime;
+            serviceBill.InWeightTime = (date + time);
+            serviceBill.ServiceBillDate = serviceBill.InWeightTime;
 
 
-                serviceBill.InWeight = Convert.ToDecimal(value);
-            }
-            else
-            {
-                DateTime date = (DateTime)this.sfDate.Value; // Date part
-                //string timeString = this.txtTime.Text.ToString();
-                //TimeSpan time = TimeSpan.Parse(timeString);// Time part 
-                serviceBill.OutWeightTime = (date + time) ;
-                serviceBill.ServiceBillDate = serviceBill.OutWeightTime;
-                serviceBill.OutWeight = Convert.ToDecimal(value);
-            }
+            serviceBill.InWeight = Convert.ToDecimal(value);
+            serviceBill.NetWeight = Convert.ToDecimal(value);
+            
+            this.Close();
 
-            if(serviceBill.WeightType == "In")
-            {
-                this.Close();
-
-                msg = await _apiService.SaveServiceBillForInQueue(serviceBill);
-            }
-            else
-            {
-                this.Close();
-                msg = await _apiService.UpdateServiceBillForOutQueue(serviceBill);
-                FrmServiceBillPrint f = new FrmServiceBillPrint(msg.ServiceBillNo.ToString());
-                f.Show();
-            }
+            msg = await _apiService.SaveServiceBillForInQueue(serviceBill);
 
             return msg;
 
@@ -691,6 +670,7 @@ namespace TMS_Weight.Forms
             this.txtInCash.Name = "txtInCash";
             this.txtInCash.Size = new System.Drawing.Size(258, 24);
             this.txtInCash.TabIndex = 12;
+            this.txtInCash.Text = "0";
             // 
             // lblRemark
             // 
@@ -703,7 +683,7 @@ namespace TMS_Weight.Forms
             this.lblRemark.TabIndex = 81;
             this.lblRemark.Text = "Remark :";
             // 
-            // FrmQueue
+            // FrmInQueue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -754,7 +734,7 @@ namespace TMS_Weight.Forms
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "FrmQueue";
+            this.Name = "FrmInQueue";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Weight In Queue";
             this.panel1.ResumeLayout(false);

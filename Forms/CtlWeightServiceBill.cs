@@ -117,7 +117,14 @@ namespace TMS_Weight.Forms
             this.sfSBGrid.Columns.Add(new GridTextColumn()
             {
                 MappingName = "WeightBridgeID",
-                HeaderText = "Weight Bridge",
+                HeaderText = "In Weight Bridge",
+                Width = 150
+            });
+
+            this.sfSBGrid.Columns.Add(new GridTextColumn()
+            {
+                MappingName = "OutWeightBridgeID",
+                HeaderText = "Out Weight Bridge",
                 Width = 150
             });
 
