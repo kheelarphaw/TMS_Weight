@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -23,7 +24,11 @@ namespace TMS_Weight.Services
             AuthResponse info = new AuthResponse();
             string jsonData = JsonConvert.SerializeObject(login);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var httpClient = new HttpClient();
+            var handler = new HttpClientHandler
+            {
+                AutomaticDecompression = DecompressionMethods.GZip
+            };
+            HttpClient httpClient = new HttpClient(handler);
             var response = await httpClient.PostAsync($"{_baseAddress}/api/Account/GateLogin", content);
             if (response.IsSuccessStatusCode)
             {
@@ -43,7 +48,11 @@ namespace TMS_Weight.Services
             AuthResponse info = new AuthResponse();
             string jsonData = JsonConvert.SerializeObject(login);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var httpClient = new HttpClient();
+            var handler = new HttpClientHandler
+            {
+                AutomaticDecompression = DecompressionMethods.GZip
+            };
+            var httpClient = new HttpClient(handler);
             var response = await httpClient.PostAsync($"{_baseAddress}/api/Account/ResetPassword", content);
             if (response.IsSuccessStatusCode)
             {
@@ -66,9 +75,12 @@ namespace TMS_Weight.Services
         public async Task<List<WeightBridgeQueue>> GetWeightBridgeQueueList()
         {
             List<WeightBridgeQueue> wbqList = new List<WeightBridgeQueue>();
-            HttpClient client = new HttpClient();
-            //var response = await client.GetAsync($"{_baseAddress}/api/WeightSupport/GetWeightBridgeQueueList/?yard={yard}&gate={gate}");
-            var response = await client.GetAsync($"{_baseAddress}/api/WeightSupport/GetWeightBridgeQueueList");
+            var handler = new HttpClientHandler
+            {
+                AutomaticDecompression = DecompressionMethods.GZip
+            };
+            var httpClient = new HttpClient(handler);
+            var response = await httpClient.GetAsync($"{_baseAddress}/api/WeightSupport/GetWeightBridgeQueueList");
 
             if (response.IsSuccessStatusCode)
             {
@@ -82,8 +94,12 @@ namespace TMS_Weight.Services
         public async Task<List<WeightBridgeQueue>> GetWeighingInQueueList(string yard, string wbId)
         {
             List<WeightBridgeQueue> wbqList = new List<WeightBridgeQueue>();
-            HttpClient client = new HttpClient();
-            var response = await client.GetAsync($"{_baseAddress}/api/WeightSupport/GetWeighingInQueueList/?yard={yard}&wbId={wbId}");
+            var handler = new HttpClientHandler
+            {
+                AutomaticDecompression = DecompressionMethods.GZip
+            };
+            var httpClient = new HttpClient(handler);
+            var response = await httpClient.GetAsync($"{_baseAddress}/api/WeightSupport/GetWeighingInQueueList/?yard={yard}&wbId={wbId}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -97,8 +113,12 @@ namespace TMS_Weight.Services
         public async Task<List<WeightBridgeQueue>> GetWeighingOutQueueList(string yard, string wbId)
         {
             List<WeightBridgeQueue> wbqList = new List<WeightBridgeQueue>();
-            HttpClient client = new HttpClient();
-            var response = await client.GetAsync($"{_baseAddress}/api/WeightSupport/GetWeighingOutQueueList/?yard={yard}&wbId={wbId}");
+            var handler = new HttpClientHandler
+            {
+                AutomaticDecompression = DecompressionMethods.GZip
+            };
+            var httpClient = new HttpClient(handler);
+            var response = await httpClient.GetAsync($"{_baseAddress}/api/WeightSupport/GetWeighingOutQueueList/?yard={yard}&wbId={wbId}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -112,8 +132,12 @@ namespace TMS_Weight.Services
         public async Task<List<Transporter>> GetTransporterList()
         {
             List<Transporter> transporterList = new List<Transporter>();
-            HttpClient client = new HttpClient();
-            var response = await client.GetAsync($"{_baseAddress}/api/Master/GetTransporterList/?active={true}&isBlack={false}");
+            var handler = new HttpClientHandler
+            {
+                AutomaticDecompression = DecompressionMethods.GZip
+            };
+            var httpClient = new HttpClient(handler);
+            var response = await httpClient.GetAsync($"{_baseAddress}/api/Master/GetTransporterList/?active={true}&isBlack={false}");
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
@@ -125,8 +149,12 @@ namespace TMS_Weight.Services
         public async Task<List<Vehicle>> GetTruckList()
         {
             List<Vehicle> trailerList = new List<Vehicle>();
-            HttpClient client = new HttpClient();
-            var response = await client.GetAsync($"{_baseAddress}/api/WeightSupport/GetTruckList/?active={true}&isBlack={false}");
+            var handler = new HttpClientHandler
+            {
+                AutomaticDecompression = DecompressionMethods.GZip
+            };
+            var httpClient = new HttpClient(handler);
+            var response = await httpClient.GetAsync($"{_baseAddress}/api/WeightSupport/GetTruckList/?active={true}&isBlack={false}");
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
@@ -138,8 +166,12 @@ namespace TMS_Weight.Services
         public async Task<List<Vehicle>> GetTrailerList()
         {
             List<Vehicle> truckList = new List<Vehicle>();
-            HttpClient client = new HttpClient();
-            var response = await client.GetAsync($"{_baseAddress}/api/WeightSupport/GetTrailerList/?active={true}&isBlack={false}");
+            var handler = new HttpClientHandler
+            {
+                AutomaticDecompression = DecompressionMethods.GZip
+            };
+            var httpClient = new HttpClient(handler);
+            var response = await httpClient.GetAsync($"{_baseAddress}/api/WeightSupport/GetTrailerList/?active={true}&isBlack={false}");
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
@@ -152,8 +184,12 @@ namespace TMS_Weight.Services
         public async Task<List<Customer>> GetCustomerList()
         {
             List<Customer> cusList = new List<Customer>();
-            HttpClient client = new HttpClient();
-            var response = await client.GetAsync($"{_baseAddress}/api/WeightSupport/GetCustomerList");
+            var handler = new HttpClientHandler
+            {
+                AutomaticDecompression = DecompressionMethods.GZip
+            };
+            var httpClient = new HttpClient(handler);
+            var response = await httpClient.GetAsync($"{_baseAddress}/api/WeightSupport/GetCustomerList");
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
@@ -165,8 +201,12 @@ namespace TMS_Weight.Services
         public async Task<List<Gate>> GetGateList()
         {
             List<Gate> gateList = new List<Gate>();
-            HttpClient client = new HttpClient();
-            var response = await client.GetAsync($"{_baseAddress}/api/Master/GetGateList/?active={true}");
+            var handler = new HttpClientHandler
+            {
+                AutomaticDecompression = DecompressionMethods.GZip
+            };
+            var httpClient = new HttpClient(handler);
+            var response = await httpClient.GetAsync($"{_baseAddress}/api/Master/GetGateList/?active={true}");
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
@@ -178,8 +218,12 @@ namespace TMS_Weight.Services
         public async Task<List<Gate>> GetAllGateList()
         {
             List<Gate> gateList = new List<Gate>();
-            HttpClient client = new HttpClient();
-            var response = await client.GetAsync($"{_baseAddress}/api/Master/GetGateList/?active=All");
+            var handler = new HttpClientHandler
+            {
+                AutomaticDecompression = DecompressionMethods.GZip
+            };
+            var httpClient = new HttpClient(handler);
+            var response = await httpClient.GetAsync($"{_baseAddress}/api/Master/GetGateList/?active=All");
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
@@ -193,13 +237,17 @@ namespace TMS_Weight.Services
             ResponseMessage msg = new ResponseMessage();
             try
             {
-                using (HttpClient client = new HttpClient())
+                var handler = new HttpClientHandler
+                {
+                    AutomaticDecompression = DecompressionMethods.GZip
+                };
+                using (var httpClient = new HttpClient(handler))
                 {
                     var content = new StringContent(JsonConvert.SerializeObject(weightInfo));
                     content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
                     // Make the POST request
-                    var response = await client.PostAsync($"{_baseAddress}/api/WeightSupport/SaveServiceBillForAdHoc", content);
+                    var response = await httpClient.PostAsync($"{_baseAddress}/api/WeightSupport/SaveServiceBillForAdHoc", content);
                     if (response.IsSuccessStatusCode)
                     {
                         string result = await response.Content.ReadAsStringAsync();
@@ -227,13 +275,17 @@ namespace TMS_Weight.Services
             ResponseMessage msg = new ResponseMessage();
             try
             {
-                using (HttpClient client = new HttpClient())
+                var handler = new HttpClientHandler
+                {
+                    AutomaticDecompression = DecompressionMethods.GZip
+                };
+                using (var httpClient = new HttpClient(handler))
                 {
                     var content = new StringContent(JsonConvert.SerializeObject(weightInfo));
                     content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
                     // Make the POST request
-                    var response = await client.PostAsync($"{_baseAddress}/api/WeightSupport/SaveServiceBillForQueue", content);
+                    var response = await httpClient.PostAsync($"{_baseAddress}/api/WeightSupport/SaveServiceBillForQueue", content);
                     if (response.IsSuccessStatusCode)
                     {
                         string result = await response.Content.ReadAsStringAsync();
@@ -260,13 +312,18 @@ namespace TMS_Weight.Services
             ResponseMessage msg = new ResponseMessage();
             try
             {
-                using (HttpClient client = new HttpClient())
+
+                var handler = new HttpClientHandler
+                {
+                    AutomaticDecompression = DecompressionMethods.GZip
+                };
+                using (var httpClient = new HttpClient(handler))
                 {
                     var content = new StringContent(JsonConvert.SerializeObject(weightInfo));
                     content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
                     // Make the POST request
-                    var response = await client.PutAsync($"{_baseAddress}/api/WeightSupport/UpdateServiceBillForQueue", content);
+                    var response = await httpClient.PutAsync($"{_baseAddress}/api/WeightSupport/UpdateServiceBillForQueue", content);
                     if (response.IsSuccessStatusCode)
                     {
                         string result = await response.Content.ReadAsStringAsync();
@@ -290,8 +347,13 @@ namespace TMS_Weight.Services
         public async Task<List<ServiceBill>> GetServiceBillList(string fromDate)
         {
             List<ServiceBill> billList = new List<ServiceBill>();
-            HttpClient client = new HttpClient();
-            var response = await client.GetAsync($"{_baseAddress}/api/WeightSupport/GetServiceBillList/?fromDate={fromDate}");
+            var handler = new HttpClientHandler
+            {
+                AutomaticDecompression = DecompressionMethods.GZip
+            };
+            var httpClient = new HttpClient(handler);
+
+            var response = await httpClient.GetAsync($"{_baseAddress}/api/WeightSupport/GetServiceBillList/?fromDate={fromDate}");
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
@@ -304,8 +366,13 @@ namespace TMS_Weight.Services
         public async Task<WeightServiceBill> GetServiceBillPrintData(string serviceBillNo)
         {
             WeightServiceBill printData = new WeightServiceBill();
-            HttpClient client = new HttpClient();
-            var response = await client.GetAsync($"{_baseAddress}/api/WeightSupport/GetServiceBillPrintData/?id={serviceBillNo}");
+            var handler = new HttpClientHandler
+            {
+                AutomaticDecompression = DecompressionMethods.GZip
+            };
+            var httpClient = new HttpClient(handler);
+
+            var response = await httpClient.GetAsync($"{_baseAddress}/api/WeightSupport/GetServiceBillPrintData/?id={serviceBillNo}");
 
             if (response.IsSuccessStatusCode)
             {

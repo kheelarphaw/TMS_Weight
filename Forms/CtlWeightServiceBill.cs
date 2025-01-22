@@ -254,7 +254,7 @@ namespace TMS_Weight.Forms
                 //var outWeight = selectedRow.GetType().GetProperty("OutWeight")?.GetValue(selectedRow, null);
                 var status = selectedRow.GetType().GetProperty("Status")?.GetValue(selectedRow, null);
 
-                if (status != "In(Weight)")
+                if (status.ToString() != "In(Weight)")
                 {
                     FrmServiceBillPrint f = new FrmServiceBillPrint(id.ToString());
                     f.Show();
@@ -267,7 +267,7 @@ namespace TMS_Weight.Forms
                     DialogResult result = MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
                     {
-
+                        sfSBGrid.SelectedItem = null;
                     }
                     else
                     {
