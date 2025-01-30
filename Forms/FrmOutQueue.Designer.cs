@@ -105,9 +105,10 @@ namespace TMS_Weight.Forms
             msg = await _apiService.UpdateServiceBillForOutQueue(serviceBill);
             if(msg.Status)
             {
-                this.Close();
+                this.Hide();
                 FrmServiceBillPrint f = new FrmServiceBillPrint(msg.ServiceBillNo.ToString());
-                f.Show();
+                f.ShowDialog();
+                //f.Show();
             }
             else
             {
