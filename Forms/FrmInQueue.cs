@@ -56,7 +56,7 @@ namespace TMS_Weight.Forms
 
         private void btnGetWeight_Click(object sender, EventArgs e)
         {
-
+            if (_serialPort == null)
             PortIntial();
 
             btnSave.Enabled = false;
@@ -69,30 +69,28 @@ namespace TMS_Weight.Forms
             if (wdata == "Invalid weight data")
             {
                 _serialPort.Close();
-                btnGetWeight.Enabled = false;
+                btnGetWeight.Enabled = true;
 
             }
-            if (_serialPort.IsOpen)
-                _serialPort.Close();
-            txtWeight.Text = wdata;
-            btnGetWeight.Enabled = false;
+            else
+            {
+                if (_serialPort.IsOpen)
+                    _serialPort.Close();
+                txtWeight.Text = wdata;
+                //btnGetWeight.Enabled = false;
 
 
-            btnCancel.Enabled = true;
+                btnCancel.Enabled = true;
 
+                // Extract the numeric value using regex
+                string wvalue = System.Text.RegularExpressions.Regex.Match(wdata, @"\d+").Value;
 
-            ///Manual
-            //string wdata = "15700 g";
-            //txtWeight.Text = wdata;
-
-            // Extract the numeric value using regex
-            string wvalue = System.Text.RegularExpressions.Regex.Match(wdata, @"\d+").Value;
-
-            // Convert the extracted number string to an integer
-            int value = int.Parse(wvalue);
-            if (value > 0)
-                btnSave.Enabled = true;
-
+                // Convert the extracted number string to an integer
+                int value = int.Parse(wvalue);
+                if (value > 0)
+                    btnSave.Enabled = true;
+            }
+           
         }
 
         public void PortIntial()

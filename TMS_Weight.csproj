@@ -383,6 +383,9 @@
     <None Include="Assests\user %281%29.png" />
     <None Include="Assests\locked.png" />
     <None Include="Assests\rglhome.jpg" />
+    <None Include="Assests\Icon Experience\Icon Experience\iconexperience.com_collection1_application_basics\16x16\plain\delete.png" />
+    <None Include="Assests\Icon Experience\Icon Experience\iconexperience.com_collection1_application_basics\16x16\plain\document_edit.png" />
+    <None Include="Assests\power-off.png" />
     <Content Include="Assests\refresh.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

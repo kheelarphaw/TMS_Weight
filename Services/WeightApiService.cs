@@ -24,11 +24,13 @@ namespace TMS_Weight.Services
             AuthResponse info = new AuthResponse();
             string jsonData = JsonConvert.SerializeObject(login);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
             var handler = new HttpClientHandler
             {
-                AutomaticDecompression = DecompressionMethods.GZip
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
             };
             HttpClient httpClient = new HttpClient(handler);
+
             var response = await httpClient.PostAsync($"{_baseAddress}/api/Account/GateLogin", content);
             if (response.IsSuccessStatusCode)
             {
@@ -50,7 +52,7 @@ namespace TMS_Weight.Services
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var handler = new HttpClientHandler
             {
-                AutomaticDecompression = DecompressionMethods.GZip
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
             };
             var httpClient = new HttpClient(handler);
             var response = await httpClient.PostAsync($"{_baseAddress}/api/Account/ResetPassword", content);
@@ -68,6 +70,24 @@ namespace TMS_Weight.Services
             return info;
         }
 
+        public async Task<ResponseMessage> LogOutAsync(string logId)
+        {
+            ResponseMessage msg = new ResponseMessage();
+            string jsonData = JsonConvert.SerializeObject(logId);
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var handler = new HttpClientHandler
+            {
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
+            };
+            var httpClient = new HttpClient(handler);
+            var response = await httpClient.PutAsync($"{_baseAddress}/api/Account/LogOut/?logId={logId}", content);
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                msg = JsonConvert.DeserializeObject<ResponseMessage>(result);
+            }
+            return msg;
+        }
 
         #endregion
 
@@ -77,7 +97,7 @@ namespace TMS_Weight.Services
             List<WeightBridgeQueue> wbqList = new List<WeightBridgeQueue>();
             var handler = new HttpClientHandler
             {
-                AutomaticDecompression = DecompressionMethods.GZip
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
             };
             var httpClient = new HttpClient(handler);
             var response = await httpClient.GetAsync($"{_baseAddress}/api/WeightSupport/GetWeightBridgeQueueList");
@@ -96,7 +116,7 @@ namespace TMS_Weight.Services
             List<WeightBridgeQueue> wbqList = new List<WeightBridgeQueue>();
             var handler = new HttpClientHandler
             {
-                AutomaticDecompression = DecompressionMethods.GZip
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
             };
             var httpClient = new HttpClient(handler);
             var response = await httpClient.GetAsync($"{_baseAddress}/api/WeightSupport/GetWeighingInQueueList/?yard={yard}&wbId={wbId}");
@@ -115,7 +135,7 @@ namespace TMS_Weight.Services
             List<WeightBridgeQueue> wbqList = new List<WeightBridgeQueue>();
             var handler = new HttpClientHandler
             {
-                AutomaticDecompression = DecompressionMethods.GZip
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
             };
             var httpClient = new HttpClient(handler);
             var response = await httpClient.GetAsync($"{_baseAddress}/api/WeightSupport/GetWeighingOutQueueList/?yard={yard}&wbId={wbId}");
@@ -134,7 +154,7 @@ namespace TMS_Weight.Services
             List<Transporter> transporterList = new List<Transporter>();
             var handler = new HttpClientHandler
             {
-                AutomaticDecompression = DecompressionMethods.GZip
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
             };
             var httpClient = new HttpClient(handler);
             var response = await httpClient.GetAsync($"{_baseAddress}/api/Master/GetTransporterList/?active={true}&isBlack={false}");
@@ -151,7 +171,7 @@ namespace TMS_Weight.Services
             List<Vehicle> trailerList = new List<Vehicle>();
             var handler = new HttpClientHandler
             {
-                AutomaticDecompression = DecompressionMethods.GZip
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
             };
             var httpClient = new HttpClient(handler);
             var response = await httpClient.GetAsync($"{_baseAddress}/api/WeightSupport/GetTruckList/?active={true}&isBlack={false}");
@@ -168,7 +188,7 @@ namespace TMS_Weight.Services
             List<Vehicle> truckList = new List<Vehicle>();
             var handler = new HttpClientHandler
             {
-                AutomaticDecompression = DecompressionMethods.GZip
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
             };
             var httpClient = new HttpClient(handler);
             var response = await httpClient.GetAsync($"{_baseAddress}/api/WeightSupport/GetTrailerList/?active={true}&isBlack={false}");
@@ -186,7 +206,7 @@ namespace TMS_Weight.Services
             List<Customer> cusList = new List<Customer>();
             var handler = new HttpClientHandler
             {
-                AutomaticDecompression = DecompressionMethods.GZip
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
             };
             var httpClient = new HttpClient(handler);
             var response = await httpClient.GetAsync($"{_baseAddress}/api/WeightSupport/GetCustomerList");
@@ -203,7 +223,7 @@ namespace TMS_Weight.Services
             List<Gate> gateList = new List<Gate>();
             var handler = new HttpClientHandler
             {
-                AutomaticDecompression = DecompressionMethods.GZip
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
             };
             var httpClient = new HttpClient(handler);
             var response = await httpClient.GetAsync($"{_baseAddress}/api/Master/GetGateList/?active={true}");
@@ -220,7 +240,7 @@ namespace TMS_Weight.Services
             List<Gate> gateList = new List<Gate>();
             var handler = new HttpClientHandler
             {
-                AutomaticDecompression = DecompressionMethods.GZip
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
             };
             var httpClient = new HttpClient(handler);
             var response = await httpClient.GetAsync($"{_baseAddress}/api/Master/GetGateList/?active=All");
@@ -239,7 +259,7 @@ namespace TMS_Weight.Services
             {
                 var handler = new HttpClientHandler
                 {
-                    AutomaticDecompression = DecompressionMethods.GZip
+                    AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
                 };
                 using (var httpClient = new HttpClient(handler))
                 {
@@ -277,7 +297,7 @@ namespace TMS_Weight.Services
             {
                 var handler = new HttpClientHandler
                 {
-                    AutomaticDecompression = DecompressionMethods.GZip
+                    AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
                 };
                 using (var httpClient = new HttpClient(handler))
                 {
@@ -315,7 +335,7 @@ namespace TMS_Weight.Services
 
                 var handler = new HttpClientHandler
                 {
-                    AutomaticDecompression = DecompressionMethods.GZip
+                    AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
                 };
                 using (var httpClient = new HttpClient(handler))
                 {
@@ -349,7 +369,7 @@ namespace TMS_Weight.Services
             List<ServiceBill> billList = new List<ServiceBill>();
             var handler = new HttpClientHandler
             {
-                AutomaticDecompression = DecompressionMethods.GZip
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
             };
             var httpClient = new HttpClient(handler);
 
@@ -368,7 +388,7 @@ namespace TMS_Weight.Services
             WeightServiceBill printData = new WeightServiceBill();
             var handler = new HttpClientHandler
             {
-                AutomaticDecompression = DecompressionMethods.GZip
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
             };
             var httpClient = new HttpClient(handler);
 

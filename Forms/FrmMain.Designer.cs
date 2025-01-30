@@ -1,4 +1,8 @@
-﻿namespace TMS_Weight.Forms
+﻿using System.Threading.Tasks;
+using TMS_Weight.Models;
+using TMS_Weight.Services;
+
+namespace TMS_Weight.Forms
 {
     partial class FrmMain
     {
@@ -6,6 +10,7 @@
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+        private WeightApiService _apiService = new WeightApiService();
 
         /// <summary>
         /// Clean up any resources being used.
@@ -18,6 +23,16 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private async Task<ResponseMessage> LogOut()
+        {
+            ResponseMessage msg = new ResponseMessage();
+            if (CommonData.logId != null)
+            {
+                msg = await _apiService.LogOutAsync(CommonData.logId);
+            }
+            return msg;
         }
 
         #region Windows Form Designer generated code
@@ -33,9 +48,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.inToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.outToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.adHocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -68,73 +80,58 @@
             this.panelTool.Location = new System.Drawing.Point(0, 0);
             this.panelTool.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.panelTool.Name = "panelTool";
-            this.panelTool.Size = new System.Drawing.Size(1318, 34);
+            this.panelTool.Size = new System.Drawing.Size(1318, 35);
             this.panelTool.TabIndex = 0;
             // 
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.SteelBlue;
-            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(11, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1318, 39);
-            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Size = new System.Drawing.Size(1318, 35);
+            this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.quitToolStripMenuItem,
-            this.inToolStripMenuItem,
-            this.outToolStripMenuItem,
-            this.adHocToolStripMenuItem,
             this.changePasswordToolStripMenuItem,
             this.logOutToolStripMenuItem});
+            this.fileToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(63, 35);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(56, 31);
             this.fileToolStripMenuItem.Text = "File";
-            this.fileToolStripMenuItem.Click += new System.EventHandler(this.fileToolStripMenuItem_Click);
             // 
             // quitToolStripMenuItem
             // 
+            this.quitToolStripMenuItem.Image = global::TMS_Weight.Properties.Resources.delete;
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(282, 36);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(250, 32);
             this.quitToolStripMenuItem.Text = "Quit";
-            // 
-            // inToolStripMenuItem
-            // 
-            this.inToolStripMenuItem.Name = "inToolStripMenuItem";
-            this.inToolStripMenuItem.Size = new System.Drawing.Size(282, 36);
-            this.inToolStripMenuItem.Text = "In";
-            // 
-            // outToolStripMenuItem
-            // 
-            this.outToolStripMenuItem.Name = "outToolStripMenuItem";
-            this.outToolStripMenuItem.Size = new System.Drawing.Size(282, 36);
-            this.outToolStripMenuItem.Text = "Out";
-            // 
-            // adHocToolStripMenuItem
-            // 
-            this.adHocToolStripMenuItem.Name = "adHocToolStripMenuItem";
-            this.adHocToolStripMenuItem.Size = new System.Drawing.Size(282, 36);
-            this.adHocToolStripMenuItem.Text = "AdHoc";
+            this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
             // changePasswordToolStripMenuItem
             // 
+            this.changePasswordToolStripMenuItem.Image = global::TMS_Weight.Properties.Resources.document_edit;
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(282, 36);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(250, 32);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
+            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // logOutToolStripMenuItem
             // 
+            this.logOutToolStripMenuItem.Image = global::TMS_Weight.Properties.Resources.power_off;
             this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(282, 36);
-            this.logOutToolStripMenuItem.Text = "LogOut";
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(250, 32);
+            this.logOutToolStripMenuItem.Text = "Log Out";
+            this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
@@ -156,7 +153,7 @@
             this.toolStripSeparator8,
             this.toolStripBtnLogout});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStrip1.Location = new System.Drawing.Point(0, 34);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 35);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1318, 55);
             this.toolStrip1.TabIndex = 2;
@@ -283,7 +280,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelMain.Controls.Add(this.pictureHome);
             this.panelMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelMain.Location = new System.Drawing.Point(0, 81);
+            this.panelMain.Location = new System.Drawing.Point(0, 93);
             this.panelMain.Name = "panelMain";
             this.panelMain.Size = new System.Drawing.Size(1318, 942);
             this.panelMain.TabIndex = 2;
@@ -309,7 +306,6 @@
             this.Controls.Add(this.panelTool);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.Name = "FrmMain";
             this.Text = "RGL Weight Bridge";
@@ -329,14 +325,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panelTool;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem inToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem outToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem adHocToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripBtnQuit;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
@@ -353,5 +341,10 @@
         private System.Windows.Forms.ToolStripButton toolStripBtnLogout;
         private System.Windows.Forms.Panel panelMain;
         public System.Windows.Forms.PictureBox pictureHome;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
     }
 }

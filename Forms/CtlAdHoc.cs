@@ -109,7 +109,8 @@ namespace TMS_Weight.Forms
 
         private void sfBtnGetAdHocWeight_Click(object sender, EventArgs e)
         {
-            PortIntial();
+            if (_serialPort == null)
+                PortIntial();
 
             // serialPort
             if (!_serialPort.IsOpen)
@@ -118,29 +119,32 @@ namespace TMS_Weight.Forms
             if (wdata == "Invalid weight data")
             {
                 _serialPort.Close();
-                sfBtnGetAdHoc.Enabled = false;
+                sfBtnGetAdHoc.Enabled = true;
 
             }
-            if (_serialPort.IsOpen)
-                _serialPort.Close();
-            txtAdHocWeight.Text = wdata;
-            sfBtnGetAdHoc.Enabled = false;
+            else
+            {
+                if (_serialPort.IsOpen)
+                    _serialPort.Close();
+                txtAdHocWeight.Text = wdata;
+                //sfBtnGetAdHoc.Enabled = false;
 
 
-            btnAdHocCancel.Enabled = true;
+                btnAdHocCancel.Enabled = true;
 
 
-            ///Manual
-            //string wdata = "15700 g";
-            //txtAdHocWeight.Text = wdata;
+                ///Manual
+                //string wdata = "15700 g";
+                //txtAdHocWeight.Text = wdata;
 
-            // Extract the numeric value using regex
-            string wvalue = System.Text.RegularExpressions.Regex.Match(wdata, @"\d+").Value;
+                // Extract the numeric value using regex
+                string wvalue = System.Text.RegularExpressions.Regex.Match(wdata, @"\d+").Value;
 
-            // Convert the extracted number string to an integer
-            int value = int.Parse(wvalue);
-            if (value > 0)
-                btnAdHocSave.Enabled = true;
+                // Convert the extracted number string to an integer
+                int value = int.Parse(wvalue);
+                if (value > 0)
+                    btnAdHocSave.Enabled = true;
+            }
 
         }
 

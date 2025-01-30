@@ -53,6 +53,7 @@ namespace TMS_Weight.Forms
                         CommonData.userName = loginUser.Email;
                         CommonData.password = loginUser.Password;
                         CommonData.token = msg.Token;
+                        CommonData.logId = msg.LogId;
                         txtUserName.Text = string.Empty;
                         txtPassword.Text = string.Empty;
                         this.Hide();
