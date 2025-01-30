@@ -99,7 +99,7 @@ namespace TMS_Weight.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlOutQueue.BackColor = System.Drawing.SystemColors.Control;
             this.pnlOutQueue.Controls.Add(this.sfOutQueueGrid);
-            this.pnlOutQueue.Location = new System.Drawing.Point(6, 106);
+            this.pnlOutQueue.Location = new System.Drawing.Point(6, 99);
             this.pnlOutQueue.Name = "pnlOutQueue";
             this.pnlOutQueue.Size = new System.Drawing.Size(1312, 613);
             this.pnlOutQueue.TabIndex = 26;
@@ -137,7 +137,7 @@ namespace TMS_Weight.Forms
             this.sfBtnOutWeight.BackColor = System.Drawing.Color.CornflowerBlue;
             this.sfBtnOutWeight.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sfBtnOutWeight.ForeColor = System.Drawing.Color.White;
-            this.sfBtnOutWeight.Location = new System.Drawing.Point(1074, 59);
+            this.sfBtnOutWeight.Location = new System.Drawing.Point(1074, 55);
             this.sfBtnOutWeight.Margin = new System.Windows.Forms.Padding(4);
             this.sfBtnOutWeight.Name = "sfBtnOutWeight";
             this.sfBtnOutWeight.Size = new System.Drawing.Size(107, 34);
@@ -155,7 +155,7 @@ namespace TMS_Weight.Forms
             this.sfbtnExport.BackColor = System.Drawing.Color.ForestGreen;
             this.sfbtnExport.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sfbtnExport.ForeColor = System.Drawing.Color.White;
-            this.sfbtnExport.Location = new System.Drawing.Point(1198, 59);
+            this.sfbtnExport.Location = new System.Drawing.Point(1198, 55);
             this.sfbtnExport.Margin = new System.Windows.Forms.Padding(0);
             this.sfbtnExport.Name = "sfbtnExport";
             this.sfbtnExport.Size = new System.Drawing.Size(107, 34);

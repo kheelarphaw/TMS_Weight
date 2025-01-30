@@ -78,7 +78,7 @@ namespace TMS_Weight.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlInQueue.BackColor = System.Drawing.SystemColors.Control;
             this.pnlInQueue.Controls.Add(this.sfInQueueGrid);
-            this.pnlInQueue.Location = new System.Drawing.Point(6, 109);
+            this.pnlInQueue.Location = new System.Drawing.Point(6, 104);
             this.pnlInQueue.Name = "pnlInQueue";
             this.pnlInQueue.Size = new System.Drawing.Size(1312, 637);
             this.pnlInQueue.TabIndex = 19;
@@ -115,7 +115,7 @@ namespace TMS_Weight.Forms
             this.sfbtnInExport.BackColor = System.Drawing.Color.ForestGreen;
             this.sfbtnInExport.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sfbtnInExport.ForeColor = System.Drawing.Color.White;
-            this.sfbtnInExport.Location = new System.Drawing.Point(1195, 57);
+            this.sfbtnInExport.Location = new System.Drawing.Point(1195, 54);
             this.sfbtnInExport.Margin = new System.Windows.Forms.Padding(4);
             this.sfbtnInExport.Name = "sfbtnInExport";
             this.sfbtnInExport.Size = new System.Drawing.Size(107, 34);
@@ -133,7 +133,7 @@ namespace TMS_Weight.Forms
             this.sfBtnInWeight.BackColor = System.Drawing.Color.CornflowerBlue;
             this.sfBtnInWeight.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sfBtnInWeight.ForeColor = System.Drawing.Color.White;
-            this.sfBtnInWeight.Location = new System.Drawing.Point(1064, 57);
+            this.sfBtnInWeight.Location = new System.Drawing.Point(1064, 54);
             this.sfBtnInWeight.Name = "sfBtnInWeight";
             this.sfBtnInWeight.Size = new System.Drawing.Size(107, 34);
             this.sfBtnInWeight.Style.BackColor = System.Drawing.Color.CornflowerBlue;
